@@ -1,0 +1,115 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Miranda · Contatti"
+  description="Una call di triage da 30 minuti. Raccontami cosa devi decidere e quale processo crea attrito. Niente dati sensibili nel form."
+  page="contatti"
+  bg='data-max="110" data-link="150" data-accent="0.09" data-speed="0.12"'
+>
+  <style>
+    @media (max-width: 860px) { .contact-cols { grid-template-columns: 1fr !important; } }
+  </style>
+
+  <section class="page-hero" style="padding-bottom:24px;">
+    <div class="shell">
+      <div class="eyebrow reveal">Prossimo passo</div>
+      <h1 class="reveal d1">Una call di triage da 30 minuti.</h1>
+      <p class="reveal d2">Raccontami il contesto in poche righe. Se sei un buon fit ti propongo il perimetro giusto. Altrimenti ti dico perché e ti indico chi può aiutarti meglio. Non chiedo dati sensibili in questo form.</p>
+    </div>
+  </section>
+
+  <section class="section tight" style="padding-top:32px;">
+    <div class="shell">
+      <div style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:24px;align-items:start;" class="contact-cols">
+        <!-- FORM -->
+        <div class="holo reveal" style="padding:32px;" id="formCard">
+          <form id="triage" novalidate>
+            <div class="form-grid">
+              <div class="field"><label for="nome">Nome <span class="req">*</span></label><input id="nome" name="nome" type="text" placeholder="Es. Anna Bianchi" required /></div>
+              <div class="field"><label for="azienda">Azienda <span class="req">*</span></label><input id="azienda" name="azienda" type="text" placeholder="Es. Officina S.r.l." required /></div>
+            </div>
+            <div class="form-grid" style="margin-top:18px;">
+              <div class="field"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" placeholder="anna@azienda.it" required /></div>
+              <div class="field"><label for="link">Link sito o prodotto</label><input id="link" name="link" type="url" placeholder="https://" /></div>
+            </div>
+            <div class="field" style="margin-top:18px;"><label for="decisione">Quale decisione stai affrontando? <span class="req">*</span></label><textarea id="decisione" name="decisione" placeholder="Es. Sostituire il gestionale ordini, 4 stakeholder, tempo 6 settimane." required></textarea></div>
+            <div class="field" style="margin-top:18px;"><label for="attrito">Quale tool o processo crea attrito oggi?</label><textarea id="attrito" name="attrito" placeholder="Es. Il team torna sui fogli condivisi perche il gestionale attuale non segue il flusso reale."></textarea></div>
+            <div class="field" style="margin-top:18px;"><label for="tempi">Tempistiche desiderate</label>
+              <select id="tempi" name="tempi">
+                <option>Entro 4 settimane</option>
+                <option>Entro 8 settimane</option>
+                <option>Entro 3 mesi</option>
+                <option>Non ho ancora una data</option>
+              </select>
+            </div>
+            <div id="formErr" class="hint" style="color:#e89a9a;margin-top:14px;display:none;"></div>
+            <div class="cta-row" style="margin-top:24px;">
+              <button type="submit" class="btn btn-primary btn-lg magnetic"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</button>
+            </div>
+            <p class="hint" style="margin-top:14px;">Inviando accetti di essere ricontattata per organizzare la call. Niente newsletter, niente spam.</p>
+          </form>
+
+          <div id="ok" style="display:none;text-align:center;padding:20px 0;">
+            <div style="width:60px;height:60px;border-radius:999px;margin:0 auto 18px;background:rgba(46,133,90,0.18);border:1px solid rgba(46,133,90,0.5);display:grid;place-items:center;"><i data-lucide="check" style="width:28px;height:28px;color:#7fd1a6"></i></div>
+            <h3 style="font-size:24px;">Ricevuto. Ti scrivo entro 24h.</h3>
+            <p style="margin-top:10px;max-width:46ch;margin-left:auto;margin-right:auto;">Nel frattempo controlla la mail. Se non vedi nulla, scrivimi a <a href="mailto:ciao@miranda.studio">ciao@miranda.studio</a>.</p>
+          </div>
+        </div>
+
+        <!-- SIDE -->
+        <div class="stack" style="gap:18px;">
+          <div class="holo glow-wine reveal d1" style="padding:26px;">
+            <div class="eyebrow">Cosa succede dopo</div>
+            <ul style="list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px;">
+              <li style="display:flex;gap:11px;font-size:14px;line-height:21px;color:var(--on-dark-2)"><i data-lucide="clock" style="width:17px;color:var(--eyebrow-dark);flex-shrink:0;margin-top:2px"></i> Leggo le tue righe entro 24h.</li>
+              <li style="display:flex;gap:11px;font-size:14px;line-height:21px;color:var(--on-dark-2)"><i data-lucide="check-square" style="width:17px;color:var(--eyebrow-dark);flex-shrink:0;margin-top:2px"></i> Se sei fit, ti mando un perimetro chiaro in 20 minuti di call.</li>
+              <li style="display:flex;gap:11px;font-size:14px;line-height:21px;color:var(--on-dark-2)"><i data-lucide="arrow-right-circle" style="width:17px;color:var(--eyebrow-dark);flex-shrink:0;margin-top:2px"></i> Se non sei fit, te lo dico e ti indico chi può aiutarti.</li>
+            </ul>
+          </div>
+          <div class="holo reveal d2" style="padding:26px;">
+            <div class="eyebrow">Non vendo</div>
+            <ul style="list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px;">
+              <li style="display:flex;gap:11px;font-size:14px;color:var(--on-dark-2)"><i data-lucide="x" style="width:16px;color:var(--on-dark-3);flex-shrink:0;margin-top:2px"></i> siti vetrina per micro-attività</li>
+              <li style="display:flex;gap:11px;font-size:14px;color:var(--on-dark-2)"><i data-lucide="x" style="width:16px;color:var(--on-dark-3);flex-shrink:0;margin-top:2px"></i> corsi online o percorsi formativi</li>
+              <li style="display:flex;gap:11px;font-size:14px;color:var(--on-dark-2)"><i data-lucide="x" style="width:16px;color:var(--on-dark-3);flex-shrink:0;margin-top:2px"></i> uplift percentuali garantiti</li>
+              <li style="display:flex;gap:11px;font-size:14px;color:var(--on-dark-2)"><i data-lucide="x" style="width:16px;color:var(--on-dark-3);flex-shrink:0;margin-top:2px"></i> retainer di design illimitati</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const form = document.getElementById("triage");
+      const err = document.getElementById("formErr");
+      const ok = document.getElementById("ok");
+      if (!form) return;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const required = ["nome", "azienda", "email", "decisione"];
+        let missing = [];
+        required.forEach(id => { const el = document.getElementById(id); if (!el.value.trim()) missing.push(el); });
+        const email = document.getElementById("email");
+        const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim());
+        [...form.querySelectorAll("input,textarea")].forEach(el => el.style.borderColor = "");
+        if (missing.length || !emailOk) {
+          missing.forEach(el => el.style.borderColor = "#c53030");
+          if (!emailOk) email.style.borderColor = "#c53030";
+          err.style.display = "block";
+          err.textContent = !emailOk && !missing.length
+            ? "Controlla l'indirizzo email, poi riprova."
+            : "Compila i campi obbligatori (nome, azienda, email, decisione), poi riprova.";
+          return;
+        }
+        err.style.display = "none";
+        form.style.display = "none";
+        ok.style.display = "block";
+        if (window.lucide) lucide.createIcons();
+      });
+    })();
+  </script>
+</Layout>

@@ -1,0 +1,191 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Miranda · Software Fit Sprint"
+  description="In due settimane: mappa dei processi, criteri UX, shortlist, matrice decisionale con rischi e roadmap di adozione. €2.500 fisso."
+  page="servizi"
+  bg='data-max="120" data-link="150" data-accent="0.10" data-speed="0.13"'
+>
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="shell">
+      <div class="hero-grid">
+        <div>
+          <div class="row reveal" style="gap:10px;margin-bottom:18px;">
+            <span class="pill wine"><span class="dot"></span>Software Fit Sprint</span>
+            <span class="pill">€2.500 fisso</span>
+            <span class="pill">2 settimane</span>
+          </div>
+          <h1 class="reveal d1">Scegli il software giusto partendo dai processi, non dalle demo.</h1>
+          <p class="lede reveal d2">In due settimane trasformo dubbi, vincoli e stakeholder in una decisione difendibile: criteri, matrice e roadmap di adozione, prima di bruciare budget su un tool sbagliato.</p>
+          <div class="cta-row reveal d3">
+            <a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+            <a class="btn btn-secondary btn-lg magnetic" href="#matrice">Vedi un esempio di matrice</a>
+          </div>
+        </div>
+        <div class="reveal d2">
+          <div class="holo glow-wine scanlines tilt" data-tilt data-console>
+            <div class="console-head">
+              <div class="lights"><i style="background:#7c223f"></i><i style="background:#b7791f"></i><i style="background:#2e855a"></i></div>
+              <div class="console-title" data-status="Settimana 1 · mappatura|Settimana 1 · criteri|Settimana 2 · shortlist|Settimana 2 · matrice|Output · decisione">Sprint timeline</div>
+              <div class="console-title" style="color:var(--eyebrow-dark)">SFS-01</div>
+            </div>
+            <div class="console-body">
+              <div class="flow">
+                <span class="node"><i data-lucide="route" class="ic"></i> Mappa</span><span class="arr">→</span>
+                <span class="node"><i data-lucide="git-branch" class="ic"></i> Criteri</span><span class="arr">→</span>
+                <span class="node"><i data-lucide="box" class="ic"></i> Shortlist</span><span class="arr">→</span>
+                <span class="node"><i data-lucide="check-square" class="ic"></i> Decisione</span>
+              </div>
+              <div class="rm" style="background:transparent;border:0;padding:0;">
+                <ul style="gap:12px;">
+                  <li><i data-lucide="circle-check"></i> 4 stakeholder allineati sugli stessi criteri</li>
+                  <li><i data-lucide="circle-check"></i> 2-3 tool confrontati con rischio per riga</li>
+                  <li><i data-lucide="circle-check"></i> roadmap a 30 / 90 / 180 giorni</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="lead-2col">
+        <div class="reveal"><div class="eyebrow">Il problema</div><h2 class="h2-cinema" style="margin-top:14px;">La demo convince. Il martedì alle quattordici, no.</h2></div>
+        <p class="reveal d1" style="font-size:17px;line-height:27px;">Scegliere un gestionale o un tool verticale sulla base di una demo è il modo più rapido per ritrovarsi, sei mesi dopo, con metà del team tornato su Excel. Il problema raramente è il software. È la decisione presa senza mappare come si lavora davvero, senza criteri condivisi e senza un piano di adozione.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PER CHI / NON PER CHI -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="section-head reveal"><div class="eyebrow">Per chi è, per chi no</div><h2 class="h2-cinema">Confini chiari da subito.</h2></div>
+      <div class="fit-grid reveal d1" style="margin-top:32px;">
+        <div class="fit yes">
+          <h4><span class="mk"><i data-lucide="check" style="width:16px;height:16px"></i></span>È fit se</h4>
+          <ul>
+            <li><i data-lucide="check"></i> devi scegliere o validare un software che impatta più team</li>
+            <li><i data-lucide="check"></i> gli stakeholder non si allineano sui criteri</li>
+            <li><i data-lucide="check"></i> vuoi una decisione difendibile entro 4-8 settimane</li>
+            <li><i data-lucide="check"></i> il budget è medio e va difeso bene</li>
+          </ul>
+        </div>
+        <div class="fit no">
+          <h4><span class="mk"><i data-lucide="minus" style="width:16px;height:16px"></i></span>Non è fit se</h4>
+          <ul>
+            <li><i data-lucide="x"></i> cerchi sviluppo o configurazione tecnica del tool</li>
+            <li><i data-lucide="x"></i> vuoi una garanzia di uplift percentuale</li>
+            <li><i data-lucide="x"></i> il fornitore è già scelto e manca solo l'esecuzione</li>
+            <li><i data-lucide="x"></i> ti serve un sito vetrina entry-level</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSA SUCCEDE IN 2 SETTIMANE -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="section-head reveal"><div class="eyebrow">Cosa succede in pratica</div><h2 class="h2-cinema">Due settimane, time-boxed.</h2></div>
+      <div class="steps">
+        <div class="step reveal d1"><div class="n">0<span class="bg">1</span></div><div><h3>Mappo i processi reali</h3><p>Interviste rapide e osservazione. Come si lavora oggi, dove si rompe il flusso, dove un tool serve davvero e dove no.</p><div class="io"><span class="lbl">Input</span><span class="pill">accesso a 3-5 persone</span><span class="lbl">Output</span><span class="pill">mappa as-is / to-be</span></div></div></div>
+        <div class="step reveal d1"><div class="n">0<span class="bg">2</span></div><div><h3>Definisco criteri e vincoli</h3><p>UX, budget, integrazione, adozione. I criteri che reggono anche in CDA, non quelli che piacciono al fornitore.</p><div class="io"><span class="lbl">Input</span><span class="pill">vincoli e budget</span><span class="lbl">Output</span><span class="pill">criteri pesati</span></div></div></div>
+        <div class="step reveal d1"><div class="n">0<span class="bg">3</span></div><div><h3>Valuto opzioni e trade-off</h3><p>Shortlist di 2-3 soluzioni o validazione di una scelta esistente. Matrice decisionale con un rischio per ogni riga.</p><div class="io"><span class="lbl">Input</span><span class="pill">2-3 tool</span><span class="lbl">Output</span><span class="pill">matrice + rischi</span></div></div></div>
+        <div class="step reveal d1"><div class="n">0<span class="bg">4</span></div><div><h3>Consegno decisione e roadmap</h3><p>Una raccomandazione difendibile e un piano di adozione. Cosa fare entro 30, 90 e 180 giorni. Cosa non fare. Cosa rimandare.</p><div class="io"><span class="lbl">Decisione</span><span class="pill">scegli · valida · scarta</span><span class="lbl">Output</span><span class="pill">roadmap 30/90/180</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATRICE -->
+  <section class="section tight" id="matrice">
+    <div class="shell">
+      <div class="section-head reveal"><div class="eyebrow">Output centrale</div><h2 class="h2-cinema">La matrice decisionale. Sempre con una colonna rischio.</h2><p>Non un punteggio magico. Un confronto leggibile dagli stakeholder, dove ogni riga dice anche cosa può andare storto.</p></div>
+      <div class="holo glow-blue reveal d1" style="margin-top:32px;" data-console>
+        <div class="console-head">
+          <div class="lights"><i style="background:#7c223f"></i><i style="background:#b7791f"></i><i style="background:#2e855a"></i></div>
+          <div class="console-title">Matrice decisionale · esempio</div>
+          <span class="console-tabs"><button data-tool="A" class="on">Evidenzia A</button><button data-tool="B">Evidenzia B</button></span>
+        </div>
+        <div class="console-body" style="padding:8px 20px 20px;">
+          <table class="mtx">
+            <thead><tr><th>Criterio</th><th>Peso</th><th data-col="A" class="win">Tool A</th><th data-col="B">Tool B</th><th>Rischio</th></tr></thead>
+            <tbody>
+              <tr><td class="crit">Adozione team operativo</td><td>Alto</td><td data-col="A" class="win"><span class="tag-ok">Alto</span></td><td data-col="B"><span class="tag-mid">Medio</span></td><td>Curva di apprendimento su B</td></tr>
+              <tr><td class="crit">Costo totale 24 mesi</td><td>Alto</td><td data-col="A" class="win"><span class="tag-mid">€42k</span></td><td data-col="B"><span class="tag-ok">€31k</span></td><td>Personalizzazioni su B</td></tr>
+              <tr><td class="crit">Integrazione gestionale</td><td>Medio</td><td data-col="A" class="win"><span class="tag-ok">Nativa</span></td><td data-col="B"><span class="tag-no">Esterna</span></td><td>Middleware da mantenere</td></tr>
+              <tr><td class="crit">Tempo a regime</td><td>Medio</td><td data-col="A" class="win"><span class="tag-ok">6 sett.</span></td><td data-col="B"><span class="tag-mid">10 sett.</span></td><td>Formazione interna</td></tr>
+              <tr><td class="crit">Lock-in fornitore</td><td>Basso</td><td data-col="A" class="win"><span class="tag-mid">Medio</span></td><td data-col="B"><span class="tag-ok">Basso</span></td><td>Export dati su A</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES + ANTI-SCOPE -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="section-head reveal"><div class="eyebrow">Cosa consegno</div><h2 class="h2-cinema">Output concreti, niente slide di teoria.</h2></div>
+      <div class="scope-grid reveal d1" style="margin-top:32px;">
+        <div class="scope inc">
+          <h4><i data-lucide="circle-check"></i> Cosa consegno</h4>
+          <ul>
+            <li>mappa dei processi as-is e to-be</li>
+            <li>colli di bottiglia identificati</li>
+            <li>criteri di scelta guidati dalla UX, pesati con gli stakeholder</li>
+            <li>shortlist di 2-3 soluzioni o validazione di una scelta esistente</li>
+            <li>matrice decisionale con pro, contro, costi, limiti e rischi</li>
+            <li>roadmap di adozione a 30 / 90 / 180 giorni</li>
+          </ul>
+        </div>
+        <div class="scope exc">
+          <h4><i data-lucide="circle-slash"></i> Cosa non include</h4>
+          <ul>
+            <li>sviluppo e configurazione tecnica</li>
+            <li>negoziazione con il vendor</li>
+            <li>PM dell'implementazione</li>
+            <li>supporto continuativo dopo la roadmap</li>
+          </ul>
+          <p class="note">Il valore è decidere cosa ha senso fare, prima di investire in esecuzione. Whatever it takes, anche mappare i processi prima di guardare la demo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREZZO + RISCHIO -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="offers" style="grid-template-columns:1fr 1fr;">
+        <div class="holo reveal d1" style="padding:36px;">
+          <div class="eyebrow">Tempi e prezzo</div>
+          <div class="price" style="margin-top:16px;align-items:baseline;display:flex;gap:10px;"><b style="font-family:var(--font-heading);font-size:44px;font-weight:800;color:#fff;">€2.500</b><span style="color:var(--on-dark-3)">fisso</span></div>
+          <p style="margin-top:8px;">Due settimane time-boxed. Prezzo fisso, nessun "da". Sai in anticipo cosa ricevi e quando.</p>
+        </div>
+        <div class="holo glow-wine reveal d2" style="padding:36px;">
+          <div class="eyebrow">Riduzione del rischio</div>
+          <h3 style="margin-top:14px;font-size:22px;">€2.500 ora, contro un tool sbagliato pagato per 24 mesi.</h3>
+          <p style="margin-top:10px;">Una decisione difendibile costa una frazione di un acquisto sbagliato e della sua mancata adozione. Se non c'è abbastanza materiale per decidere, te lo dico nella call di triage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <div class="eyebrow center" style="justify-content:center;">Prossimo passo</div>
+        <h2 style="margin-top:14px;">Raccontami cosa devi decidere.</h2>
+        <p>Una call di triage da 30 minuti. Se sei fit, ti propongo il perimetro dello Sprint. Altrimenti ti dico perché.</p>
+        <div class="cta-row"><a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a></div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,44 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CockpitBg from "../components/CockpitBg.astro";
+import "../styles/cockpit.css";
+import "../styles/hero-immersive.css";
+
+interface Props {
+  title: string;
+  description: string;
+  page: string;
+  bg?: string;
+  immersiveHero?: boolean;
+}
+
+const { title, description, page, bg, immersiveHero = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/assets/logo-mark.png" type="image/png" />
+  </head>
+  <body data-page={page}>
+    {immersiveHero && <div class="amb" id="amb"><div class="spot"></div><div class="spot b"></div></div>}
+    <CockpitBg bg={bg} />
+    <div class="curtain"></div>
+    <div data-progress style="position:fixed;top:0;left:0;height:2px;width:0;z-index:60;background:linear-gradient(90deg,#7c223f,#b06a7e);box-shadow:0 0 12px rgba(176,106,126,.6);transition:width 80ms linear;"></div>
+    <Header />
+    <main class="page">
+      <slot />
+    </main>
+    <Footer />
+
+    <script src="https://unpkg.com/lucide@latest" is:inline></script>
+    <script src="../scripts/cockpit-bg.js"></script>
+    {immersiveHero && <script src="../scripts/hero-immersive.js"></script>}
+    <script src="../scripts/chrome.js"></script>
+  </body>
+</html>

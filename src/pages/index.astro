@@ -1,0 +1,232 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Miranda · Decisioni software più chiare, processi digitali meno costosi"
+  description="UX & Product Consultant. Aiuto PMI e scaleup a scegliere software e far evolvere processi digitali, prima che le decisioni diventino costose."
+  page="home"
+  bg='data-max="140" data-link="155" data-accent="0.10" data-speed="0.15" data-parallax="30"'
+  immersiveHero
+>
+  <!-- ============ HERO (immersiva) ============ -->
+  <section class="imm">
+    <div class="shell">
+      <div class="imm-grid">
+
+        <div class="imm-copy">
+          <div class="eyebrow-live">
+            <span class="eyebrow no-rule">UX &amp; Product Consultant</span>
+            <span class="status-chip"><span class="led"></span> <span id="heroStatus">sessione di triage</span></span>
+          </div>
+          <h1>
+            <span class="ln l1"><span>Decisioni software</span></span>
+            <span class="ln l2"><span>più chiare.</span></span>
+            <span class="ln l3"><span><span class="accent-draw">Processi meno costosi.</span></span></span>
+          </h1>
+          <p class="lede fade-up f1">Prima di comprare, rifare o sviluppare, capiamo cosa deve davvero cambiare. In due settimane trasformo dubbi, vincoli e stakeholder in una decisione difendibile.</p>
+          <div class="cta-row fade-up f2">
+            <a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+            <a class="btn btn-secondary btn-lg magnetic" href="/servizi" data-nav>Guarda le offerte</a>
+          </div>
+          <div class="proof-im fade-up f3">
+            <span><b data-cu="2" data-suffix=" settimane">2 settimane</b> time-boxed</span>
+            <span class="sep">·</span>
+            <span><b data-cu="2500" data-prefix="€" data-money="1">€2.500</b> fisso</span>
+            <span class="sep">·</span>
+            <span>roadmap di adozione inclusa</span>
+          </div>
+        </div>
+
+        <div class="console-wrap">
+          <div class="chip-float c1" data-depth="1.5"><i data-lucide="route" class="ic"></i><span><b>Processi mappati</b><small>as-is → to-be</small></span></div>
+          <div class="chip-float c2" data-depth="2.1"><i data-lucide="shield-check" class="ic"></i><span><b>Rischi gestiti</b><small>prima di firmare</small></span></div>
+          <div class="console-im" id="heroConsole">
+            <div class="holo glow-wine scanlines">
+              <div class="c-head">
+                <div class="lights"><i class="l1" style="background:#7c223f"></i><i class="l2" style="background:#b7791f"></i><i class="l3" style="background:#2e855a"></i></div>
+                <div class="c-title"><span id="heroCtitle">Decision console</span><span class="caret">▌</span></div>
+                <div class="c-ref"><span class="timer" id="heroTimer">00:00</span><span class="live"><span class="led"></span> live</span></div>
+              </div>
+              <div class="c-body">
+                <div class="pipe">
+                  <span class="node n1"><i data-lucide="route" class="ic"></i> Processi</span>
+                  <span class="wire w1"></span>
+                  <span class="node n2"><i data-lucide="box" class="ic"></i> Software</span>
+                  <span class="wire w2"></span>
+                  <span class="node n3"><i data-lucide="users-round" class="ic"></i> Adozione</span>
+                  <span class="wire w3"></span>
+                  <span class="node n4"><i data-lucide="clipboard-check" class="ic"></i> QA</span>
+                </div>
+                <div class="mtx-head">
+                  <span class="lbl">Matrice decisionale · estratto</span>
+                  <span class="mtx-tabs">
+                    <button data-tool="A" class="on">Evidenzia A</button>
+                    <button data-tool="B">Evidenzia B</button>
+                  </span>
+                </div>
+                <div class="mtx-shell">
+                  <div class="scanbeam"><span class="edge"></span></div>
+                  <table class="mtx">
+                    <thead><tr><th>Criterio</th><th data-col="A" class="win">Tool A</th><th data-col="B">Tool B</th><th>Rischio</th></tr></thead>
+                    <tbody>
+                      <tr><td class="crit">Adozione team operativo</td><td data-col="A" class="win"><span class="tag-ok">Alto</span></td><td data-col="B"><span class="tag-mid">Medio</span></td><td>Curva B</td></tr>
+                      <tr><td class="crit">Costo 24 mesi</td><td data-col="A" class="win"><span class="tag-mid" data-cu="42" data-prefix="€" data-suffix="k">€42k</span></td><td data-col="B"><span class="tag-ok" data-cu="31" data-prefix="€" data-suffix="k">€31k</span></td><td>Custom B</td></tr>
+                      <tr><td class="crit">Integrazione gestionale</td><td data-col="A" class="win"><span class="tag-ok">Nativa</span></td><td data-col="B"><span class="tag-no">Esterna</span></td><td>Middleware</td></tr>
+                      <tr><td class="crit">Tempo a regime</td><td data-col="A" class="win"><span class="tag-ok">6 sett.</span></td><td data-col="B"><span class="tag-mid">10 sett.</span></td><td>Formazione</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="verdict" id="verdict">
+                  <span class="seal"><i data-lucide="check"></i></span>
+                  <span class="vtext"><b>Decisione: Tool A</b><span>Difendibile sui processi reali, non sulla demo.</span></span>
+                  <span class="vmeta">3 criteri · 1 rischio<br>gestito</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="cue"><span class="mouse"></span>Scorri</div>
+  </section>
+
+  <!-- ============ PILLARS ============ -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="section-head reveal">
+        <div class="eyebrow">Cosa tengo insieme</div>
+        <h2 class="h2-cinema">Quattro cose che decidono se un software diventa un valore o un costo.</h2>
+      </div>
+      <div class="offers" style="grid-template-columns:repeat(4,1fr);margin-top:36px;">
+        <div class="card-d reveal d1"><div class="ic-badge"><i data-lucide="route"></i></div><h3 style="font-size:19px">Processi</h3><p style="font-size:14px;line-height:21px;margin-top:8px">Come si lavora davvero oggi, dove si rompe il flusso, dove un tool serve e dove no.</p></div>
+        <div class="card-d reveal d2"><div class="ic-badge"><i data-lucide="box"></i></div><h3 style="font-size:19px">Software</h3><p style="font-size:14px;line-height:21px;margin-top:8px">La scelta parte dai processi reali, non dalle demo. Il processo è tutto, il software è solo Ken.</p></div>
+        <div class="card-d reveal d3"><div class="ic-badge"><i data-lucide="users-round"></i></div><h3 style="font-size:19px">Adozione</h3><p style="font-size:14px;line-height:21px;margin-top:8px">Un tool comprato e non usato è solo un costo. L'adozione si progetta, non si spera.</p></div>
+        <div class="card-d reveal d4"><div class="ic-badge"><i data-lucide="clipboard-check"></i></div><h3 style="font-size:19px">Qualità UX</h3><p style="font-size:14px;line-height:21px;margin-top:8px">QA UX, accessibilità, microcopy. Un software non deve solo funzionare, deve essere usato.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM (light) ============ -->
+  <section class="section section-light soft">
+    <div class="shell">
+      <div class="lead-2col">
+        <div class="reveal">
+          <div class="eyebrow">Il problema vero</div>
+          <h2 class="h2-cinema" style="margin-top:14px;">Le decisioni sbagliate sul digitale non costano subito. Costano dopo.</h2>
+        </div>
+        <p class="reveal d1" style="font-size:17px;line-height:27px;">Un gestionale scelto sulla demo. Un sito recente ma già disallineato. Una feature che nessuno usa. Ticket che tornano sempre uguali. Il team che ricade su Excel. Spesso il problema non è il tool: è la decisione presa senza guardare i processi.</p>
+      </div>
+      <div class="offers" style="grid-template-columns:repeat(3,1fr);margin-top:40px;">
+        <div class="reveal d1" style="background:#fff;border:1px solid var(--color-ink-200);border-radius:20px;padding:24px;box-shadow:var(--shadow-card)">
+          <div style="font-family:var(--font-heading);font-weight:800;color:var(--accent-wine);font-size:13px;letter-spacing:0.06em;text-transform:uppercase">Prima</div>
+          <p style="color:var(--color-ink-700);margin-top:10px;font-size:15px;line-height:23px">"Scegliamo questo, in demo sembrava perfetto."</p>
+        </div>
+        <div class="reveal d2" style="background:#fff;border:1px solid var(--color-ink-200);border-radius:20px;padding:24px;box-shadow:var(--shadow-card)">
+          <div style="font-family:var(--font-heading);font-weight:800;color:var(--color-warning);font-size:13px;letter-spacing:0.06em;text-transform:uppercase">Dopo 6 mesi</div>
+          <p style="color:var(--color-ink-700);margin-top:10px;font-size:15px;line-height:23px">"Lo usano in tre, gli altri sono tornati ai file condivisi."</p>
+        </div>
+        <div class="reveal d3" style="background:#fff;border:1px solid var(--color-ink-200);border-radius:20px;padding:24px;box-shadow:var(--shadow-card)">
+          <div style="font-family:var(--font-heading);font-weight:800;color:var(--color-system-blue-600);font-size:13px;letter-spacing:0.06em;text-transform:uppercase">Con un triage</div>
+          <p style="color:var(--color-ink-700);margin-top:10px;font-size:15px;line-height:23px">"Sapevamo cosa serviva e cosa rimandare, prima di firmare."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OFFERS ============ -->
+  <section class="section" id="offerte">
+    <div class="shell">
+      <div class="section-head reveal">
+        <div class="eyebrow">Offerte 2026</div>
+        <h2 class="h2-cinema">Tempi fissi, output dichiarati, anti-scope esplicito.</h2>
+        <p>Niente retainer infiniti, niente uplift garantiti. Ogni offerta dice cosa include e cosa no.</p>
+      </div>
+      <div class="offers">
+        <a class="offer feat reveal d1" href="/software-fit-sprint" data-nav>
+          <span class="flag">Core</span>
+          <div class="tier">Decision sprint</div>
+          <h3>Software Fit Sprint</h3>
+          <p>Scegli, valida o scarta un software partendo dai processi reali. Mappa, criteri, shortlist, matrice, roadmap di adozione.</p>
+          <div class="price"><b>€2.500</b><span>fisso · 2 settimane</span></div>
+          <span class="arrow">Prenota la call di triage <i data-lucide="arrow-right"></i></span>
+        </a>
+        <a class="offer reveal d2" href="/website-evolution" data-nav>
+          <div class="tier">Entry</div>
+          <h3>Website Evolution &amp; Adoption Check</h3>
+          <p>Il sito è recente ma regge ancora il business? Audit UX, gap analysis e roadmap a 3-6 mesi senza rifare tutto.</p>
+          <div class="price"><b>€1.200</b><span>fisso · 1 settimana</span></div>
+          <span class="arrow">Invia il link + obiettivo <i data-lucide="arrow-right"></i></span>
+        </a>
+        <a class="offer reveal d3" href="/qa" data-nav>
+          <div class="tier">Ricorrente</div>
+          <h3>UX/UI QA &amp; Functional Testing</h3>
+          <p>Testo flussi reali ed edge case prima delle release, così meno bug di esperienza arrivano in produzione.</p>
+          <div class="price"><b>€800</b><span>/ mese · 3-6 mesi</span></div>
+          <span class="arrow">Attiva un mese pilota <i data-lucide="arrow-right"></i></span>
+        </a>
+      </div>
+      <div class="row reveal" style="margin-top:24px;justify-content:center;">
+        <a class="btn btn-secondary magnetic" href="/servizi" data-nav>Vedi tutte le 8 offerte come sistema <i data-lucide="arrow-right" class="ic"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METHOD preview ============ -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="lead-2col">
+        <div class="reveal">
+          <div class="eyebrow">Metodo</div>
+          <h2 class="h2-cinema" style="margin-top:14px;">Cinque tappe, dalla confusione alla decisione.</h2>
+        </div>
+        <p class="reveal d1" style="font-size:17px;line-height:27px;">Map, Decide, Prioritize, Handoff, Stabilize. Ogni tappa ha input, output e un criterio di decisione. Niente teoria infinita: lavoriamo su quello che il tuo staff può davvero eseguire.</p>
+      </div>
+      <div class="chips reveal d1" style="margin-top:32px;">
+        <span class="pill"><span class="dot"></span>01 · Map</span>
+        <span class="pill"><span class="dot"></span>02 · Decide</span>
+        <span class="pill"><span class="dot"></span>03 · Prioritize</span>
+        <span class="pill"><span class="dot"></span>04 · Handoff</span>
+        <span class="pill"><span class="dot"></span>05 · Stabilize</span>
+      </div>
+      <div class="row reveal d2" style="margin-top:28px;">
+        <a class="btn btn-ghost magnetic" href="/metodo" data-nav>Guarda il metodo passo per passo <i data-lucide="arrow-right" class="ic"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PARTNER band ============ -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="holo glow-blue reveal" style="padding:48px;">
+        <div class="lead-2col" style="align-items:center;">
+          <div>
+            <div class="eyebrow">Partner dev</div>
+            <h2 class="h2-cinema" style="margin-top:14px;max-width:16ch;">Io la decisione, la UX e il QA. Tu la delivery.</h2>
+          </div>
+          <div>
+            <p style="font-size:16px;line-height:25px;">Collaboro stabilmente con sviluppatori e agenzie. Ruoli chiari, meno rework, handoff più pulito e più fiducia del cliente. Tu costruisci, io tengo la qualità della decisione e dell'esperienza.</p>
+            <div class="cta-row" style="margin-top:24px;">
+              <a class="btn btn-primary magnetic" href="/partner" data-nav><i data-lucide="handshake" class="ic"></i> Proponi una partnership</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA band ============ -->
+  <section class="section">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <div class="eyebrow center" style="justify-content:center;">Prossimo passo</div>
+        <h2 style="margin-top:14px;">Una call di triage da 30 minuti.</h2>
+        <p>Raccontami il contesto in tre righe. Se sei un buon fit ti propongo il perimetro. Altrimenti ti dico chi può aiutarti meglio.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

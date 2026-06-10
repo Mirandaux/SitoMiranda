@@ -1,0 +1,250 @@
+/* =============================================================
+   Miranda Design System — Colors & Type
+   Single source of truth for any prototype, deck or production
+   surface built against the Miranda brand.
+
+   Fonts are loaded from Google Fonts (Manrope + Inter) since no
+   self-hosted files were provided. Swap with self-hosted .woff2
+   when available and update the @font-face declarations below.
+   ============================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* -----------------------------------------------------------
+     BRAND PALETTE — primitives
+     ----------------------------------------------------------- */
+  --color-brand-wine-700: #7c223f;    /* Primary wine — signature */
+  --color-brand-wine-800: #5e1a30;    /* Pressed / deep accent */
+  --color-brand-mauve-500: #b06a7e;   /* Hover, soft accent */
+  --color-brand-mauve-300: #d6b1bc;   /* Mid mauve, dividers on dark */
+  --color-brand-mauve-100: #ede4e7;   /* Soft mauve background */
+  --color-brand-mauve-50:  #f7f1f3;   /* Whisper mauve */
+
+  --color-system-blue-700: #3b6391;
+  --color-system-blue-600: #4a77a8;   /* Link / info accent */
+  --color-system-blue-100: #e7eef6;   /* Soft blue background */
+  --color-system-blue-50:  #f3f7fb;
+
+  /* Neutrals (ink scale) */
+  --color-ink-900: #1d1b22;           /* Primary text, dark surfaces */
+  --color-ink-700: #3b3942;           /* Secondary text on light bg */
+  --color-ink-500: #6b6a72;           /* Tertiary / muted text */
+  --color-ink-300: #b9b7c0;           /* Borders, dividers */
+  --color-ink-200: #d8d6dc;           /* Soft borders */
+  --color-ink-100: #ecebef;           /* Very soft surfaces */
+  --color-ink-50:  #f6f5f7;           /* Off-white surface */
+  --color-white:   #ffffff;
+
+  /* Semantic state colors */
+  --color-success: #2e855a;
+  --color-success-soft: #e7f1ec;
+  --color-warning: #b7791f;
+  --color-warning-soft: #f7eed8;
+  --color-danger:  #c53030;
+  --color-danger-soft:  #f8e1e1;
+  --color-info:    #2b6cb0;
+  --color-info-soft:    #e1ecf7;
+
+  /* -----------------------------------------------------------
+     SEMANTIC TOKENS — meaning, not hex
+     ----------------------------------------------------------- */
+  --bg-page: var(--color-white);
+  --bg-soft: var(--color-brand-mauve-100);
+  --bg-soft-blue: var(--color-system-blue-100);
+  --bg-card: var(--color-white);
+  --bg-inverse: var(--color-ink-900);
+
+  --fg1: var(--color-ink-900);            /* Primary text */
+  --fg2: var(--color-ink-700);            /* Secondary text */
+  --fg3: var(--color-ink-500);            /* Muted text */
+  --fg-on-dark: var(--color-white);
+  --fg-on-soft: var(--color-ink-900);
+  --fg-link: var(--color-system-blue-600);
+
+  --border-subtle: var(--color-ink-200);
+  --border-default: var(--color-ink-300);
+  --border-strong: var(--color-ink-700);
+
+  --cta-primary-bg: var(--color-brand-wine-700);
+  --cta-primary-fg: var(--color-white);
+  --cta-primary-hover: var(--color-brand-mauve-500);
+  --cta-primary-pressed: var(--color-brand-wine-800);
+
+  --accent-wine: var(--color-brand-wine-700);
+  --accent-mauve: var(--color-brand-mauve-500);
+  --accent-blue: var(--color-system-blue-600);
+
+  /* -----------------------------------------------------------
+     TYPOGRAPHY — base
+     ----------------------------------------------------------- */
+  --font-heading: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+
+  /* Type scale (size / line-height / weight) */
+  --type-display-size: 56px;
+  --type-display-line: 64px;
+  --type-h1-size: 42px;
+  --type-h1-line: 50px;
+  --type-h2-size: 32px;
+  --type-h2-line: 40px;
+  --type-h3-size: 24px;
+  --type-h3-line: 32px;
+  --type-h4-size: 20px;
+  --type-h4-line: 28px;
+  --type-body-large-size: 18px;
+  --type-body-large-line: 28px;
+  --type-body-size: 16px;
+  --type-body-line: 24px;
+  --type-small-size: 14px;
+  --type-small-line: 20px;
+  --type-label-size: 13px;
+  --type-label-line: 18px;
+  --type-eyebrow-size: 12px;
+  --type-eyebrow-line: 16px;
+
+  /* -----------------------------------------------------------
+     SPACING — 4pt scale
+     ----------------------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* -----------------------------------------------------------
+     RADIUS
+     ----------------------------------------------------------- */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* -----------------------------------------------------------
+     SHADOWS — soft, low-contrast
+     ----------------------------------------------------------- */
+  --shadow-soft: 0 6px 20px rgba(29, 27, 34, 0.06);
+  --shadow-card: 0 10px 30px rgba(29, 27, 34, 0.08);
+  --shadow-lifted: 0 18px 50px rgba(29, 27, 34, 0.12);
+  --shadow-focus: 0 0 0 3px rgba(124, 34, 63, 0.18);
+
+  /* -----------------------------------------------------------
+     LAYOUT
+     ----------------------------------------------------------- */
+  --layout-max-width: 1120px;
+  --layout-pad-desktop: 64px;
+  --layout-pad-tablet: 32px;
+  --layout-pad-mobile: 20px;
+  --layout-section-gap-desktop: 96px;
+  --layout-section-gap-mobile: 48px;
+}
+
+/* =============================================================
+   ELEMENT DEFAULTS
+   Apply the design system without touching every element.
+   ============================================================= */
+
+html, body {
+  font-family: var(--font-body);
+  color: var(--fg1);
+  background: var(--bg-page);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--fg1);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--type-h1-size);
+  line-height: var(--type-h1-line);
+  font-weight: var(--fw-black);
+}
+h2 {
+  font-size: var(--type-h2-size);
+  line-height: var(--type-h2-line);
+  font-weight: var(--fw-bold);
+}
+h3 {
+  font-size: var(--type-h3-size);
+  line-height: var(--type-h3-line);
+  font-weight: var(--fw-bold);
+}
+h4 {
+  font-size: var(--type-h4-size);
+  line-height: var(--type-h4-line);
+  font-weight: var(--fw-semibold);
+}
+
+p {
+  margin: 0;
+  color: var(--fg2);
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--fg-link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+a:hover { border-bottom-color: currentColor; }
+
+/* =============================================================
+   UTILITY CLASSES — common typographic roles
+   ============================================================= */
+.display {
+  font-family: var(--font-heading);
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-line);
+  font-weight: var(--fw-black);
+  letter-spacing: var(--tracking-tight);
+}
+.body-large {
+  font-size: var(--type-body-large-size);
+  line-height: var(--type-body-large-line);
+}
+.small {
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-line);
+}
+.label {
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-line);
+  font-weight: var(--fw-semibold);
+}
+.eyebrow {
+  font-family: var(--font-heading);
+  font-size: var(--type-eyebrow-size);
+  line-height: var(--type-eyebrow-line);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent-wine);
+}
+.muted { color: var(--fg3); }
+.mono  { font-family: var(--font-mono); }

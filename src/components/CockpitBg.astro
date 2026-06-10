@@ -1,0 +1,9 @@
+---
+interface Props {
+  bg?: string;
+}
+const { bg = 'data-max="130" data-link="155" data-accent="0.09" data-speed="0.14" data-parallax="28"' } = Astro.props;
+---
+
+<div class="cockpit-bg" set:html={`<canvas data-cockpit ${bg}></canvas>`} />
+<div class="cockpit-veil"></div>

@@ -1,0 +1,170 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Miranda · UX/UI QA &amp; Functional Testing"
+  description="QA UX pre-release: testo flussi reali ed edge case dal punto di vista utente. Report con severità e priorità. €800/mese, 3-6 mesi."
+  page="qa"
+  bg='data-max="115" data-link="150" data-accent="0.09" data-speed="0.13"'
+>
+  <section class="page-hero">
+    <div class="shell">
+      <div class="row reveal" style="gap:10px;margin-bottom:18px;">
+        <span class="pill wine"><span class="dot"></span>UX/UI QA &amp; Functional Testing</span>
+        <span class="pill">€800/mese</span><span class="pill">3-6 mesi</span>
+      </div>
+      <h1 class="reveal d1">Il QA tecnico dice: funziona. <span style="color:var(--eyebrow-dark)">Il QA UX chiede: si usa?</span></h1>
+      <p class="reveal d2" style="font-size:19px;line-height:30px;margin-top:22px;max-width:62ch;">Testo i flussi reali e gli edge case dal punto di vista di chi userà il prodotto, prima di ogni release. Così meno bug di esperienza arrivano in produzione e meno ticket tornano indietro.</p>
+      <div class="cta-row reveal d3"><a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="bug" class="ic"></i> Attiva un mese pilota</a></div>
+    </div>
+  </section>
+
+  <!-- TECNICO vs UX -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="offers" style="grid-template-columns:1fr 1fr;">
+        <div class="card-d reveal d1">
+          <div class="ic-badge" style="background:rgba(74,119,168,0.18);border-color:rgba(74,119,168,0.32)"><i data-lucide="server-cog" style="color:#9cc0e8"></i></div>
+          <h3>QA tecnico</h3>
+          <p style="margin-top:8px;">Verifica che il codice faccia quello che deve. Risponde a una domanda: il sistema funziona secondo specifica?</p>
+          <ul class="rm" style="background:transparent;border:0;padding:14px 0 0;list-style:none;margin:0;display:grid;gap:8px;">
+            <li style="display:flex;gap:10px;font-size:13.5px;color:var(--on-dark-2)"><i data-lucide="check" style="width:15px;color:var(--accent-blue)"></i> i campi salvano</li>
+            <li style="display:flex;gap:10px;font-size:13.5px;color:var(--on-dark-2)"><i data-lucide="check" style="width:15px;color:var(--accent-blue)"></i> le API rispondono</li>
+            <li style="display:flex;gap:10px;font-size:13.5px;color:var(--on-dark-2)"><i data-lucide="check" style="width:15px;color:var(--accent-blue)"></i> niente errori 500</li>
+          </ul>
+        </div>
+        <div class="card-d reveal d2" style="border-color:rgba(176,106,126,0.4);">
+          <div class="ic-badge"><i data-lucide="users-round"></i></div>
+          <h3>QA UX</h3>
+          <p style="margin-top:8px;">Verifica che le persone riescano davvero a usarlo. Risponde a un'altra domanda: il flusso si capisce e si completa?</p>
+          <ul class="rm" style="background:transparent;border:0;padding:14px 0 0;list-style:none;margin:0;display:grid;gap:8px;">
+            <li style="display:flex;gap:10px;font-size:13.5px;color:var(--on-dark-2)"><i data-lucide="check" style="width:15px;color:var(--eyebrow-dark)"></i> il messaggio d'errore dice cosa fare</li>
+            <li style="display:flex;gap:10px;font-size:13.5px;color:var(--on-dark-2)"><i data-lucide="check" style="width:15px;color:var(--eyebrow-dark)"></i> l'edge case non blocca l'utente</li>
+            <li style="display:flex;gap:10px;font-size:13.5px;color:var(--on-dark-2)"><i data-lucide="check" style="width:15px;color:var(--eyebrow-dark)"></i> il percorso si completa senza chiamare il supporto</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="section-head reveal"><div class="eyebrow">Cosa cambia in pratica</div><h2 class="h2-cinema">Trascina e guarda la differenza.</h2><p>Lo stesso momento di errore, prima e dopo un passaggio di QA UX. Tecnicamente funzionano entrambi.</p></div>
+      <div class="ba reveal d1" style="margin-top:32px;">
+        <div class="after pane">
+          <div class="lbl">Con QA UX</div>
+          <div class="msg">Non siamo riusciti a salvare l'ordine: manca la data di consegna. Aggiungila e premi Salva, il resto è gia a posto.</div>
+        </div>
+        <div class="before">
+          <div class="pane">
+            <div class="lbl">Senza QA UX</div>
+            <div class="msg">Errore 422. Validazione fallita. Riprovare.</div>
+          </div>
+        </div>
+        <div class="handle" style="left:50%"><div class="grip"><i data-lucide="move-horizontal"></i></div></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Confronta senza e con QA UX" />
+      </div>
+    </div>
+  </section>
+
+  <!-- REPORT PREVIEW -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="section-head reveal"><div class="eyebrow">Cosa ricevi a ogni release</div><h2 class="h2-cinema">Un report con severità e priorità. Non un elenco di lamentele.</h2></div>
+      <div class="holo glow-blue reveal d1" style="margin-top:32px;">
+        <div class="console-head">
+          <div class="lights"><i style="background:#7c223f"></i><i style="background:#b7791f"></i><i style="background:#2e855a"></i></div>
+          <div class="console-title">Release report · v2.4</div>
+          <div class="console-title" style="color:var(--eyebrow-dark)">QA-UX</div>
+        </div>
+        <div class="console-body" style="padding:8px 20px 20px;">
+          <table class="mtx">
+            <thead><tr><th>Flusso</th><th>Cosa succede</th><th>Severità</th><th>Priorità</th></tr></thead>
+            <tbody>
+              <tr><td class="crit">Checkout · mobile</td><td>il CTA resta sotto la tastiera</td><td><span class="tag-no">Alta</span></td><td>P1</td></tr>
+              <tr><td class="crit">Recupero password</td><td>messaggio d'errore generico</td><td><span class="tag-mid">Media</span></td><td>P2</td></tr>
+              <tr><td class="crit">Onboarding</td><td>step 3 saltabile per sbaglio</td><td><span class="tag-mid">Media</span></td><td>P2</td></tr>
+              <tr><td class="crit">Tabella ordini</td><td>stato vuoto senza spiegazione</td><td><span class="tag-ok">Bassa</span></td><td>P3</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INCLUDE / NON INCLUDE + cards -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="scope-grid reveal">
+        <div class="scope inc">
+          <h4><i data-lucide="circle-check"></i> Cosa include</h4>
+          <ul>
+            <li>test dei flussi UX/UI principali</li>
+            <li>functional testing dal punto di vista utente</li>
+            <li>report di release con severità e priorità</li>
+            <li>checklist UX condivisa con il team</li>
+          </ul>
+        </div>
+        <div class="scope exc">
+          <h4><i data-lucide="circle-slash"></i> Cosa non include</h4>
+          <ul>
+            <li>security testing</li>
+            <li>performance e load testing</li>
+            <li>automazione dei test</li>
+          </ul>
+          <p class="note">Il QA UX non sostituisce il QA tecnico. Lo completa sul lato che di solito nessuno presidia: l'esperienza reale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO PLANS -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="section-head reveal"><div class="eyebrow">Due modi di lavorare insieme</div><h2 class="h2-cinema">Mensile, senza retainer infiniti.</h2></div>
+      <div class="offers reveal d1" style="grid-template-columns:1fr 1fr;">
+        <div class="offer">
+          <div class="tier">Ricorrente</div>
+          <h3>UX/UI QA &amp; Functional Testing</h3>
+          <p>QA UX pre-release sui flussi e gli edge case, con report a ogni rilascio.</p>
+          <div class="price"><b>€800</b><span>/ mese · 3-6 mesi</span></div>
+          <a class="arrow" href="/contatti" data-nav>Attiva un mese pilota <i data-lucide="arrow-right"></i></a>
+        </div>
+        <div class="offer feat">
+          <span class="flag">Premium</span>
+          <div class="tier">Retainer</div>
+          <h3>Retainer UX / QA leggero</h3>
+          <p>Presenza mensile di decisione UX e QA leggero per team che vogliono continuità senza assumere.</p>
+          <div class="price"><b>€1.500</b><span>/ mese · 6 mesi</span></div>
+          <a class="arrow" href="/contatti" data-nav>Valuta il retainer-fit check <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section tight">
+    <div class="shell">
+      <div class="section-head reveal"><div class="eyebrow">Domande frequenti</div><h2 class="h2-cinema">Quello che mi chiedono prima di partire.</h2></div>
+      <div class="faq reveal d1">
+        <div class="qa"><button>Sostituisce il nostro QA tecnico? <i data-lucide="plus"></i></button><div class="ans"><p>No. Il QA tecnico verifica che il sistema funzioni secondo specifica. Io presidio l'esperienza: se il flusso si capisce, se gli edge case bloccano l'utente, se i messaggi aiutano. I due lavori convivono.</p></div></div>
+        <div class="qa"><button>Serve accesso al codice? <i data-lucide="plus"></i></button><div class="ans"><p>No. Lavoro sul prodotto come lo vive l'utente: ambiente di staging, flussi reali, dispositivi reali. Il report poi parla la lingua del team dev, con severità e priorità.</p></div></div>
+        <div class="qa"><button>Come funziona il mese pilota? <i data-lucide="plus"></i></button><div class="ans"><p>Scegliamo una release o una feature in arrivo. La testo, ti consegno il report e la checklist. Alla fine decidi se continuare. Nessun vincolo lungo.</p></div></div>
+        <div class="qa"><button>Quante release al mese coprite? <i data-lucide="plus"></i></button><div class="ans"><p>Dipende dal vostro ritmo. Concordiamo all'inizio il perimetro: di solito le release principali e le feature critiche, non ogni singolo deploy.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <div class="eyebrow center" style="justify-content:center;">Prossimo passo</div>
+        <h2 style="margin-top:14px;">Proviamo su una release vera.</h2>
+        <p>Attiva un mese pilota sulla prossima release. Vedi il report e decidi se ha senso continuare.</p>
+        <div class="cta-row"><a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="bug" class="ic"></i> Attiva un mese pilota</a></div>
+      </div>
+    </div>
+  </section>
+</Layout>

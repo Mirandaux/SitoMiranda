@@ -1,0 +1,78 @@
+---
+const NAV = [
+  { id: "about", label: "Chi sono", href: "/about" },
+  {
+    id: "servizi",
+    label: "Servizi",
+    href: "/servizi",
+    children: [
+      { label: "Software Fit Sprint", href: "/software-fit-sprint" },
+      { label: "Website Evolution", href: "/website-evolution" },
+      { label: "QA UX", href: "/qa" },
+      { label: "Partner dev", href: "/partner" },
+    ],
+  },
+  { id: "casi", label: "Casi", href: "/casi" },
+];
+
+const here = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isHere = (href: string) => href === here;
+---
+
+<header class="nav">
+  <div class="shell">
+    <a class="brand" href="/" data-nav aria-label="Miranda, home">
+      <span class="mark"><span>M</span></span><span class="word">Miranda</span>
+    </a>
+    <nav class="nav-links">
+      {NAV.map((n) =>
+        n.children ? (
+          <div class="nav-item has-dd">
+            <a
+              href={n.href}
+              class={"dd-trigger" + (isHere(n.href) || n.children.some((c) => isHere(c.href)) ? " active" : "")}
+              data-nav
+              aria-haspopup="true"
+            >
+              {n.label}<i data-lucide="chevron-down" class="dd-caret"></i>
+            </a>
+            <div class="dd-menu" role="menu">
+              {n.children.map((c) => (
+                <a href={c.href} class={isHere(c.href) ? "active" : ""} data-nav role="menuitem">
+                  {c.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a href={n.href} class={isHere(n.href) ? "active" : ""} data-nav>
+            {n.label}
+          </a>
+        )
+      )}
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call</a>
+      <button class="nav-toggle" aria-label="Apri il menu" aria-expanded="false"><i data-lucide="menu" class="ic" style="width:20px;height:20px"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <a href="/" data-nav>Home</a>
+  {NAV.map((n) =>
+    n.children ? (
+      <div class="m-group">
+        <a href={n.href} data-nav>{n.label}</a>
+        <div class="m-sub">
+          {n.children.map((c) => (
+            <a href={c.href} data-nav>{c.label}</a>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <a href={n.href} data-nav>{n.label}</a>
+    )
+  )}
+  <a class="btn btn-primary" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+</div>
