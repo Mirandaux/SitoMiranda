@@ -25,7 +25,9 @@ import Layout from "../layouts/Layout.astro";
       <div style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:24px;align-items:start;" class="contact-cols">
         <!-- FORM -->
         <div class="holo reveal" style="padding:32px;" id="formCard">
-          <form id="triage" novalidate>
+          <form id="triage" name="triage" method="POST" data-netlify="true" netlify-honeypot="azienda-web" novalidate>
+            <input type="hidden" name="form-name" value="triage" />
+            <p class="hint" style="position:absolute;left:-9999px;"><label>Non compilare se sei umano: <input name="azienda-web" tabindex="-1" autocomplete="off" /></label></p>
             <div class="form-grid">
               <div class="field"><label for="nome">Nome <span class="req">*</span></label><input id="nome" name="nome" type="text" placeholder="Es. Anna Bianchi" required /></div>
               <div class="field"><label for="azienda">Azienda <span class="req">*</span></label><input id="azienda" name="azienda" type="text" placeholder="Es. Officina S.r.l." required /></div>
@@ -54,7 +56,7 @@ import Layout from "../layouts/Layout.astro";
           <div id="ok" style="display:none;text-align:center;padding:20px 0;">
             <div style="width:60px;height:60px;border-radius:999px;margin:0 auto 18px;background:rgba(46,133,90,0.18);border:1px solid rgba(46,133,90,0.5);display:grid;place-items:center;"><i data-lucide="check" style="width:28px;height:28px;color:#7fd1a6"></i></div>
             <h3 style="font-size:24px;">Ricevuto. Ti scrivo entro 24h.</h3>
-            <p style="margin-top:10px;max-width:46ch;margin-left:auto;margin-right:auto;">Nel frattempo controlla la mail. Se non vedi nulla, scrivimi a <a href="mailto:ciao@miranda.studio">ciao@miranda.studio</a>.</p>
+            <p style="margin-top:10px;max-width:46ch;margin-left:auto;margin-right:auto;">Nel frattempo controlla la mail. Se non vedi nulla, scrivimi a <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a>.</p>
           </div>
         </div>
 
@@ -106,9 +108,22 @@ import Layout from "../layouts/Layout.astro";
           return;
         }
         err.style.display = "none";
-        form.style.display = "none";
-        ok.style.display = "block";
-        if (window.lucide) lucide.createIcons();
+
+        const data = new FormData(form);
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(data).toString(),
+        })
+          .then(() => {
+            form.style.display = "none";
+            ok.style.display = "block";
+            if (window.lucide) lucide.createIcons();
+          })
+          .catch(() => {
+            err.style.display = "block";
+            err.textContent = "Invio non riuscito. Riprova o scrivimi a info@mirandagiaccon.it.";
+          });
       });
     })();
   </script>
