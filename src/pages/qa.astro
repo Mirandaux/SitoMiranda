@@ -15,7 +15,7 @@ import Layout from "../layouts/Layout.astro";
         <span class="pill">€800/mese</span><span class="pill">3-6 mesi</span>
       </div>
       <h1 class="reveal d1">Il QA tecnico dice: funziona. <span style="color:var(--eyebrow-dark)">Il QA UX chiede: si usa?</span></h1>
-      <p class="reveal d2" style="font-size:19px;line-height:30px;margin-top:22px;max-width:62ch;">Testo i flussi reali e gli edge case dal punto di vista di chi userà il prodotto, prima di ogni release. Così meno bug di esperienza arrivano in produzione e meno ticket tornano indietro.</p>
+      <p class="reveal d2" style="font-size:19px;line-height:30px;margin-top:22px;max-width:62ch;">Testo i flussi reali e gli edge case dal punto di vista di chi userà il prodotto, prima di ogni release. Così avrete meno bug di esperienza che arrivano in produzione e meno ticket dagli utenti finali.</p>
       <div class="cta-row reveal d3"><a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="bug" class="ic"></i> Attiva un mese pilota</a></div>
     </div>
   </section>
@@ -23,7 +23,7 @@ import Layout from "../layouts/Layout.astro";
   <!-- TECNICO vs UX -->
   <section class="section tight">
     <div class="shell">
-      <div class="offers" style="grid-template-columns:1fr 1fr;">
+      <div class="offers grid-2cols">
         <div class="card-d reveal d1">
           <div class="ic-badge" style="background:rgba(74,119,168,0.18);border-color:rgba(74,119,168,0.32)"><i data-lucide="server-cog" style="color:#9cc0e8"></i></div>
           <h3>QA tecnico</h3>
@@ -55,7 +55,7 @@ import Layout from "../layouts/Layout.astro";
       <div class="ba reveal d1" style="margin-top:32px;">
         <div class="after pane">
           <div class="lbl">Con QA UX</div>
-          <div class="msg">Non siamo riusciti a salvare l'ordine: manca la data di consegna. Aggiungila e premi Salva, il resto è gia a posto.</div>
+          <div class="msg">Non siamo riusciti a salvare l'ordine: manca la data di consegna. Aggiungila e premi Salva.</div>
         </div>
         <div class="before">
           <div class="pane">
@@ -83,7 +83,7 @@ import Layout from "../layouts/Layout.astro";
           <table class="mtx">
             <thead><tr><th>Flusso</th><th>Cosa succede</th><th>Severità</th><th>Priorità</th></tr></thead>
             <tbody>
-              <tr><td class="crit">Checkout · mobile</td><td>il CTA resta sotto la tastiera</td><td><span class="tag-no">Alta</span></td><td>P1</td></tr>
+              <tr><td class="crit">Checkout · mobile</td><td>la CTA resta sotto la tastiera</td><td><span class="tag-no">Alta</span></td><td>P1</td></tr>
               <tr><td class="crit">Recupero password</td><td>messaggio d'errore generico</td><td><span class="tag-mid">Media</span></td><td>P2</td></tr>
               <tr><td class="crit">Onboarding</td><td>step 3 saltabile per sbaglio</td><td><span class="tag-mid">Media</span></td><td>P2</td></tr>
               <tr><td class="crit">Tabella ordini</td><td>stato vuoto senza spiegazione</td><td><span class="tag-ok">Bassa</span></td><td>P3</td></tr>
@@ -124,7 +124,7 @@ import Layout from "../layouts/Layout.astro";
   <section class="section tight">
     <div class="shell">
       <div class="section-head reveal"><div class="eyebrow">Due modi di lavorare insieme</div><h2 class="h2-cinema">Mensile, senza retainer infiniti.</h2></div>
-      <div class="offers reveal d1" style="grid-template-columns:1fr 1fr;">
+      <div class="offers grid-2cols reveal d1">
         <div class="offer">
           <div class="tier">Ricorrente</div>
           <h3>UX/UI QA &amp; Functional Testing</h3>
@@ -148,12 +148,26 @@ import Layout from "../layouts/Layout.astro";
   <section class="section tight">
     <div class="shell">
       <div class="section-head reveal"><div class="eyebrow">Domande frequenti</div><h2 class="h2-cinema">Quello che mi chiedono prima di partire.</h2></div>
-      <div class="faq reveal d1">
+      <div class="faq reveal d1" id="faqList">
         <div class="qa"><button>Sostituisce il nostro QA tecnico? <i data-lucide="plus"></i></button><div class="ans"><p>No. Il QA tecnico verifica che il sistema funzioni secondo specifica. Io presidio l'esperienza: se il flusso si capisce, se gli edge case bloccano l'utente, se i messaggi aiutano. I due lavori convivono.</p></div></div>
         <div class="qa"><button>Serve accesso al codice? <i data-lucide="plus"></i></button><div class="ans"><p>No. Lavoro sul prodotto come lo vive l'utente: ambiente di staging, flussi reali, dispositivi reali. Il report poi parla la lingua del team dev, con severità e priorità.</p></div></div>
         <div class="qa"><button>Come funziona il mese pilota? <i data-lucide="plus"></i></button><div class="ans"><p>Scegliamo una release o una feature in arrivo. La testo, ti consegno il report e la checklist. Alla fine decidi se continuare. Nessun vincolo lungo.</p></div></div>
         <div class="qa"><button>Quante release al mese coprite? <i data-lucide="plus"></i></button><div class="ans"><p>Dipende dal vostro ritmo. Concordiamo all'inizio il perimetro: di solito le release principali e le feature critiche, non ogni singolo deploy.</p></div></div>
       </div>
+      <script is:inline>
+        (function () {
+          const list = document.getElementById("faqList");
+          if (!list) return;
+          list.addEventListener("click", function (e) {
+            const btn = e.target.closest(".qa button");
+            if (!btn) return;
+            const qa = btn.closest(".qa");
+            const isOpen = qa.classList.contains("open");
+            list.querySelectorAll(".qa.open").forEach(function (el) { el.classList.remove("open"); });
+            if (!isOpen) qa.classList.add("open");
+          });
+        })();
+      </script>
     </div>
   </section>
 
