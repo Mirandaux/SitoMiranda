@@ -1,24 +1,50 @@
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
+  const requestId = req.headers["x-vercel-id"] || globalThis.crypto?.randomUUID?.() || Date.now().toString(36);
+
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+    console.warn("[contact-api] Metodo non consentito", { requestId, method: req.method });
+    res.setHeader("Allow", "POST");
+    return res.status(405).json({ error: "Method not allowed", requestId });
   }
 
-  const { nome, azienda, email, link, decisione, attrito, tempi, "azienda-web": honeypot } = req.body;
+  const { nome, azienda, email, link, decisione, attrito, tempi, "azienda-web": honeypot } = req.body || {};
+
+  console.info("[contact-api] Richiesta ricevuta", {
+    requestId,
+    hasRequiredFields: Boolean(nome && azienda && email && decisione),
+    hasOptionalFields: Boolean(link || attrito || tempi),
+  });
 
   // honeypot anti-spam
   if (honeypot) {
-    return res.status(200).json({ ok: true });
+    console.info("[contact-api] Richiesta scartata dall'honeypot", { requestId });
+    return res.status(200).json({ ok: true, requestId });
   }
 
   if (!nome || !azienda || !email || !decisione) {
-    return res.status(400).json({ error: "Campi obbligatori mancanti." });
+    console.warn("[contact-api] Validazione fallita", {
+      requestId,
+      missingFields: [
+        !nome && "nome",
+        !azienda && "azienda",
+        !email && "email",
+        !decisione && "decisione",
+      ].filter(Boolean),
+    });
+    return res.status(400).json({ error: "Campi obbligatori mancanti.", requestId });
+  }
+
+  const missingEnv = ["SMTP_USER", "SMTP_PASS", "MAIL_TO"].filter((key) => !process.env[key]);
+  if (missingEnv.length) {
+    console.error("[contact-api] Configurazione incompleta", { requestId, missingEnv });
+    return res.status(500).json({ error: "Configurazione email incompleta.", requestId });
   }
 
   const transporter = nodemailer.createTransport({
     host: "smtp.ionos.it",
-    port: 465,
+    port: 587,
     secure: false,
     requireTLS: true,
     auth: {
@@ -59,10 +85,19 @@ export default async function handler(req, res) {
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    return res.status(200).json({ ok: true });
+    console.info("[contact-api] Invio SMTP avviato", { requestId });
+    const info = await transporter.sendMail(mailOptions);
+    console.info("[contact-api] Email inviata", { requestId, messageId: info.messageId });
+    return res.status(200).json({ ok: true, requestId });
   } catch (err) {
-    console.error("SMTP error:", err);
-    return res.status(500).json({ error: "Invio non riuscito." });
+    console.error("[contact-api] Errore SMTP", {
+      requestId,
+      name: err?.name,
+      message: err?.message,
+      code: err?.code,
+      command: err?.command,
+      responseCode: err?.responseCode,
+    });
+    return res.status(500).json({ error: "Invio non riuscito.", requestId });
   }
 }
