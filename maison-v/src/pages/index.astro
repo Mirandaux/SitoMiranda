@@ -1,0 +1,182 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const servizi = [
+  {
+    nome: "Hair Styling",
+    testo: "Taglio e piega studiati sulla forma del viso e sulla natura del capello. Consulenza inclusa in ogni appuntamento.",
+  },
+  {
+    nome: "Colore",
+    testo: "Tecniche di colore e schiariture su misura — dal naturale al luminoso — con prodotti rispettosi del capello.",
+  },
+  {
+    nome: "Beauty",
+    testo: "Trattamenti viso e sguardo per completare il rituale dell'atelier in un unico spazio dedicato.",
+  },
+  {
+    nome: "Sposa & Eventi",
+    testo: "Acconciature e prove dedicate ai momenti importanti, con tempo e cura riservati solo a te.",
+  },
+];
+---
+
+<Layout>
+  <!-- HERO — negative lockup (wordmark on taupe), per brand manual -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow hero-eyebrow">Hair Atelier &amp; Beauty</p>
+      <h1 class="wordmark wordmark--negative hero-word">maison V</h1>
+      <p class="tagline tagline--negative hero-tagline">Hair Atelier &amp; Beauty</p>
+      <p class="hero-lede">
+        Un atelier dedicato alla cura su misura: taglio, colore e beauty
+        pensati per esaltare ciò che hai di più autentico.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary hero-btn" href="#contatti">Prenota un appuntamento</a>
+        <a class="hero-link" href="#servizi">Scopri i servizi →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATELIER -->
+  <section id="atelier" class="section">
+    <div class="container atelier">
+      <p class="eyebrow">L'atelier</p>
+      <h2 class="atelier-title">
+        La bellezza come gesto di cura, non come fretta.
+      </h2>
+      <p class="lede">
+        Maison V nasce dall'idea di uno spazio intimo, dove ogni cliente
+        riceve attenzione, ascolto e tempo. Niente formule standard: solo
+        scelte fatte insieme, per un risultato che ti somiglia.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section id="servizi" class="section section--soft">
+    <div class="container">
+      <p class="eyebrow">Servizi</p>
+      <h2 class="grid-title">Tutto ciò che serve, in un unico luogo</h2>
+      <ul class="grid">
+        {servizi.map((s) => (
+          <li class="card">
+            <h3 class="card-title">{s.nome}</h3>
+            <p class="small">{s.testo}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section id="contatti" class="section">
+    <div class="container contatti">
+      <p class="eyebrow">Contatti</p>
+      <h2 class="contatti-title">Prenota il tuo momento da Maison V</h2>
+      <p class="lede contatti-lede">
+        Scrivici per fissare un appuntamento o per una consulenza.
+        Saremo felici di accoglierti.
+      </p>
+      <a class="btn btn-primary" href="mailto:info@maisonv.it">Scrivici</a>
+      <p class="small muted contatti-note">
+        Sostituisci recapiti e indirizzo con quelli reali dell'atelier.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* HERO */
+  .hero {
+    background: var(--bg-inverse);
+    color: var(--fg-on-brand);
+    padding-block: clamp(80px, 14vw, 168px);
+    text-align: center;
+  }
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+    max-width: var(--layout-narrow);
+  }
+  .hero-eyebrow { color: rgba(255, 255, 255, 0.78); }
+  .hero-word {
+    font-size: var(--type-display-size);
+    line-height: var(--type-display-line);
+    margin: 0;
+  }
+  .hero-tagline { color: rgba(255, 255, 255, 0.92); }
+  .hero-lede {
+    font-size: var(--type-body-large-size);
+    line-height: var(--type-body-large-line);
+    color: rgba(255, 255, 255, 0.86);
+    max-width: 52ch;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-5);
+    margin-top: var(--space-3);
+  }
+  .hero-btn {
+    background: var(--color-white);
+    color: var(--brand-strong);
+  }
+  .hero-btn:hover { background: var(--color-taupe-50); }
+  .hero-link {
+    font-size: var(--type-small-size);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 2px;
+  }
+  .hero-link:hover { border-color: var(--color-white); }
+
+  /* SECTIONS */
+  .section { padding-block: var(--layout-section-gap); }
+  .section--soft { background: var(--bg-soft); }
+
+  .atelier { max-width: var(--layout-narrow); }
+  .atelier-title { margin-block: var(--space-4) var(--space-5); }
+
+  .grid-title { margin-block: var(--space-4) var(--space-8); }
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-soft);
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+  .card:hover { box-shadow: var(--shadow-card); transform: translateY(-3px); }
+  .card-title { color: var(--brand-strong); margin-bottom: var(--space-3); }
+
+  .contatti {
+    max-width: var(--layout-narrow);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .contatti-title { margin-top: var(--space-4); }
+  .contatti-lede { max-width: 48ch; }
+  .contatti-note { margin-top: var(--space-2); }
+</style>

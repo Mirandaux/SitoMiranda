@@ -1,0 +1,52 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="foot">
+  <div class="container foot-shell">
+    <div class="foot-brand">
+      <span class="wordmark wordmark--negative foot-word">maison V</span>
+      <span class="tagline tagline--negative">Hair Atelier &amp; Beauty</span>
+    </div>
+
+    <div class="foot-meta">
+      <p class="small">Maison V di Valentina Righetti</p>
+      <p class="small foot-dim">© {year} Maison V — Hair Atelier &amp; Beauty</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    background: var(--bg-inverse);
+    color: var(--fg-on-brand);
+    padding-block: var(--space-9);
+    margin-top: var(--layout-section-gap);
+  }
+  .foot-shell {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-7);
+    align-items: center;
+    text-align: center;
+  }
+  .foot-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .foot-word { font-size: 44px; }
+  .foot-meta p { color: rgba(255, 255, 255, 0.82); }
+  .foot-dim { color: rgba(255, 255, 255, 0.6); }
+
+  @media (min-width: 720px) {
+    .foot-shell {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+    .foot-brand { align-items: flex-start; }
+    .foot-meta { text-align: right; }
+  }
+</style>

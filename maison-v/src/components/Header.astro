@@ -1,0 +1,61 @@
+---
+const NAV = [
+  { label: "L'atelier", href: "#atelier" },
+  { label: "Servizi", href: "#servizi" },
+  { label: "Contatti", href: "#contatti" },
+];
+---
+
+<header class="nav">
+  <div class="container nav-shell">
+    <a class="brand" href="/" aria-label="Maison V, home">
+      <span class="wordmark brand-word">maison V</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navigazione principale">
+      {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
+    </nav>
+
+    <a class="btn btn-primary nav-cta" href="#contatti">Prenota</a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg-page) 86%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .nav-shell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    height: 76px;
+  }
+  .brand-word {
+    font-size: 30px;
+  }
+  .nav-links {
+    display: none;
+    gap: var(--space-7);
+  }
+  .nav-links a {
+    font-size: var(--type-small-size);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg2);
+  }
+  .nav-links a:hover { color: var(--brand); }
+  .nav-cta { padding: 12px 24px; }
+
+  @media (min-width: 860px) {
+    .nav-links { display: inline-flex; }
+  }
+  @media (max-width: 520px) {
+    .nav-cta { display: none; }
+  }
+</style>

@@ -1,0 +1,287 @@
+/* =============================================================
+   Maison V — Hair Atelier & Beauty
+   Design System · Colors & Type
+
+   Single source of truth for every surface built against the
+   Maison V brand. Derived directly from the Corporate Design
+   Manual (Magenta Graphics, "MAISON V di Valentina Righetti",
+   13/03/2026).
+
+   BRAND COLOR (the only chromatic value in the manual):
+     CMYK  32 / 40 / 52 / 22
+     RGB   153 / 133 / 111
+     HEX   #99856F
+   Used positive (taupe on light), negative (white on taupe) and
+   monochrome (black / white). Everything else below is a warm,
+   neutral support scale tuned to sit beside that single taupe.
+   ============================================================= */
+
+@import "./fonts.css";
+
+:root {
+  /* -----------------------------------------------------------
+     BRAND PALETTE — primitives
+     ----------------------------------------------------------- */
+  --color-taupe-600: #6f5e4c;   /* Deep taupe — pressed / strong text accent */
+  --color-taupe-500: #806d59;   /* Hover / darker brand */
+  --color-taupe-400: #99856f;   /* ◆ MAISON V signature taupe (#99856F) */
+  --color-taupe-300: #b4a48f;   /* Soft accent, muted brand */
+  --color-taupe-200: #d2c7b8;   /* Dividers / borders on cream */
+  --color-taupe-100: #e8e0d6;   /* Soft brand background */
+  --color-taupe-50:  #f5f1ea;   /* Cream — whisper background */
+
+  /* Warm neutrals (ink scale) */
+  --color-ink-900: #2b2620;     /* Warm near-black — primary text */
+  --color-ink-700: #463f37;     /* Secondary text on light */
+  --color-ink-500: #6c6358;     /* Tertiary / muted text */
+  --color-ink-300: #b7ad9f;     /* Borders, dividers */
+  --color-ink-100: #ece6dd;     /* Very soft surfaces */
+  --color-cream:   #faf7f2;     /* Off-white page base */
+  --color-white:   #ffffff;
+  --color-black:   #1a1714;     /* Monochrome positive */
+
+  /* -----------------------------------------------------------
+     SEMANTIC TOKENS — meaning, not hex
+     ----------------------------------------------------------- */
+  --bg-page: var(--color-cream);
+  --bg-soft: var(--color-taupe-50);
+  --bg-card: var(--color-white);
+  --bg-inverse: var(--color-taupe-400);     /* Negative lockup background */
+  --bg-ink: var(--color-ink-900);
+
+  --fg1: var(--color-ink-900);              /* Primary text */
+  --fg2: var(--color-ink-700);              /* Secondary text */
+  --fg3: var(--color-ink-500);              /* Muted text */
+  --fg-on-brand: var(--color-white);        /* Text on taupe */
+  --fg-on-ink: var(--color-cream);          /* Text on near-black */
+
+  --border-subtle: var(--color-taupe-200);
+  --border-default: var(--color-ink-300);
+  --border-strong: var(--color-taupe-400);
+
+  --brand: var(--color-taupe-400);
+  --brand-strong: var(--color-taupe-600);
+  --brand-soft: var(--color-taupe-100);
+
+  --cta-primary-bg: var(--color-taupe-400);
+  --cta-primary-fg: var(--color-white);
+  --cta-primary-hover: var(--color-taupe-500);
+  --cta-primary-pressed: var(--color-taupe-600);
+
+  /* -----------------------------------------------------------
+     TYPOGRAPHY — base
+     Display / wordmark .. Black Mango (Cormorant Garamond fallback)
+     Secondary / body ... Montserrat
+     ----------------------------------------------------------- */
+  --font-display: "Black Mango", "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --fw-thin: 100;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.18em;       /* The HAIR ATELIER & BEAUTY lockup spacing */
+  --tracking-eyebrow: 0.3em;
+
+  /* Type scale (size / line-height) */
+  --type-display-size: clamp(56px, 11vw, 132px);
+  --type-display-line: 1.0;
+  --type-h1-size: clamp(36px, 6vw, 64px);
+  --type-h1-line: 1.08;
+  --type-h2-size: clamp(28px, 4vw, 40px);
+  --type-h2-line: 1.15;
+  --type-h3-size: 24px;
+  --type-h3-line: 1.3;
+  --type-body-large-size: 19px;
+  --type-body-large-line: 1.7;
+  --type-body-size: 16px;
+  --type-body-line: 1.7;
+  --type-small-size: 14px;
+  --type-small-line: 1.6;
+  --type-tagline-size: clamp(13px, 1.6vw, 18px);
+
+  /* -----------------------------------------------------------
+     SPACING — 4pt scale
+     ----------------------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 144px;
+
+  /* -----------------------------------------------------------
+     RADIUS — quiet, mostly square per the brand's editorial feel
+     ----------------------------------------------------------- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
+
+  /* -----------------------------------------------------------
+     SHADOWS — soft, warm, low-contrast
+     ----------------------------------------------------------- */
+  --shadow-soft: 0 8px 30px rgba(43, 38, 32, 0.06);
+  --shadow-card: 0 18px 50px rgba(43, 38, 32, 0.09);
+  --shadow-focus: 0 0 0 3px rgba(153, 133, 111, 0.28);
+
+  /* -----------------------------------------------------------
+     LAYOUT
+     ----------------------------------------------------------- */
+  --layout-max-width: 1180px;
+  --layout-narrow: 720px;
+  --layout-pad-desktop: 64px;
+  --layout-pad-mobile: 22px;
+  --layout-section-gap: clamp(72px, 12vw, 144px);
+}
+
+/* =============================================================
+   ELEMENT DEFAULTS
+   ============================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  color: var(--fg1);
+  background: var(--bg-page);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-light);
+  color: var(--fg1);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--type-h1-size); line-height: var(--type-h1-line); }
+h2 { font-size: var(--type-h2-size); line-height: var(--type-h2-line); }
+h3 { font-size: var(--type-h3-size); line-height: var(--type-h3-line); }
+
+p {
+  margin: 0;
+  color: var(--fg2);
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 160ms ease, opacity 160ms ease, border-color 160ms ease;
+}
+
+img { max-width: 100%; display: block; }
+
+/* =============================================================
+   UTILITY CLASSES — typographic roles from the brand manual
+   ============================================================= */
+
+/* The "maison V" wordmark, rendered as type. */
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+  color: var(--brand);
+}
+.wordmark--negative { color: var(--color-white); }
+
+/* The "HAIR ATELIER & BEAUTY" lockup — Montserrat, wide tracking, caps. */
+.tagline {
+  font-family: var(--font-body);
+  font-weight: var(--fw-thin);
+  font-size: var(--type-tagline-size);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--brand);
+}
+.tagline--negative { color: var(--color-white); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--type-small-size);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.lede {
+  font-size: var(--type-body-large-size);
+  line-height: var(--type-body-large-line);
+  color: var(--fg2);
+}
+
+.small { font-size: var(--type-small-size); line-height: var(--type-small-line); }
+.muted { color: var(--fg3); }
+
+/* =============================================================
+   PRIMITIVES — buttons, layout shell
+   ============================================================= */
+
+.container {
+  width: 100%;
+  max-width: var(--layout-max-width);
+  margin-inline: auto;
+  padding-inline: var(--layout-pad-mobile);
+}
+@media (min-width: 720px) {
+  .container { padding-inline: var(--layout-pad-desktop); }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--type-small-size);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 16px 30px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.btn-primary {
+  background: var(--cta-primary-bg);
+  color: var(--cta-primary-fg);
+}
+.btn-primary:hover { background: var(--cta-primary-hover); }
+.btn-primary:active { background: var(--cta-primary-pressed); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--brand-strong);
+  border-color: var(--border-strong);
+}
+.btn-ghost:hover { background: var(--brand-soft); }
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}
