@@ -1,0 +1,96 @@
+---
+import Layout from "../layouts/Layout.astro";
+const updated = "20 giugno 2025";
+---
+
+<Layout
+  title="Miranda · Cookie Policy"
+  description="Informativa sull'uso dei cookie su questo sito, ai sensi del D.Lgs. 196/2003 e del Regolamento UE 2016/679."
+  page=""
+  bg='data-max="100" data-link="140" data-accent="0.07" data-speed="0.10"'
+>
+  <style>
+    .legal-body { max-width: 720px; margin: 0 auto; }
+    .legal-body h2 { font-size: 20px; margin: 40px 0 10px; color: var(--eyebrow-dark); }
+    .legal-body h3 { font-size: 16px; margin: 28px 0 8px; }
+    .legal-body p, .legal-body li { font-size: 15px; line-height: 26px; color: var(--on-dark-2); }
+    .legal-body ul { padding-left: 20px; margin: 10px 0; display: grid; gap: 6px; }
+    .legal-body a { color: var(--eyebrow-dark); }
+    .updated { font-size: 13px; color: var(--on-dark-3); margin-top: 8px; }
+    .cookie-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .cookie-table th { text-align: left; padding: 10px 14px; background: var(--surface); color: var(--eyebrow-dark); font-family: var(--font-heading); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--hairline); }
+    .cookie-table td { padding: 10px 14px; color: var(--on-dark-2); border-bottom: 1px solid var(--hairline); vertical-align: top; line-height: 22px; }
+  </style>
+
+  <section class="page-hero" style="padding-bottom:0;">
+    <div class="shell">
+      <div class="eyebrow reveal">Legale</div>
+      <h1 class="reveal d1" style="font-size:clamp(28px,5vw,48px);">Cookie Policy</h1>
+      <p class="updated reveal d2">Ultimo aggiornamento: {updated}</p>
+    </div>
+  </section>
+
+  <section class="section tight" style="padding-top:32px;">
+    <div class="shell">
+      <div class="legal-body reveal">
+
+        <h2>1. Cosa sono i cookie</h2>
+        <p>I cookie sono piccoli file di testo che i siti web salvano nel browser dell'utente durante la navigazione. Vengono utilizzati per far funzionare il sito correttamente, ricordare preferenze e, in alcuni casi, raccogliere informazioni statistiche anonime sulla navigazione.</p>
+
+        <h2>2. Cookie utilizzati su questo sito</h2>
+        <p>Questo sito utilizza esclusivamente cookie tecnici strettamente necessari al funzionamento. Non utilizza cookie di profilazione, cookie pubblicitari o strumenti di tracciamento comportamentale.</p>
+
+        <table class="cookie-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Tipo</th>
+              <th>Finalità</th>
+              <th>Durata</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>__vercel_live_token</code></td>
+              <td>Tecnico</td>
+              <td>Gestione della sessione di preview dell'hosting (solo in ambiente di staging)</td>
+              <td>Sessione</td>
+            </tr>
+            <tr>
+              <td>Cookie di sessione del browser</td>
+              <td>Tecnico</td>
+              <td>Normale funzionamento della navigazione</td>
+              <td>Sessione</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Poiché il sito non installa cookie che richiedono consenso preventivo, non viene mostrato un banner di consenso ai cookie. La navigazione non comporta la profilazione dell'utente.</p>
+
+        <h2>3. Cookie di terze parti</h2>
+        <p>Questo sito non integra widget di social network, pixel di tracciamento pubblicitario, strumenti di analisi comportamentale (es. Google Analytics, Meta Pixel) né sistemi di chat in tempo reale che installino cookie di terze parti.</p>
+        <p>I link verso piattaforme esterne (es. LinkedIn) portano l'utente fuori dal sito: in quel momento si applicano le cookie policy delle rispettive piattaforme.</p>
+
+        <h2>4. Come gestire o disabilitare i cookie</h2>
+        <p>Puoi controllare, limitare o cancellare i cookie direttamente dalle impostazioni del tuo browser. Le istruzioni variano a seconda del browser:</p>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+          <li><a href="https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+          <li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Apple Safari</a></li>
+          <li><a href="https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Microsoft Edge</a></li>
+        </ul>
+        <p>Disabilitare i cookie tecnici potrebbe compromettere il corretto funzionamento del sito.</p>
+
+        <h2>5. Titolare del trattamento</h2>
+        <p>Miranda Giaccon, UX &amp; Product Consultant<br>
+        P.IVA 04987210236<br>
+        Email: <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a></p>
+        <p>Per la gestione dei dati personali consulta la <a href="/privacy" data-nav>Privacy Policy</a>.</p>
+
+        <h2>6. Modifiche</h2>
+        <p>Questa policy può essere aggiornata in caso di modifiche tecniche o normative. La data di ultimo aggiornamento è riportata in cima alla pagina.</p>
+
+      </div>
+    </div>
+  </section>
+</Layout>

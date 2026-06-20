@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+const updated = "20 giugno 2025";
+---
+
+<Layout
+  title="Miranda · Note legali"
+  description="Informazioni legali sul sito mirandagiaccon.it: titolare, contenuti, responsabilità e proprietà intellettuale."
+  page=""
+  bg='data-max="100" data-link="140" data-accent="0.07" data-speed="0.10"'
+>
+  <style>
+    .legal-body { max-width: 720px; margin: 0 auto; }
+    .legal-body h2 { font-size: 20px; margin: 40px 0 10px; color: var(--eyebrow-dark); }
+    .legal-body p, .legal-body li { font-size: 15px; line-height: 26px; color: var(--on-dark-2); }
+    .legal-body ul { padding-left: 20px; margin: 10px 0; display: grid; gap: 6px; }
+    .legal-body a { color: var(--eyebrow-dark); }
+    .updated { font-size: 13px; color: var(--on-dark-3); margin-top: 8px; }
+  </style>
+
+  <section class="page-hero" style="padding-bottom:0;">
+    <div class="shell">
+      <div class="eyebrow reveal">Legale</div>
+      <h1 class="reveal d1" style="font-size:clamp(28px,5vw,48px);">Note legali</h1>
+      <p class="updated reveal d2">Ultimo aggiornamento: {updated}</p>
+    </div>
+  </section>
+
+  <section class="section tight" style="padding-top:32px;">
+    <div class="shell">
+      <div class="legal-body reveal">
+
+        <h2>1. Titolare del sito</h2>
+        <p>
+          Miranda Giaccon<br>
+          UX &amp; Product Consultant<br>
+          P.IVA 04987210236<br>
+          Sede operativa: Italia<br>
+          Email: <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a>
+        </p>
+
+        <h2>2. Finalità del sito</h2>
+        <p>Questo sito ha finalità esclusivamente informative e promozionali dell'attività professionale di Miranda Giaccon. Non costituisce un'offerta vincolante di servizi, né la pubblicazione di prezzi indicativi o orientativi impegna contrattualmente il titolare prima della conclusione di uno specifico accordo scritto.</p>
+
+        <h2>3. Proprietà intellettuale</h2>
+        <p>Tutti i contenuti presenti su questo sito — testi, grafica, codice, struttura delle pagine, loghi e immagini — sono di proprietà esclusiva di Miranda Giaccon o utilizzati con regolare licenza. È vietata la riproduzione, distribuzione, modifica o utilizzo commerciale di qualsiasi contenuto senza autorizzazione scritta preventiva.</p>
+        <p>Il logo "Miranda" e il marchio figurativo associato sono elementi identitari dell'attività professionale. Ogni uso non autorizzato è perseguibile ai sensi della normativa sulla proprietà intellettuale e sul diritto d'autore (L. 633/1941 e successive modifiche).</p>
+
+        <h2>4. Limitazione di responsabilità</h2>
+        <p>Miranda Giaccon si impegna a mantenere i contenuti del sito aggiornati e accurati, ma non garantisce la completezza, l'assenza di errori o l'idoneità a scopi specifici delle informazioni pubblicate. Il titolare non è responsabile per:</p>
+        <ul>
+          <li>eventuali decisioni prese dall'utente sulla base dei contenuti del sito</li>
+          <li>l'indisponibilità temporanea del sito per manutenzione o cause tecniche</li>
+          <li>il contenuto di siti esterni raggiungibili tramite i link presenti nel sito</li>
+        </ul>
+
+        <h2>5. Link a siti esterni</h2>
+        <p>Il sito può contenere link a risorse esterne (es. LinkedIn, documentazione di terze parti). Questi link sono forniti a titolo informativo. Miranda Giaccon non ha controllo sul contenuto di siti terzi e non ne è responsabile. L'inserimento di un link non implica approvazione o sponsorizzazione del sito collegato.</p>
+
+        <h2>6. Legge applicabile e foro competente</h2>
+        <p>Le presenti note legali sono regolate dalla legge italiana. Per qualsiasi controversia relativa all'interpretazione o applicazione delle presenti note è competente in via esclusiva il Tribunale di Verona, salva diversa disposizione di legge applicabile ai consumatori.</p>
+
+        <h2>7. Contatti</h2>
+        <p>Per qualsiasi richiesta legale o segnalazione relativa ai contenuti del sito: <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a></p>
+
+      </div>
+    </div>
+  </section>
+</Layout>
