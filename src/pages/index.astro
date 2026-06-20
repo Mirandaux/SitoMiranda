@@ -32,7 +32,7 @@ import Layout from "../layouts/Layout.astro";
           <div class="proof-im fade-up f3">
             <span><b data-cu="2" data-suffix=" settimane">2 settimane</b> time-boxed</span>
             <span class="sep">·</span>
-            <span><b data-cu="2500" data-prefix="€" data-money="1">€2.500</b> fisso</span>
+            <span><b data-cu="1500" data-prefix="€" data-money="1">€1.500</b> fisso</span>
             <span class="sep">·</span>
             <span>roadmap di adozione inclusa</span>
           </div>
@@ -99,8 +99,8 @@ import Layout from "../layouts/Layout.astro";
         <div class="eyebrow">Cosa tengo insieme</div>
         <h2 class="h2-cinema">Quattro cose che decidono se un software diventa un valore o un costo.</h2>
       </div>
-      <div class="offers" style="grid-template-columns:repeat(4,1fr);margin-top:36px;">
-        <div class="card-d reveal d1"><div class="ic-badge"><i data-lucide="route"></i></div><h3 style="font-size:19px">Processi</h3><p style="font-size:14px;line-height:21px;margin-top:8px">Come si lavora davvero oggi, dove si rompe il flusso, dove un tool serve e dove no.</p></div>
+      <div class="offers grid-4cols" style="margin-top:36px;">
+        <div class="card-d reveal d1"><div class="ic-badge"><i data-lucide="route"></i></div><h3 style="font-size:19px">Processi</h3><p style="font-size:14px;line-height:21px;margin-top:8px">Analizzo come lavori oggi, dove si rompe il flusso, dove un tool serve e dove no.</p></div>
         <div class="card-d reveal d2"><div class="ic-badge"><i data-lucide="box"></i></div><h3 style="font-size:19px">Software</h3><p style="font-size:14px;line-height:21px;margin-top:8px">La scelta parte dai processi reali, non dalle demo. Il processo è tutto, il software è solo Ken.</p></div>
         <div class="card-d reveal d3"><div class="ic-badge"><i data-lucide="users-round"></i></div><h3 style="font-size:19px">Adozione</h3><p style="font-size:14px;line-height:21px;margin-top:8px">Un tool comprato e non usato è solo un costo. L'adozione si progetta, non si spera.</p></div>
         <div class="card-d reveal d4"><div class="ic-badge"><i data-lucide="clipboard-check"></i></div><h3 style="font-size:19px">Qualità UX</h3><p style="font-size:14px;line-height:21px;margin-top:8px">QA UX, accessibilità, microcopy. Un software non deve solo funzionare, deve essere usato.</p></div>
@@ -114,11 +114,11 @@ import Layout from "../layouts/Layout.astro";
       <div class="lead-2col">
         <div class="reveal">
           <div class="eyebrow">Il problema vero</div>
-          <h2 class="h2-cinema" style="margin-top:14px;">Le decisioni sbagliate sul digitale non costano subito. Costano dopo.</h2>
+          <h2 class="h2-cinema" style="margin-top:14px;">Il costo di sbagliare nel digitale non riguarda quanto spendi per avviarlo, ma quanto perdi non usandolo.</h2>
         </div>
         <p class="reveal d1" style="font-size:17px;line-height:27px;">Un gestionale scelto sulla demo. Un sito recente ma già disallineato. Una feature che nessuno usa. Ticket che tornano sempre uguali. Il team che ricade su Excel. Spesso il problema non è il tool: è la decisione presa senza guardare i processi.</p>
       </div>
-      <div class="offers" style="grid-template-columns:repeat(3,1fr);margin-top:40px;">
+      <div class="offers grid-3cols" style="margin-top:40px;">
         <div class="reveal d1" style="background:#fff;border:1px solid var(--color-ink-200);border-radius:20px;padding:24px;box-shadow:var(--shadow-card)">
           <div style="font-family:var(--font-heading);font-weight:800;color:var(--accent-wine);font-size:13px;letter-spacing:0.06em;text-transform:uppercase">Prima</div>
           <p style="color:var(--color-ink-700);margin-top:10px;font-size:15px;line-height:23px">"Scegliamo questo, in demo sembrava perfetto."</p>
@@ -149,7 +149,7 @@ import Layout from "../layouts/Layout.astro";
           <div class="tier">Decision sprint</div>
           <h3>Software Fit Sprint</h3>
           <p>Scegli, valida o scarta un software partendo dai processi reali. Mappa, criteri, shortlist, matrice, roadmap di adozione.</p>
-          <div class="price"><b>€2.500</b><span>fisso · 2 settimane</span></div>
+          <div class="price"><b>€1.500</b><span>fisso · 2 settimane</span></div>
           <span class="arrow">Prenota la call di triage <i data-lucide="arrow-right"></i></span>
         </a>
         <a class="offer reveal d2" href="/website-evolution" data-nav>
@@ -165,6 +165,13 @@ import Layout from "../layouts/Layout.astro";
           <p>Testo flussi reali ed edge case prima delle release, così meno bug di esperienza arrivano in produzione.</p>
           <div class="price"><b>€800</b><span>/ mese · 3-6 mesi</span></div>
           <span class="arrow">Attiva un mese pilota <i data-lucide="arrow-right"></i></span>
+        </a>
+        <a class="offer reveal d4" href="/software-su-misura" data-nav>
+          <div class="tier">Progettazione</div>
+          <h3>Progettazione software su misura</h3>
+          <p>Trasforma processi complessi in software progettato sui flussi reali, con requisiti chiari e criteri di adozione, prima di scrivere codice.</p>
+          <div class="price"><b>Su preventivo</b><span>dopo call di triage</span></div>
+          <span class="arrow">Scopri il servizio <i data-lucide="arrow-right"></i></span>
         </a>
       </div>
       <div class="row reveal" style="margin-top:24px;justify-content:center;">
@@ -222,7 +229,7 @@ import Layout from "../layouts/Layout.astro";
       <div class="cta-band reveal">
         <div class="eyebrow center" style="justify-content:center;">Prossimo passo</div>
         <h2 style="margin-top:14px;">Una call di triage da 30 minuti.</h2>
-        <p>Raccontami il contesto in tre righe. Se sei un buon fit ti propongo il perimetro. Altrimenti ti dico chi può aiutarti meglio.</p>
+        <p>Raccontami dove perdi tempo e informazioni in tre righe. Se sei un buon fit ti propongo come possiamo lavorare insieme. Altrimenti ti dico chi può aiutarti meglio.</p>
         <div class="cta-row">
           <a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
         </div>

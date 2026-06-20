@@ -301,6 +301,16 @@ a:hover { border-bottom-color: currentColor; }
 @media (max-width: 900px) { .foot .grid { grid-template-columns: 1fr 1fr; gap: 28px; } .foot .lead { grid-column: 1 / -1; } }
 @media (max-width: 520px) { .foot .grid { grid-template-columns: 1fr; } }
 
+/* ---------- Responsive grid utilities ---------- */
+/* Use these classes instead of inline grid-template-columns to allow mobile stacking */
+.grid-4cols { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--offers-gap, 24px); }
+.grid-3cols { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--offers-gap, 24px); }
+.grid-2cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--offers-gap, 24px); }
+@media (max-width: 860px) { .grid-4cols { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 860px) { .grid-3cols { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .grid-2cols { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .grid-4cols { grid-template-columns: 1fr; } }
+
 /* ---------- Page transition curtain ---------- */
 .curtain {
   position: fixed; inset: 0; z-index: 100; pointer-events: none;

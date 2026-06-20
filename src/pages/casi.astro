@@ -24,7 +24,7 @@ import Layout from "../layouts/Layout.astro";
     <div class="shell">
       <div class="eyebrow reveal">Casi</div>
       <h1 class="reveal d1">La struttura dei casi. I numeri, quando il cliente li approva.</h1>
-      <p class="reveal d2">Preferisco non gonfiare metriche per fare scena. Qui trovi come racconto un caso: contesto, problema, decisione, output e impatto. Dove vedi "Dato da inserire" è perché il numero reale va concordato con il cliente, non inventato.</p>
+      <p class="reveal d2">Ho avuto la fortuna di costruire due progetti abbastanza importanti che però non posso pubblicizzare online. Dall'altra parte il mio lavoro è difficile da cogliere mostrando solo il design finale, quindi in questa pagina preferisco raccontare su quali decisioni abbiamo lavorato e come abbiamo risolto i problemi e le noie che i dipendenti avevano all'interno dell'azienda.</p>
     </div>
   </section>
 
@@ -32,38 +32,38 @@ import Layout from "../layouts/Layout.astro";
     <div class="shell">
 
       <div class="case reveal d1">
+        <div class="ctx"><span class="pill wine"><span class="dot"></span>Ente · servizi al cittadino</span><span class="pill">Software su misura</span></div>
+        <h3>Portale anagrafe, sistema turnazioni e app mobile: tre strumenti separati che non si parlavano.</h3>
+        <div class="case-grid">
+          <div class="k">Contesto</div><div class="v">Sistema di lavoro che prevedeva vari passaggi tra Excel e PDF, un'app che indicava le distanze in linea d'aria, un sito del 2008 senza carattere e difficile da navigare.</div>
+          <div class="k">Problema</div><div class="v">Turnazioni gestite manualmente con errori e rettifiche continue, app mobile insufficiente rispetto ai flussi reali, portale da riallineare alle esigenze operative.</div>
+          <div class="k">Decisione</div><div class="v">Sito perlustrato, app eliminata e sostituita con una web app (meno costosa da implementare e mantenere), portale integrato con algoritmo di calcolo e sincronizzazione in tempo reale.</div>
+          <div class="k">Output</div><div class="v">Sito riorganizzato, web app leggera per la gestione operativa, portale integrato con algoritmo di calcolo, sincronizzazione in tempo reale, estrazione del flusso dati.</div>
+          <div class="k">Impatto</div><div class="v">Badge sull'accessibilità ricevuto da un ente terzo esperto nel tema · riduzione del 99% del tempo di lavorazione e degli errori umani</div>
+        </div>
+      </div>
+
+      <div class="case reveal d1">
         <div class="ctx"><span class="pill wine"><span class="dot"></span>PMI · manifattura</span><span class="pill">Software Fit Sprint</span></div>
-        <h3>Scelta del gestionale ordini, con quattro stakeholder che non si parlavano.</h3>
+        <h3>Scelta del gestionale aziendale, con quattro reparti e tre fornitori in valutazione da mesi.</h3>
         <div class="case-grid">
-          <div class="k">Contesto</div><div class="v">Azienda con processo ordini gestito tra email, fogli condivisi e un gestionale vecchio. Quattro reparti, criteri diversi, nessuna decisione.</div>
-          <div class="k">Problema</div><div class="v">Tre fornitori in valutazione da mesi, demo viste da tutti, scelta ferma. Rischio di comprare sul tool più "bello" e non sul più adatto.</div>
-          <div class="k">Decisione</div><div class="v">Mappa dei processi reali, criteri pesati con i reparti, matrice decisionale con un rischio per riga. Validata una delle tre opzioni, scartate le altre due con motivazione scritta.</div>
-          <div class="k">Output</div><div class="v">Decisione difendibile, roadmap di adozione a 30 / 90 / 180 giorni, handoff al partner dev per l'implementazione.</div>
-          <div class="k">Impatto</div><div class="v"><span class="ph"><i data-lucide="edit-3" style="width:13px"></i> Dato da inserire</span> riduzione del tempo a regime · <span class="ph"><i data-lucide="edit-3" style="width:13px"></i> Dato da inserire</span> adozione a 90 giorni</div>
+          <div class="k">Contesto</div><div class="v">Due CRM in uso (uno custom senza manutenzione, uno di un competitor in dismissione), quattro reparti con esigenze diverse, nessuna decisione in vista.</div>
+          <div class="k">Problema</div><div class="v">Tre fornitori in valutazione, demo viste da tutti, scelta ferma. Rischio concreto di comprare il tool più "bello" invece del più adatto ai processi reali.</div>
+          <div class="k">Decisione</div><div class="v">Mappa dei processi reali, criteri pesati con i reparti, chiamate con i tecnici (non solo i commerciali), matrice decisionale con un rischio per riga. Validata una delle tre opzioni, scartate le altre due con motivazione scritta.</div>
+          <div class="k">Output</div><div class="v">Decisione difendibile, roadmap a 30 / 90 / 180 giorni, handoff al partner dev per l'implementazione.</div>
+          <div class="k">Impatto</div><div class="v">Riduzione delle attività dimenticate · diminuzione delle chiamate tra colleghi per delucidazioni · apertura mattutina di un solo portale con tutto all'interno</div>
         </div>
       </div>
 
       <div class="case reveal d1">
-        <div class="ctx"><span class="pill wine"><span class="dot"></span>Scaleup · servizi</span><span class="pill">Website Evolution Check</span></div>
-        <h3>Sito rifatto da poco, ma già lontano dal nuovo posizionamento.</h3>
+        <div class="ctx"><span class="pill wine"><span class="dot"></span>Consulente libera professionista</span><span class="pill">Website Evolution Check</span></div>
+        <h3>Parla molto, converte poco.</h3>
         <div class="case-grid">
-          <div class="k">Contesto</div><div class="v">Sito online da meno di due anni. Nel frattempo l'azienda ha cambiato offerta e target, ma le pagine raccontavano ancora la versione precedente.</div>
-          <div class="k">Problema</div><div class="v">Tentazione di rifare tutto da capo. Budget importante a rischio per risolvere il problema sbagliato.</div>
-          <div class="k">Decisione</div><div class="v">Audit UX e business, gap analysis, roadmap a 3-6 mesi. Fare: riallineare le pagine chiave. Non fare: redesign totale. Rimandare: restyling visivo.</div>
-          <div class="k">Output</div><div class="v">Lista di interventi mirati ad alto ritorno, passata a un partner dev con criteri di accettazione chiari.</div>
-          <div class="k">Impatto</div><div class="v"><span class="ph"><i data-lucide="edit-3" style="width:13px"></i> Dato da inserire</span> budget evitato sul redesign · <span class="ph"><i data-lucide="edit-3" style="width:13px"></i> Dato da inserire</span> sulle conversioni</div>
-        </div>
-      </div>
-
-      <div class="case reveal d1">
-        <div class="ctx"><span class="pill wine"><span class="dot"></span>Ente · servizi al cittadino</span><span class="pill">QA UX + Accessibilità</span></div>
-        <h3>Release tecnicamente a posto, ma con attrito sull'utente finale.</h3>
-        <div class="case-grid">
-          <div class="k">Contesto</div><div class="v">Piattaforma di servizi digitali con rilasci frequenti. QA tecnico presente, esperienza utente non presidiata.</div>
-          <div class="k">Problema</div><div class="v">Ticket ricorrenti su flussi che "funzionavano" ma confondevano le persone. Accessibilità gestita troppo tardi.</div>
-          <div class="k">Decisione</div><div class="v">QA UX mensile pre-release con report per severità e priorità, più un Accessibility Fast-Track per trasformare la checklist in backlog.</div>
-          <div class="k">Output</div><div class="v">Report di release ricorrenti, quick wins di accessibilità, criteri di accettazione per il team dev.</div>
-          <div class="k">Impatto</div><div class="v"><span class="ph"><i data-lucide="edit-3" style="width:13px"></i> Dato da inserire</span> riduzione ticket di supporto · <span class="ph"><i data-lucide="edit-3" style="width:13px"></i> Dato da inserire</span> bug d'esperienza intercettati prima del rilascio</div>
+          <div class="k">Contesto</div><div class="v">Sito online da molti anni, non convertiva lead nonostante traffico presente. L'offerta era chiara per chi già conosceva la consulente, poco leggibile per chi arrivava da fuori.</div>
+          <div class="k">Problema</div><div class="v">Tentazione di un redesign totale. Budget importante a rischio per risolvere il problema sbagliato.</div>
+          <div class="k">Decisione</div><div class="v">Audit UX e gap analysis, roadmap a 3-6 mesi. Fare: riallineare CTA e flusso operativo. Non fare: redesign totale. Rimandare: restyling visivo. In parallelo, nuova landing ad hoc allineata con una specialista ADV.</div>
+          <div class="k">Output</div><div class="v">Interventi mirati, allineamento con ADV Specialist, checklist delle modifiche, nuova landing con flusso ottimizzato.</div>
+          <div class="k">Impatto</div><div class="v">Circa 3.000 euro di budget evitato sul redesign · dato in arrivo sulle conversioni (le adv hanno bisogno di tempo per funzionare)</div>
         </div>
       </div>
 

@@ -1,6 +1,5 @@
 ---
 const NAV = [
-  { id: "home", label: "Home", href: "/" },
   {
     id: "servizi",
     label: "Servizi",
@@ -63,19 +62,20 @@ const isHere = (href: string) => href === here;
 </header>
 
 <div class="mobile-menu">
-  {NAV.map((n) =>
-    n.children ? (
-      <div class="m-group">
-        <a href={n.href} data-nav>{n.label}</a>
-        <div class="m-sub">
-          {n.children.map((c) => (
-            <a href={c.href} data-nav>{c.label}</a>
-          ))}
-        </div>
-      </div>
-    ) : (
-      <a href={n.href} data-nav>{n.label}</a>
-    )
-  )}
+  <a href="/" data-nav>Home</a>
+  <div class="m-group">
+    <a href="/servizi" data-nav>Servizi</a>
+    <div class="m-sub">
+      <a href="/software-fit-sprint" data-nav>Fit Sprint</a>
+      <a href="/website-evolution" data-nav>Web Evolution</a>
+      <a href="/software-su-misura" data-nav>Software su misura</a>
+      <a href="/qa" data-nav>QA</a>
+      <a href="/partner" data-nav>UX Partner Dev</a>
+    </div>
+  </div>
+  <a href="/metodo" data-nav>Metodo</a>
+  <a href="/about" data-nav>About</a>
+  <a href="/casi" data-nav>Casi</a>
+  <a href="/contatti" data-nav>Contatti</a>
   <a class="btn btn-primary" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
 </div>
