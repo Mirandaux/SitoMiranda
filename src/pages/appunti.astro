@@ -1,0 +1,153 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LeadMagnetMatrix from "../components/LeadMagnetMatrix.astro";
+import { publishedAppunti } from "../data/appunti";
+
+const hasArticles = publishedAppunti.length > 0;
+---
+
+<Layout
+  title="Miranda · Appunti sui processi"
+  description="Riflessioni pratiche su software, processi, UX e decisioni digitali. Non tutorial, non trend del momento: appunti per capire dove si blocca il lavoro."
+  page="appunti"
+  bg='data-max="110" data-link="140" data-accent="0.08" data-speed="0.12"'
+>
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="shell">
+      <div class="eyebrow reveal">Appunti sui processi</div>
+      <h1 class="reveal d1">Riflessioni pratiche su software, processi e decisioni digitali.</h1>
+      <p class="lede reveal d2">Non tutorial, non trend del momento: appunti per capire dove si blocca il lavoro prima di comprare, rifare o sviluppare qualcosa.</p>
+    </div>
+  </section>
+
+  {hasArticles ? (
+    <!-- TODO: add published article cards here only after the full article copy is ready. -->
+    <section class="section tight">
+      <div class="shell">
+        <div class="appunti-grid">
+          {publishedAppunti.map((a) => (
+            <a class="appunto-card reveal" href={`/appunti/${a.slug}`} data-nav>
+              <div class="appunto-meta">
+                <span class="pill">{a.tag}</span>
+                <span class="appunto-date">{new Date(a.date).toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" })}</span>
+              </div>
+              <h2 class="appunto-title">{a.title}</h2>
+              <p class="appunto-excerpt">{a.excerpt}</p>
+              <span class="appunto-cta">Leggi <i data-lucide="arrow-right" class="ic"></i></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ) : (
+    <!-- Empty state: shown when no articles are published yet -->
+    <section class="section tight">
+      <div class="shell">
+        <div class="appunti-empty reveal">
+          <div class="holo" style="padding:48px;max-width:680px;margin:0 auto;text-align:center;">
+            <div class="ic-badge" style="margin:0 auto 20px;"><i data-lucide="pencil-line"></i></div>
+            <p style="font-size:17px;line-height:27px;color:var(--on-dark-2);">
+              Sto preparando i primi appunti partendo da una domanda molto concreta: dove si blocca il lavoro prima che qualcuno decida di comprare, rifare o sviluppare qualcosa?
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- LEAD MAGNET matrice -->
+  <LeadMagnetMatrix />
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <div class="eyebrow center" style="justify-content:center;">Nel frattempo</div>
+        <h2 style="margin-top:14px;">Se hai un processo che non funziona, parliamone.</h2>
+        <p>Una call di triage da 30 minuti. Raccontami dove si blocca il lavoro e capiamo se posso aiutarti.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Article grid (visible when hasArticles = true) */
+  .appunti-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .appunto-card {
+    display: grid;
+    gap: 12px;
+    padding: 28px 32px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 18px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .appunto-card:hover {
+    border-color: rgba(176,106,126,0.4);
+    background: rgba(255,255,255,0.07);
+  }
+
+  .appunto-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .appunto-date {
+    font-size: 12.5px;
+    color: var(--on-dark-3);
+  }
+
+  .appunto-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0;
+  }
+
+  .appunto-excerpt {
+    font-size: 14.5px;
+    line-height: 22px;
+    color: var(--on-dark-2);
+    margin: 0;
+  }
+
+  .appunto-cta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--eyebrow-dark);
+    margin-top: 4px;
+  }
+
+  .appunto-cta .ic {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s;
+  }
+
+  .appunto-card:hover .appunto-cta .ic {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 600px) {
+    .appunto-card {
+      padding: 22px 20px;
+    }
+  }
+</style>

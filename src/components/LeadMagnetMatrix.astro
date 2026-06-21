@@ -1,0 +1,175 @@
+---
+const pdfHref = "/assets/matrice-decisionale-software-miranda.pdf";
+---
+
+<section class="section tight lm-matrix">
+  <div class="shell">
+    <div class="holo glow-wine reveal" style="padding:40px 48px;">
+      <div class="lm-inner">
+        <div class="lm-left">
+          <div class="eyebrow">Strumento gratuito</div>
+          <h2 class="lm-title">La matrice per decidere senza farsi fregare dalle demo</h2>
+          <p class="lm-sub">Un esempio pratico per confrontare software, rischi e criteri di adozione prima di comprare qualcosa che il team potrebbe non usare.</p>
+          <ul class="lm-bullets">
+            <li><i data-lucide="check" class="ic"></i> confronti le soluzioni sui processi reali</li>
+            <li><i data-lucide="check" class="ic"></i> evidenzi rischi, limiti e dipendenze</li>
+            <li><i data-lucide="check" class="ic"></i> separi ciò che sembra bello in demo da ciò che può reggere il lavoro quotidiano</li>
+          </ul>
+          <div class="cta-row" style="margin-top:28px;">
+            <a class="btn btn-primary magnetic" href={pdfHref} download><i data-lucide="download" class="ic"></i> Scarica la matrice decisionale</a>
+          </div>
+          <p class="lm-note">È utile se stai scegliendo un gestionale, un CRM, un software interno o se vuoi capire se il problema è davvero il tool.</p>
+        </div>
+        <div class="lm-right" aria-hidden="true">
+          <div class="lm-preview">
+            <div class="lm-row lm-head">
+              <span>Criterio</span><span>Tool A</span><span>Tool B</span><span>Rischio</span>
+            </div>
+            <div class="lm-row">
+              <span>Adozione</span><span class="tag-ok">Alta</span><span class="tag-mid">Media</span><span>Curva B</span>
+            </div>
+            <div class="lm-row">
+              <span>Integrazione</span><span class="tag-ok">Nativa</span><span class="tag-no">Esterna</span><span>Middleware</span>
+            </div>
+            <div class="lm-row">
+              <span>Tempo a regime</span><span class="tag-ok">6 sett.</span><span class="tag-mid">10 sett.</span><span>Formazione</span>
+            </div>
+            <div class="lm-row">
+              <span>Lock-in</span><span class="tag-mid">Medio</span><span class="tag-ok">Basso</span><span>Export dati</span>
+            </div>
+            <div class="lm-verdict">
+              <i data-lucide="check-circle" class="ic"></i> Decisione difendibile sui processi reali
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lm-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .lm-title {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: #fff;
+    margin-top: 12px;
+  }
+
+  .lm-sub {
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--on-dark-2);
+    margin-top: 14px;
+  }
+
+  .lm-bullets {
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .lm-bullets li {
+    display: flex;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--on-dark-2);
+    align-items: flex-start;
+  }
+
+  .lm-bullets li .ic {
+    width: 16px;
+    height: 16px;
+    color: var(--eyebrow-dark);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .lm-note {
+    font-size: 13px;
+    color: var(--on-dark-3);
+    margin-top: 16px;
+    line-height: 20px;
+    max-width: 44ch;
+  }
+
+  /* mini preview table */
+  .lm-preview {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 14px;
+    padding: 16px;
+    font-size: 12.5px;
+    display: grid;
+    gap: 2px;
+  }
+
+  .lm-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.4fr;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    align-items: center;
+    color: var(--on-dark-2);
+  }
+
+  .lm-row:nth-child(even) {
+    background: rgba(255,255,255,0.03);
+  }
+
+  .lm-head {
+    color: var(--on-dark-3);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 4px;
+    padding-bottom: 10px;
+  }
+
+  .lm-verdict {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: rgba(124,34,63,0.18);
+    border: 1px solid rgba(176,106,126,0.3);
+    border-radius: 8px;
+    color: var(--eyebrow-dark);
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .lm-verdict .ic {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 860px) {
+    .lm-inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .lm-right {
+      display: none;
+    }
+
+    .holo.glow-wine {
+      padding: 28px 24px !important;
+    }
+  }
+</style>

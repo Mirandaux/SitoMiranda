@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import LeadMagnetMatrix from "../components/LeadMagnetMatrix.astro";
 ---
 
 <Layout
@@ -45,7 +46,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="holo glow-wine scanlines">
               <div class="c-head">
                 <div class="lights"><i class="l1" style="background:#7c223f"></i><i class="l2" style="background:#b7791f"></i><i class="l3" style="background:#2e855a"></i></div>
-                <div class="c-title"><span id="heroCtitle">Decision console</span><span class="caret">▌</span></div>
+                <div class="c-title"><span id="heroCtitle">Consolle decisionale</span><span class="caret">▌</span></div>
                 <div class="c-ref"><span class="timer" id="heroTimer">00:00</span><span class="live"><span class="led"></span> live</span></div>
               </div>
               <div class="c-body">
@@ -102,7 +103,7 @@ import Layout from "../layouts/Layout.astro";
       <div class="offers grid-4cols" style="margin-top:36px;">
         <div class="card-d reveal d1"><div class="ic-badge"><i data-lucide="route"></i></div><h3 style="font-size:19px">Processi</h3><p style="font-size:14px;line-height:21px;margin-top:8px">Analizzo come lavori oggi, dove si rompe il flusso, dove un tool serve e dove no.</p></div>
         <div class="card-d reveal d2"><div class="ic-badge"><i data-lucide="box"></i></div><h3 style="font-size:19px">Software</h3><p style="font-size:14px;line-height:21px;margin-top:8px">La scelta parte dai processi reali, non dalle demo. Il processo è tutto, il software è solo Ken.</p></div>
-        <div class="card-d reveal d3"><div class="ic-badge"><i data-lucide="users-round"></i></div><h3 style="font-size:19px">Adozione</h3><p style="font-size:14px;line-height:21px;margin-top:8px">Un tool comprato e non usato è solo un costo. L'adozione si progetta, non si spera.</p></div>
+        <div class="card-d reveal d3"><div class="ic-badge"><i data-lucide="users-round"></i></div><h3 style="font-size:19px">Adozione</h3><p style="font-size:14px;line-height:21px;margin-top:8px">Un tool comprato e non usato è solo un costo. L'adozione si progetta, non accade in automatico.</p></div>
         <div class="card-d reveal d4"><div class="ic-badge"><i data-lucide="clipboard-check"></i></div><h3 style="font-size:19px">Qualità UX</h3><p style="font-size:14px;line-height:21px;margin-top:8px">QA UX, accessibilità, microcopy. Un software non deve solo funzionare, deve essere usato.</p></div>
       </div>
     </div>
@@ -222,6 +223,9 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
   </section>
+
+  <!-- ============ LEAD MAGNET matrice ============ -->
+  <LeadMagnetMatrix />
 
   <!-- ============ CTA band ============ -->
   <section class="section">

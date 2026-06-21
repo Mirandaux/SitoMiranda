@@ -203,9 +203,20 @@
   // ---- FAQ accordion ----
   function wireFAQ() {
     document.querySelectorAll(".qa button").forEach(b => {
+      b.setAttribute("aria-expanded", "false");
       b.addEventListener("click", () => {
         const item = b.closest(".qa");
-        item.classList.toggle("open");
+        const isOpen = item.classList.contains("open");
+        // chiudi tutti
+        document.querySelectorAll(".qa.open").forEach(el => {
+          el.classList.remove("open");
+          el.querySelector("button").setAttribute("aria-expanded", "false");
+        });
+        // apri questo se era chiuso
+        if (!isOpen) {
+          item.classList.add("open");
+          b.setAttribute("aria-expanded", "true");
+        }
       });
     });
   }

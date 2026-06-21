@@ -1,5 +1,7 @@
 ---
 const NAV = [
+  { id: "about", label: "Chi sono", href: "/about" },
+  { id: "metodo", label: "Metodo", href: "/metodo" },
   {
     id: "servizi",
     label: "Servizi",
@@ -8,12 +10,10 @@ const NAV = [
       { label: "Fit Sprint", href: "/software-fit-sprint" },
       { label: "Web Evolution", href: "/website-evolution" },
       { label: "Software su misura", href: "/software-su-misura" },
-      { label: "Metodo", href: "/metodo" },
       { label: "QA", href: "/qa" },
       { label: "UX Partner Dev", href: "/partner" },
     ],
   },
-  { id: "about", label: "About", href: "/about" },
   { id: "casi", label: "Casi", href: "/casi" },
   { id: "contatti", label: "Contatti", href: "/contatti" },
 ];
@@ -27,7 +27,7 @@ const isHere = (href: string) => href === here;
     <a class="brand" href="/" data-nav aria-label="Miranda, home">
       <img class="mark" src="/assets/logo-mark-light.png" alt="" /><span class="word">Miranda</span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Navigazione principale">
       {NAV.map((n) =>
         n.children ? (
           <div class="nav-item has-dd">
@@ -62,7 +62,8 @@ const isHere = (href: string) => href === here;
 </header>
 
 <div class="mobile-menu">
-  <a href="/" data-nav>Home</a>
+  <a href="/about" data-nav>Chi sono</a>
+  <a href="/metodo" data-nav>Metodo</a>
   <div class="m-group">
     <a href="/servizi" data-nav>Servizi</a>
     <div class="m-sub">
@@ -73,8 +74,6 @@ const isHere = (href: string) => href === here;
       <a href="/partner" data-nav>UX Partner Dev</a>
     </div>
   </div>
-  <a href="/metodo" data-nav>Metodo</a>
-  <a href="/about" data-nav>About</a>
   <a href="/casi" data-nav>Casi</a>
   <a href="/contatti" data-nav>Contatti</a>
   <a class="btn btn-primary" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
