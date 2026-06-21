@@ -8,16 +8,15 @@ export interface Appunto {
 }
 
 export const appunti: Appunto[] = [
+  {
+    slug: "appunti-demo-gestionale-martedi-mattina",
+    title: "La demo ti vende il software. Il martedì mattina ti dice se regge.",
+    excerpt: "Prima di scegliere un gestionale, guarda il lavoro che dovrà sopportare: processi reali, eccezioni, adozione e lavoro nascosto.",
+    date: "2026-06-21",
+    tag: "Software Fit Sprint",
+    published: true,
+  },
   // TODO: add published article cards here only after the full article copy is ready.
-  // Example entry (keep published: false until article is complete):
-  // {
-  //   slug: "come-si-sceglie-un-gestionale",
-  //   title: "Come si sceglie un gestionale senza farsi convincere dalla demo",
-  //   excerpt: "La demo convince sempre. Il problema è quello che succede sei mesi dopo.",
-  //   date: "2026-07-01",
-  //   tag: "Software",
-  //   published: false,
-  // },
 ];
 
 export const publishedAppunti = appunti.filter((a) => a.published);
