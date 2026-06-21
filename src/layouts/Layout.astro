@@ -140,7 +140,14 @@ const jsonLd = {
     </main>
     <Footer />
 
-    <script src="https://unpkg.com/lucide@latest" is:inline></script>
+    <script>
+      import { createIcons, icons } from "lucide";
+      // Espone il global per compatibilità con chrome.js e script inline
+      (window as any).lucide = {
+        createIcons: (opts?: any) => createIcons({ icons, ...opts }),
+      };
+      createIcons({ icons });
+    </script>
     <script src="../scripts/cockpit-bg.js"></script>
     {immersiveHero && <script src="../scripts/hero-immersive.js"></script>}
     <script src="../scripts/chrome.js"></script>
