@@ -110,6 +110,14 @@
     min-width: 0;
   }
 
+  .ln span {
+    font-size: 0.9em;
+  }
+
+  .lede {
+    font-size: 16px;
+  }
+
   .console-wrap {
     width: 100%;
     max-width: 100%;
