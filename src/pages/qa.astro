@@ -154,20 +154,6 @@ import Layout from "../layouts/Layout.astro";
         <div class="qa"><button>Come funziona il mese pilota? <i data-lucide="plus"></i></button><div class="ans"><p>Scegliamo una release o una feature in arrivo. La testo, ti consegno il report e la checklist. Alla fine decidi se continuare. Nessun vincolo lungo.</p></div></div>
         <div class="qa"><button>Quante release al mese coprite? <i data-lucide="plus"></i></button><div class="ans"><p>Dipende dal vostro ritmo. Concordiamo all'inizio il perimetro: di solito le release principali e le feature critiche, non ogni singolo deploy.</p></div></div>
       </div>
-      <script is:inline>
-        (function () {
-          const list = document.getElementById("faqList");
-          if (!list) return;
-          list.addEventListener("click", function (e) {
-            const btn = e.target.closest(".qa button");
-            if (!btn) return;
-            const qa = btn.closest(".qa");
-            const isOpen = qa.classList.contains("open");
-            list.querySelectorAll(".qa.open").forEach(function (el) { el.classList.remove("open"); });
-            if (!isOpen) qa.classList.add("open");
-          });
-        })();
-      </script>
     </div>
   </section>
 
