@@ -88,8 +88,9 @@ import Layout from "../layouts/Layout.astro";
       const form = document.getElementById("triage");
       const err = document.getElementById("formErr");
       const ok = document.getElementById("ok");
+      const submitButton = form?.querySelector('button[type="submit"]');
       if (!form) return;
-      form.addEventListener("submit", function (e) {
+      form.addEventListener("submit", async function (e) {
         e.preventDefault();
         const required = ["nome", "azienda", "email", "decisione"];
         let missing = [];
@@ -98,6 +99,10 @@ import Layout from "../layouts/Layout.astro";
         const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim());
         [...form.querySelectorAll("input,textarea")].forEach(el => el.style.borderColor = "");
         if (missing.length || !emailOk) {
+          console.warn("[contact-form] Validazione fallita", {
+            missingFields: missing.map(el => el.id),
+            emailValid: emailOk,
+          });
           missing.forEach(el => el.style.borderColor = "#c53030");
           if (!emailOk) email.style.borderColor = "#c53030";
           err.style.display = "block";
@@ -107,22 +112,48 @@ import Layout from "../layouts/Layout.astro";
           return;
         }
         err.style.display = "none";
+        submitButton?.setAttribute("aria-busy", "true");
+        if (submitButton) submitButton.disabled = true;
 
         const data = new FormData(form);
-        fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(Object.fromEntries(data)),
-        })
-          .then(() => {
-            form.style.display = "none";
-            ok.style.display = "block";
-            if (window.lucide) lucide.createIcons();
-          })
-          .catch(() => {
-            err.style.display = "block";
-            err.textContent = "Invio non riuscito. Riprova o scrivimi a info@mirandagiaccon.it.";
+        let requestId = null;
+
+        console.info("[contact-form] Invio avviato", { endpoint: "/api/contact" });
+
+        try {
+          const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(Object.fromEntries(data)),
           });
+
+          const responseData = await response.json().catch(() => null);
+          requestId = responseData?.requestId || null;
+
+          console.info("[contact-form] Risposta ricevuta", {
+            status: response.status,
+            ok: response.ok,
+            requestId,
+          });
+
+          if (!response.ok) {
+            throw new Error(responseData?.error || `Errore HTTP ${response.status}`);
+          }
+
+          form.style.display = "none";
+          ok.style.display = "block";
+          if (window.lucide) lucide.createIcons();
+        } catch (error) {
+          console.error("[contact-form] Invio fallito", {
+            message: error instanceof Error ? error.message : String(error),
+            requestId,
+          });
+          err.style.display = "block";
+          err.textContent = "Invio non riuscito. Riprova o scrivimi a info@mirandagiaccon.it.";
+        } finally {
+          submitButton?.removeAttribute("aria-busy");
+          if (submitButton) submitButton.disabled = false;
+        }
       });
     })();
   </script>
