@@ -41,6 +41,13 @@ function normalizeUrl(url = "") {
   }
 }
 
+function parseEmailList(value = "") {
+  return String(value)
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
+}
+
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -91,9 +98,8 @@ export const POST = async ({ request }) => {
   });
 
   /**
-   * Attenzione:
-   * Se questo campo è valorizzato, l'API risponde 200 ma NON invia email.
-   * Serve per bloccare bot.
+   * Honeypot anti-spam:
+   * se questo campo è valorizzato, risponde 200 ma non invia email.
    */
   if (honeypot) {
     console.info("[contact-api] Bloccata da honeypot", { requestId });
@@ -127,9 +133,12 @@ export const POST = async ({ request }) => {
     );
   }
 
-  const missingEnv = ["SMTP_USER", "SMTP_PASS", "MAIL_TO"].filter(
-    (key) => !process.env[key],
-  );
+  const missingEnv = [
+    "SMTP_USER",
+    "SMTP_PASS",
+    "MAIL_TO",
+    "REPLY_TO_MIRANDA",
+  ].filter((key) => !process.env[key]);
 
   if (missingEnv.length) {
     console.error("[contact-api] Variabili ambiente mancanti", {
@@ -149,7 +158,23 @@ export const POST = async ({ request }) => {
 
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
-  const mailTo = process.env.MAIL_TO;
+  const mailTo = parseEmailList(process.env.MAIL_TO);
+  const replyToMiranda = process.env.REPLY_TO_MIRANDA;
+
+  if (!mailTo.length) {
+    console.error("[contact-api] MAIL_TO non contiene destinatari validi", {
+      requestId,
+    });
+
+    return jsonResponse(
+      {
+        ok: false,
+        error: "Nessun destinatario configurato.",
+        requestId,
+      },
+      500,
+    );
+  }
 
   const cleanNome = String(nome).trim();
   const cleanAzienda = String(azienda).trim();
@@ -199,15 +224,22 @@ export const POST = async ({ request }) => {
   const riepilogoHtml = `
     <table style="font-family:Arial,sans-serif;font-size:15px;color:#222;max-width:640px;width:100%;border-collapse:collapse;line-height:1.5;">
       <tr>
-        <td style="padding:6px 0;"><strong>Nome:</strong> ${safeNome}</td>
+        <td style="padding:6px 0;">
+          <strong>Nome:</strong> ${safeNome}
+        </td>
       </tr>
 
       <tr>
-        <td style="padding:6px 0;"><strong>Azienda:</strong> ${safeAzienda}</td>
+        <td style="padding:6px 0;">
+          <strong>Azienda:</strong> ${safeAzienda}
+        </td>
       </tr>
 
       <tr>
-        <td style="padding:6px 0;"><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></td>
+        <td style="padding:6px 0;">
+          <strong>Email:</strong>
+          <a href="mailto:${safeEmail}">${safeEmail}</a>
+        </td>
       </tr>
 
       ${
@@ -275,7 +307,7 @@ export const POST = async ({ request }) => {
   const userMail = {
     from: `"Miranda" <${smtpUser}>`,
     to: cleanEmail,
-    replyTo: mailTo,
+    replyTo: replyToMiranda,
     subject: `Abbiamo ricevuto la tua richiesta · ${cleanAzienda}`,
     text: [
       `Ciao ${cleanNome},`,
@@ -318,7 +350,12 @@ export const POST = async ({ request }) => {
   };
 
   try {
-    console.info("[contact-api] Verifica SMTP avviata", { requestId });
+    console.info("[contact-api] Verifica SMTP avviata", {
+      requestId,
+      smtpUser,
+      mailTo,
+      replyToMiranda,
+    });
 
     await transporter.verify();
 
@@ -355,6 +392,7 @@ export const POST = async ({ request }) => {
       command: error?.command,
       response: error?.response,
       responseCode: error?.responseCode,
+      stack: error?.stack,
     });
 
     return jsonResponse(
