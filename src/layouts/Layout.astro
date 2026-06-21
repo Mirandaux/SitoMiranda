@@ -11,9 +11,84 @@ interface Props {
   page: string;
   bg?: string;
   immersiveHero?: boolean;
+  ogImage?: string;
 }
 
-const { title, description, page, bg, immersiveHero = false } = Astro.props;
+const { title, description, page, bg, immersiveHero = false, ogImage } = Astro.props;
+
+const siteUrl = "https://mirandagiaccon.it";
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImg = ogImage ?? `${siteUrl}/assets/portrait-miranda.webp`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#miranda`,
+      "name": "Miranda Giaccon",
+      "jobTitle": "UX & Product Consultant",
+      "description": "Aiuto PMI, scaleup ed enti a prendere buone decisioni su software e processi digitali, prima che diventino costose.",
+      "url": siteUrl,
+      "email": "info@mirandagiaccon.it",
+      "sameAs": ["https://www.linkedin.com/in/miranda-giaccon/"],
+      "knowsAbout": [
+        "UX Design", "Product Management", "Process Mapping",
+        "Software Selection", "Adoption Strategy", "UX Audit",
+        "Accessibility", "Decision Making"
+      ],
+      "image": `${siteUrl}/assets/portrait-miranda.webp`,
+      "nationality": { "@type": "Country", "name": "Italy" }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}/#studio`,
+      "name": "Miranda · UX & Product Consulting",
+      "url": siteUrl,
+      "description": "Consulenza UX e di prodotto per PMI, scaleup ed enti: scelta software, progettazione processi digitali, QA UX e adozione.",
+      "founder": { "@id": `${siteUrl}/#miranda` },
+      "areaServed": "IT",
+      "serviceType": [
+        "Software Fit Sprint",
+        "Website Evolution Check",
+        "Progettazione software su misura",
+        "UX/UI QA & Functional Testing",
+        "Accessibility Fast-Track",
+        "CRO / Adoption Sprint"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Offerte",
+        "url": `${siteUrl}/servizi`
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@mirandagiaccon.it",
+        "contactType": "customer service",
+        "availableLanguage": "Italian"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Miranda · UX & Product Consulting",
+      "description": description,
+      "inLanguage": "it",
+      "publisher": { "@id": `${siteUrl}/#miranda` }
+    },
+    {
+      "@type": "WebPage",
+      "@id": canonical,
+      "url": canonical,
+      "name": title,
+      "description": description,
+      "isPartOf": { "@id": `${siteUrl}/#website` },
+      "about": { "@id": `${siteUrl}/#miranda` },
+      "inLanguage": "it"
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -21,17 +96,47 @@ const { title, description, page, bg, immersiveHero = false } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" href="/assets/logo-mark.png" type="image/png" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Miranda · UX & Product Consulting" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImg} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="it_IT" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImg} />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/logo-mark.png" />
+
+    <!-- JSON-LD strutturati -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body data-page={page}>
+
+    <!-- Skip to content (accessibilità) -->
+    <a class="skip-link" href="#main-content">Salta al contenuto</a>
+
     {immersiveHero && <div class="amb" id="amb"><div class="spot"></div><div class="spot b"></div></div>}
     <CockpitBg bg={bg} />
     <div class="curtain"></div>
     <div data-progress style="position:fixed;top:0;left:0;height:2px;width:0;z-index:60;background:linear-gradient(90deg,#7c223f,#b06a7e);box-shadow:0 0 12px rgba(176,106,126,.6);transition:width 80ms linear;"></div>
     <Header />
-    <main class="page">
+    <main class="page" id="main-content">
       <slot />
     </main>
     <Footer />

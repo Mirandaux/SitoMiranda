@@ -27,7 +27,7 @@ const isHere = (href: string) => href === here;
     <a class="brand" href="/" data-nav aria-label="Miranda, home">
       <img class="mark" src="/assets/logo-mark-light.png" alt="" /><span class="word">Miranda</span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Navigazione principale">
       {NAV.map((n) =>
         n.children ? (
           <div class="nav-item has-dd">
