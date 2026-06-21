@@ -47,7 +47,7 @@ import Layout from "../layouts/Layout.astro";
             </div>
             <div id="formErr" class="hint" style="color:#e89a9a;margin-top:14px;display:none;"></div>
             <div class="cta-row" style="margin-top:24px;">
-              <button type="submit" class="btn btn-primary btn-lg magnetic"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</button>
+              <button type="submit" class="btn btn-primary btn-lg magnetic"><i data-lucide="calendar-check" class="ic"></i> Invia </button>
             </div>
             <p class="hint" style="margin-top:14px;">Inviando accetti di essere ricontattata per organizzare la call. Niente newsletter, niente spam.</p>
           </form>
@@ -84,77 +84,127 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   <script is:inline>
-    (function () {
-      const form = document.getElementById("triage");
-      const err = document.getElementById("formErr");
-      const ok = document.getElementById("ok");
-      const submitButton = form?.querySelector('button[type="submit"]');
-      if (!form) return;
-      form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-        const required = ["nome", "azienda", "email", "decisione"];
-        let missing = [];
-        required.forEach(id => { const el = document.getElementById(id); if (!el.value.trim()) missing.push(el); });
-        const email = document.getElementById("email");
-        const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim());
-        [...form.querySelectorAll("input,textarea")].forEach(el => el.style.borderColor = "");
-        if (missing.length || !emailOk) {
-          console.warn("[contact-form] Validazione fallita", {
-            missingFields: missing.map(el => el.id),
-            emailValid: emailOk,
-          });
-          missing.forEach(el => el.style.borderColor = "#c53030");
-          if (!emailOk) email.style.borderColor = "#c53030";
-          err.style.display = "block";
-          err.textContent = !emailOk && !missing.length
-            ? "Controlla l'indirizzo email, poi riprova."
-            : "Compila i campi obbligatori (nome, azienda, email, decisione), poi riprova.";
-          return;
-        }
-        err.style.display = "none";
-        submitButton?.setAttribute("aria-busy", "true");
-        if (submitButton) submitButton.disabled = true;
+  (function () {
+    const form = document.getElementById("triage");
+    const err = document.getElementById("formErr");
+    const ok = document.getElementById("ok");
+    const submitButton = form?.querySelector('button[type="submit"]');
 
-        const data = new FormData(form);
-        let requestId = null;
+    if (!form || !err || !ok) return;
 
-        console.info("[contact-form] Invio avviato", { endpoint: "/api/contact" });
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-        try {
-          const response = await fetch("/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(Object.fromEntries(data)),
-          });
+      const required = ["nome", "azienda", "email", "decisione"];
+      const missing = [];
 
-          const responseData = await response.json().catch(() => null);
-          requestId = responseData?.requestId || null;
+      required.forEach((id) => {
+        const el = document.getElementById(id);
 
-          console.info("[contact-form] Risposta ricevuta", {
-            status: response.status,
-            ok: response.ok,
-            requestId,
-          });
-
-          if (!response.ok) {
-            throw new Error(responseData?.error || `Errore HTTP ${response.status}`);
-          }
-
-          form.style.display = "none";
-          ok.style.display = "block";
-          if (window.lucide) lucide.createIcons();
-        } catch (error) {
-          console.error("[contact-form] Invio fallito", {
-            message: error instanceof Error ? error.message : String(error),
-            requestId,
-          });
-          err.style.display = "block";
-          err.textContent = "Invio non riuscito. Riprova o scrivimi a info@mirandagiaccon.it.";
-        } finally {
-          submitButton?.removeAttribute("aria-busy");
-          if (submitButton) submitButton.disabled = false;
+        if (!el || !el.value.trim()) {
+          missing.push(el);
         }
       });
-    })();
-  </script>
+
+      const email = document.getElementById("email");
+      const emailValue = email?.value.trim() || "";
+      const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emailValue);
+
+      [...form.querySelectorAll("input, textarea")].forEach((el) => {
+        el.style.borderColor = "";
+      });
+
+      if (missing.length || !emailOk) {
+        console.warn("[contact-form] Validazione fallita", {
+          missingFields: missing.filter(Boolean).map((el) => el.id),
+          emailValid: emailOk,
+        });
+
+        missing.filter(Boolean).forEach((el) => {
+          el.style.borderColor = "#c53030";
+        });
+
+        if (!emailOk && email) {
+          email.style.borderColor = "#c53030";
+        }
+
+        err.style.display = "block";
+        err.textContent =
+          !emailOk && !missing.length
+            ? "Controlla l'indirizzo email, poi riprova."
+            : "Compila i campi obbligatori: nome, azienda, email e decisione.";
+
+        return;
+      }
+
+      err.style.display = "none";
+
+      submitButton?.setAttribute("aria-busy", "true");
+
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
+      let requestId = null;
+
+      console.info("[contact-form] Invio avviato", {
+        endpoint: "/api/contact",
+      });
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const responseData = await response.json().catch(() => null);
+        requestId = responseData?.requestId || null;
+
+        console.info("[contact-form] Risposta ricevuta", {
+          status: response.status,
+          ok: response.ok,
+          apiOk: responseData?.ok,
+          skipped: responseData?.skipped,
+          requestId,
+        });
+
+        if (!response.ok || responseData?.ok === false) {
+          throw new Error(responseData?.error || `Errore HTTP ${response.status}`);
+        }
+
+        if (responseData?.skipped) {
+          throw new Error("Richiesta bloccata dal controllo anti-spam.");
+        }
+
+        form.style.display = "none";
+        ok.style.display = "block";
+
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      } catch (error) {
+        console.error("[contact-form] Invio fallito", {
+          message: error instanceof Error ? error.message : String(error),
+          requestId,
+        });
+
+        err.style.display = "block";
+        err.textContent =
+          "Invio non riuscito. Riprova o scrivimi a info@mirandagiaccon.it.";
+      } finally {
+        submitButton?.removeAttribute("aria-busy");
+
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+      }
+    });
+  })();
+</script>
 </Layout>
