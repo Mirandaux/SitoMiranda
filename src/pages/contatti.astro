@@ -139,6 +139,8 @@ const SHOW_FORM = true;
                   <div
                     id="formErr"
                     class="hint"
+                    role="alert"
+                    aria-live="polite"
                     style="color:#e89a9a;margin-top:14px;display:none;"
                   ></div>
 
@@ -155,7 +157,12 @@ const SHOW_FORM = true;
                   </p>
                 </form>
 
-                <div id="ok" style="display:none;text-align:center;padding:20px 0;">
+                <div
+                  id="ok"
+                  role="status"
+                  aria-live="polite"
+                  style="display:none;text-align:center;padding:20px 0;"
+                >
                   <div
                     style="width:60px;height:60px;border-radius:999px;margin:0 auto 18px;background:rgba(46,133,90,0.18);border:1px solid rgba(46,133,90,0.5);display:grid;place-items:center;"
                   >
@@ -168,12 +175,21 @@ const SHOW_FORM = true;
                   <h3 style="font-size:24px;">Ricevuto. Ti scrivo entro 24h.</h3>
 
                   <p
+                    id="okConfirmation"
                     style="margin-top:10px;max-width:46ch;margin-left:auto;margin-right:auto;"
                   >
                     Nel frattempo controlla la mail. Se non vedi nulla, scrivimi a{" "}
                     <a href="mailto:info@mirandagiaccon.it">
                       info@mirandagiaccon.it
                     </a>.
+                  </p>
+
+                  <p
+                    id="okNoConfirmation"
+                    style="display:none;margin-top:10px;max-width:46ch;margin-left:auto;margin-right:auto;"
+                  >
+                    La richiesta è arrivata correttamente. La conferma automatica
+                    non è partita, ma ti ricontatterò comunque entro 24 ore.
                   </p>
                 </div>
               </>
@@ -316,6 +332,8 @@ const SHOW_FORM = true;
             const form = document.getElementById("triage");
             const err = document.getElementById("formErr");
             const ok = document.getElementById("ok");
+            const okConfirmation = document.getElementById("okConfirmation");
+            const okNoConfirmation = document.getElementById("okNoConfirmation");
             const submitButton = form?.querySelector('button[type="submit"]');
 
             if (!form || !err || !ok) return;
@@ -399,6 +417,7 @@ const SHOW_FORM = true;
                   ok: response.ok,
                   apiOk: responseData?.ok,
                   skipped: responseData?.skipped,
+                  confirmationSent: responseData?.confirmationSent,
                   requestId,
                 });
 
@@ -412,6 +431,11 @@ const SHOW_FORM = true;
 
                 form.style.display = "none";
                 ok.style.display = "block";
+
+                if (responseData?.confirmationSent === false) {
+                  if (okConfirmation) okConfirmation.style.display = "none";
+                  if (okNoConfirmation) okNoConfirmation.style.display = "block";
+                }
 
                 if (window.lucide) {
                   lucide.createIcons();

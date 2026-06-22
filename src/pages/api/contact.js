@@ -137,7 +137,6 @@ export const POST = async ({ request }) => {
     "SMTP_USER",
     "SMTP_PASS",
     "MAIL_TO",
-    "REPLY_TO_MIRANDA",
   ].filter((key) => !process.env[key]);
 
   if (missingEnv.length) {
@@ -159,7 +158,7 @@ export const POST = async ({ request }) => {
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
   const mailTo = parseEmailList(process.env.MAIL_TO);
-  const replyToMiranda = process.env.REPLY_TO_MIRANDA;
+  const replyToMiranda = process.env.REPLY_TO_MIRANDA || smtpUser;
 
   if (!mailTo.length) {
     console.error("[contact-api] MAIL_TO non contiene destinatari validi", {
@@ -350,37 +349,39 @@ export const POST = async ({ request }) => {
   };
 
   try {
-    console.info("[contact-api] Verifica SMTP avviata", {
-      requestId,
-      smtpUser,
-      mailTo,
-      replyToMiranda,
-    });
-
-    await transporter.verify();
-
-    console.info("[contact-api] SMTP verificato", { requestId });
+    console.info("[contact-api] Invio email interna avviato", { requestId });
 
     const internalInfo = await transporter.sendMail(internalMail);
 
     console.info("[contact-api] Email interna inviata", {
       requestId,
       messageId: internalInfo.messageId,
-      accepted: internalInfo.accepted,
-      rejected: internalInfo.rejected,
     });
 
-    const userInfo = await transporter.sendMail(userMail);
+    let confirmationSent = false;
 
-    console.info("[contact-api] Email automatica inviata", {
-      requestId,
-      messageId: userInfo.messageId,
-      accepted: userInfo.accepted,
-      rejected: userInfo.rejected,
-    });
+    try {
+      const userInfo = await transporter.sendMail(userMail);
+      confirmationSent = true;
+
+      console.info("[contact-api] Email automatica inviata", {
+        requestId,
+        messageId: userInfo.messageId,
+      });
+    } catch (error) {
+      console.warn("[contact-api] Email automatica non inviata", {
+        requestId,
+        name: error?.name,
+        message: error?.message,
+        code: error?.code,
+        command: error?.command,
+        responseCode: error?.responseCode,
+      });
+    }
 
     return jsonResponse({
       ok: true,
+      confirmationSent,
       requestId,
     });
   } catch (error) {
@@ -390,9 +391,7 @@ export const POST = async ({ request }) => {
       message: error?.message,
       code: error?.code,
       command: error?.command,
-      response: error?.response,
       responseCode: error?.responseCode,
-      stack: error?.stack,
     });
 
     return jsonResponse(
