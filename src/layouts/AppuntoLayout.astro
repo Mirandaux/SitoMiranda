@@ -9,12 +9,26 @@ interface Props {
   tag: string;
   date: string; // ISO
   slug: string;
+  offerTitle?: string;
+  offerDescription?: string;
+  offerHref?: string;
+  offerCta?: string;
+  ctaH2?: string;
+  ctaP?: string;
 }
 
-const { title, description, subtitle, tag, date, slug } = Astro.props;
+const {
+  title, description, subtitle, tag, date, slug,
+  offerTitle = "Software Fit Sprint",
+  offerDescription = "Il Software Fit Sprint serve a prendere una decisione chiara prima di investire in sviluppo, redesign o nuovi strumenti.",
+  offerHref = "/software-fit-sprint",
+  offerCta = "Scopri il Sprint",
+  ctaH2 = "Se hai un processo che non funziona, parliamone.",
+  ctaP = "Una call di triage da 30 minuti. Raccontami dove si blocca il lavoro e capiamo se posso aiutarti.",
+} = Astro.props;
 
 const siteUrl = "https://mirandagiaccon.it";
-const ogImage = `${siteUrl}/assets/portrait-miranda.webp`;
+const ogImage = `${siteUrl}/assets/miranda-chisono.jpeg`;
 const dateFormatted = new Date(date).toLocaleDateString("it-IT", {
   day: "numeric",
   month: "long",
@@ -56,10 +70,10 @@ const dateFormatted = new Date(date).toLocaleDateString("it-IT", {
       <aside class="appunto-offer reveal" aria-label="Offerta correlata">
         <div class="holo glow-wine" style="padding:28px 32px;">
           <div class="eyebrow">Offerta correlata</div>
-          <h3 style="margin-top:10px;font-size:19px;">Software Fit Sprint</h3>
-          <p style="margin-top:8px;font-size:14.5px;line-height:22px;color:var(--on-dark-2);">Il Software Fit Sprint serve a prendere una decisione chiara prima di investire in sviluppo, redesign o nuovi strumenti.</p>
-          <a class="arrow" href="/software-fit-sprint" data-nav style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;font-weight:600;color:var(--eyebrow-dark);text-decoration:none;">
-            Scopri il Sprint <i data-lucide="arrow-right" class="ic"></i>
+          <h3 style="margin-top:10px;font-size:19px;">{offerTitle}</h3>
+          <p style="margin-top:8px;font-size:14.5px;line-height:22px;color:var(--on-dark-2);">{offerDescription}</p>
+          <a class="arrow" href={offerHref} data-nav style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;font-weight:600;color:var(--eyebrow-dark);text-decoration:none;">
+            {offerCta} <i data-lucide="arrow-right" class="ic"></i>
           </a>
         </div>
       </aside>
@@ -75,8 +89,8 @@ const dateFormatted = new Date(date).toLocaleDateString("it-IT", {
     <div class="shell">
       <div class="cta-band reveal">
         <div class="eyebrow center" style="justify-content:center;">Prossimo passo</div>
-        <h2 style="margin-top:14px;">Se stai valutando un gestionale, parliamone prima della prossima demo.</h2>
-        <p>Una call di triage da 30 minuti. Portiamo la mappa dei processi, non la lista delle feature.</p>
+        <h2 style="margin-top:14px;">{ctaH2}</h2>
+        <p>{ctaP}</p>
         <div class="cta-row">
           <a class="btn btn-primary btn-lg magnetic" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
         </div>

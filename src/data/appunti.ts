@@ -16,6 +16,14 @@ export const appunti: Appunto[] = [
     tag: "Software Fit Sprint",
     published: true,
   },
+  {
+    slug: "appunti-software-su-misura-rincorrere",
+    title: "Il software su misura non serve a fare tutto",
+    excerpt: "Quando ha senso progettare uno strumento custom e quando invece stai solo trasformando il caos in codice.",
+    date: "2026-06-23",
+    tag: "Software su misura",
+    published: true,
+  },
   // TODO: add published article cards here only after the full article copy is ready.
 ];
 

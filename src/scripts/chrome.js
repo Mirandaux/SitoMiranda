@@ -44,6 +44,11 @@
       curtain.classList.add("show");
       setTimeout(() => { location.href = href; }, 320);
     });
+    // When the browser restores the page from bfcache (back/forward navigation),
+    // the curtain may still have .show from the outgoing transition. Remove it.
+    window.addEventListener("pageshow", (e) => {
+      if (e.persisted) curtain.classList.remove("show");
+    });
   }
 
   // ---- Reveal on scroll ----
