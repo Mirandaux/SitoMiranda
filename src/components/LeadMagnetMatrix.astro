@@ -1,5 +1,4 @@
 ---
-const pdfHref = "/assets/matrice-decisionale-software-miranda.pdf";
 ---
 
 <section class="section tight lm-matrix">
@@ -15,9 +14,39 @@ const pdfHref = "/assets/matrice-decisionale-software-miranda.pdf";
             <li><i data-lucide="check" class="ic"></i> evidenzi rischi, limiti e dipendenze</li>
             <li><i data-lucide="check" class="ic"></i> separi ciò che sembra bello in demo da ciò che può reggere il lavoro quotidiano</li>
           </ul>
-          <div class="cta-row" style="margin-top:28px;">
-            <a class="btn btn-primary magnetic" href={pdfHref} download><i data-lucide="download" class="ic"></i> Scarica la matrice decisionale</a>
+
+          <!-- Form email -->
+          <form class="lm-form" id="lmForm" novalidate style="margin-top:28px;">
+            <!-- Honeypot anti-spam -->
+            <input type="text" name="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;opacity:0;height:0;width:0;pointer-events:none;" />
+            <div class="lm-field">
+              <input
+                type="email"
+                name="email"
+                id="lmEmail"
+                placeholder="La tua email"
+                autocomplete="email"
+                required
+                aria-label="Indirizzo email per ricevere la matrice"
+              />
+              <button type="submit" class="btn btn-primary magnetic">
+                <i data-lucide="download" class="ic"></i>
+                <span class="lm-btn-text">Scarica la matrice</span>
+                <span class="lm-btn-loading" aria-hidden="true" style="display:none;">Invio...</span>
+              </button>
+            </div>
+            <p class="lm-field-error" id="lmError" role="alert" style="display:none;"></p>
+          </form>
+
+          <!-- Stato successo (nascosto fino all'invio) -->
+          <div class="lm-success" id="lmSuccess" style="display:none;" role="status">
+            <i data-lucide="circle-check" class="ic"></i>
+            <div>
+              <strong>Controlla la tua email.</strong>
+              <span>Ti ho inviato il link per scaricare la matrice.</span>
+            </div>
           </div>
+
           <p class="lm-note">È utile se stai scegliendo un gestionale, un CRM, un software interno o se vuoi capire se il problema è davvero il tool.</p>
         </div>
         <div class="lm-right" aria-hidden="true">
@@ -46,6 +75,60 @@ const pdfHref = "/assets/matrice-decisionale-software-miranda.pdf";
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById("lmForm") as HTMLFormElement | null;
+  const successEl = document.getElementById("lmSuccess");
+  const errorEl = document.getElementById("lmError");
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form || !successEl || !errorEl) return;
+
+    const emailInput = form.querySelector<HTMLInputElement>("#lmEmail");
+    const honeypot = form.querySelector<HTMLInputElement>('[name="honeypot"]');
+    const btnText = form.querySelector(".lm-btn-text") as HTMLElement | null;
+    const btnLoading = form.querySelector(".lm-btn-loading") as HTMLElement | null;
+    const submitBtn = form.querySelector("button[type=submit]") as HTMLButtonElement | null;
+
+    const email = emailInput?.value?.trim() ?? "";
+    if (!email) {
+      errorEl.textContent = "Inserisci la tua email.";
+      errorEl.style.display = "block";
+      emailInput?.focus();
+      return;
+    }
+
+    // loading state
+    errorEl.style.display = "none";
+    if (btnText) btnText.style.display = "none";
+    if (btnLoading) btnLoading.style.display = "inline";
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      const res = await fetch("/api/download-matrix", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, honeypot: honeypot?.value ?? "" }),
+      });
+      const data = await res.json();
+
+      if (data.ok) {
+        form.style.display = "none";
+        successEl.style.display = "flex";
+        if (window.lucide) window.lucide.createIcons();
+      } else {
+        throw new Error(data.error || "Errore sconosciuto.");
+      }
+    } catch (err: any) {
+      errorEl.textContent = err?.message ?? "Qualcosa non ha funzionato. Riprova.";
+      errorEl.style.display = "block";
+      if (btnText) btnText.style.display = "inline";
+      if (btnLoading) btnLoading.style.display = "none";
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+</script>
 
 <style>
   .lm-inner {
@@ -95,6 +178,74 @@ const pdfHref = "/assets/matrice-decisionale-software-miranda.pdf";
     margin-top: 2px;
   }
 
+  /* Form */
+  .lm-field {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .lm-field input[type="email"] {
+    flex: 1 1 200px;
+    min-width: 0;
+    padding: 0 16px;
+    height: 46px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.07);
+    color: #fff;
+    font-size: 15px;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .lm-field input[type="email"]::placeholder { color: var(--on-dark-3); }
+  .lm-field input[type="email"]:focus { border-color: var(--eyebrow-dark); }
+
+  .lm-field .btn {
+    height: 46px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .lm-field-error {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #e89a9a;
+  }
+
+  /* Success state */
+  .lm-success {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 28px;
+    padding: 16px 18px;
+    background: rgba(46,133,90,0.15);
+    border: 1px solid rgba(46,133,90,0.35);
+    border-radius: 10px;
+    color: #6fcf97;
+  }
+
+  .lm-success .ic {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .lm-success strong {
+    display: block;
+    font-size: 14.5px;
+    color: #6fcf97;
+  }
+
+  .lm-success span {
+    font-size: 13.5px;
+    color: rgba(111,207,151,0.8);
+  }
+
   .lm-note {
     font-size: 13px;
     color: var(--on-dark-3);
@@ -124,9 +275,7 @@ const pdfHref = "/assets/matrice-decisionale-software-miranda.pdf";
     color: var(--on-dark-2);
   }
 
-  .lm-row:nth-child(even) {
-    background: rgba(255,255,255,0.03);
-  }
+  .lm-row:nth-child(even) { background: rgba(255,255,255,0.03); }
 
   .lm-head {
     color: var(--on-dark-3);
@@ -152,24 +301,11 @@ const pdfHref = "/assets/matrice-decisionale-software-miranda.pdf";
     font-weight: 600;
   }
 
-  .lm-verdict .ic {
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
-  }
+  .lm-verdict .ic { width: 15px; height: 15px; flex-shrink: 0; }
 
   @media (max-width: 860px) {
-    .lm-inner {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-
-    .lm-right {
-      display: none;
-    }
-
-    .holo.glow-wine {
-      padding: 28px 24px !important;
-    }
+    .lm-inner { grid-template-columns: 1fr; gap: 28px; }
+    .lm-right { display: none; }
+    .holo.glow-wine { padding: 28px 24px !important; }
   }
 </style>
