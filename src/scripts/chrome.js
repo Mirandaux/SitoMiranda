@@ -44,6 +44,11 @@
       curtain.classList.add("show");
       setTimeout(() => { location.href = href; }, 320);
     });
+    // When the browser restores the page from bfcache (back/forward navigation),
+    // the curtain may still have .show from the outgoing transition. Remove it.
+    window.addEventListener("pageshow", (e) => {
+      if (e.persisted) curtain.classList.remove("show");
+    });
   }
 
   // ---- Reveal on scroll ----
@@ -203,9 +208,20 @@
   // ---- FAQ accordion ----
   function wireFAQ() {
     document.querySelectorAll(".qa button").forEach(b => {
+      b.setAttribute("aria-expanded", "false");
       b.addEventListener("click", () => {
         const item = b.closest(".qa");
-        item.classList.toggle("open");
+        const isOpen = item.classList.contains("open");
+        // chiudi tutti
+        document.querySelectorAll(".qa.open").forEach(el => {
+          el.classList.remove("open");
+          el.querySelector("button").setAttribute("aria-expanded", "false");
+        });
+        // apri questo se era chiuso
+        if (!isOpen) {
+          item.classList.add("open");
+          b.setAttribute("aria-expanded", "true");
+        }
       });
     });
   }

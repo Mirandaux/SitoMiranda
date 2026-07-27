@@ -1,0 +1,282 @@
+---
+import Layout from "./Layout.astro";
+import LeadMagnetMatrix from "../components/LeadMagnetMatrix.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  subtitle?: string;
+  tag: string;
+  date: string; // ISO
+  slug: string;
+  offerTitle?: string;
+  offerDescription?: string;
+  offerHref?: string;
+  offerCta?: string;
+  ctaH2?: string;
+  ctaP?: string;
+}
+
+const {
+  title, description, subtitle, tag, date, slug,
+  offerTitle = "Software Fit Sprint",
+  offerDescription = "Il Software Fit Sprint serve a prendere una decisione chiara prima di investire in sviluppo, redesign o nuovi strumenti.",
+  offerHref = "/software-fit-sprint",
+  offerCta = "Scopri il Sprint",
+  ctaH2 = "Se hai un processo che non funziona, parliamone.",
+  ctaP = "Una call di triage da 30 minuti. Raccontami dove si blocca il lavoro e capiamo se posso aiutarti.",
+} = Astro.props;
+
+const siteUrl = "https://mirandagiaccon.it";
+const ogImage = `${siteUrl}/assets/miranda-chisono.jpeg`;
+const dateFormatted = new Date(date).toLocaleDateString("it-IT", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<Layout
+  title={title}
+  description={description}
+  page="appunti"
+  bg='data-max="110" data-link="140" data-accent="0.07" data-speed="0.11"'
+  ogImage={ogImage}
+>
+  <article class="appunto-page">
+    <div class="shell">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+        <a href="/appunti" data-nav><i data-lucide="arrow-left" class="ic"></i> Appunti sui processi</a>
+      </nav>
+
+      <!-- Header articolo -->
+      <header class="appunto-header reveal d1">
+        <div class="appunto-meta-line">
+          <span class="pill wine"><span class="dot"></span>{tag}</span>
+          <time datetime={date}>{dateFormatted}</time>
+        </div>
+        <h1 class="appunto-h1">{title}</h1>
+        {subtitle && <p class="appunto-subtitle">{subtitle}</p>}
+      </header>
+
+      <!-- Corpo articolo -->
+      <div class="appunto-body reveal d2">
+        <slot />
+      </div>
+
+      <!-- Related offer -->
+      <aside class="appunto-offer reveal" aria-label="Offerta correlata">
+        <div class="holo glow-wine" style="padding:28px 32px;">
+          <div class="eyebrow">Offerta correlata</div>
+          <h3 style="margin-top:10px;font-size:19px;">{offerTitle}</h3>
+          <p style="margin-top:8px;font-size:14.5px;line-height:22px;color:var(--on-dark-2);">{offerDescription}</p>
+          <a class="arrow" href={offerHref} data-nav style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;font-weight:600;color:var(--eyebrow-dark);text-decoration:none;">
+            {offerCta} <i data-lucide="arrow-right" class="ic"></i>
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </article>
+
+  <!-- Lead magnet matrice -->
+  <LeadMagnetMatrix />
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <div class="eyebrow center" style="justify-content:center;">Prossimo passo</div>
+        <h2 style="margin-top:14px;">{ctaH2}</h2>
+        <p>{ctaP}</p>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg magnetic" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .appunto-page {
+    padding: 64px 0 40px;
+  }
+
+  .breadcrumb {
+    margin-bottom: 40px;
+  }
+
+  .breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--on-dark-3);
+    text-decoration: none;
+    border: 0;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: var(--eyebrow-dark); }
+
+  .breadcrumb .ic {
+    width: 14px;
+    height: 14px;
+  }
+
+  .appunto-header {
+    max-width: 72ch;
+    margin-bottom: 56px;
+  }
+
+  .appunto-meta-line {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .appunto-meta-line time {
+    font-size: 13px;
+    color: var(--on-dark-3);
+  }
+
+  .appunto-h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 3.2vw, 44px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #fff;
+    margin: 0;
+  }
+
+  .appunto-subtitle {
+    margin-top: 18px;
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--on-dark-2);
+  }
+
+  /* Prose body */
+  .appunto-body {
+    max-width: 68ch;
+    display: grid;
+    gap: 0;
+  }
+
+  .appunto-body :global(p) {
+    font-size: 17px;
+    line-height: 28px;
+    color: var(--on-dark-2);
+    margin: 0 0 22px;
+  }
+
+  .appunto-body :global(h2) {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 700;
+    color: #fff;
+    margin: 48px 0 16px;
+    line-height: 1.2;
+  }
+
+  .appunto-body :global(h3) {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--eyebrow-dark);
+    margin: 36px 0 12px;
+    line-height: 1.3;
+  }
+
+  .appunto-body :global(ul) {
+    margin: 0 0 22px;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+
+  .appunto-body :global(ul li) {
+    display: flex;
+    gap: 10px;
+    font-size: 16px;
+    line-height: 25px;
+    color: var(--on-dark-2);
+    padding-left: 4px;
+  }
+
+  .appunto-body :global(ul li::before) {
+    content: "·";
+    color: var(--eyebrow-dark);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .appunto-body :global(strong) {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* Table */
+  .appunto-body :global(.table-wrap) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 28px 0 28px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.09);
+  }
+
+  .appunto-body :global(table) {
+    width: 100%;
+    min-width: 480px;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .appunto-body :global(thead tr) {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .appunto-body :global(th) {
+    padding: 12px 16px;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--on-dark-3);
+    white-space: nowrap;
+  }
+
+  .appunto-body :global(td) {
+    padding: 12px 16px;
+    color: var(--on-dark-2);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 20px;
+  }
+
+  .appunto-body :global(tbody tr:last-child td) {
+    border-bottom: 0;
+  }
+
+  .appunto-body :global(tbody tr:nth-child(odd)) {
+    background: rgba(255,255,255,0.02);
+  }
+
+  /* Related offer */
+  .appunto-offer {
+    max-width: 520px;
+    margin-top: 56px;
+  }
+
+  @media (max-width: 860px) {
+    .appunto-page { padding: 40px 0 24px; }
+    .appunto-offer { max-width: 100%; }
+  }
+</style>

@@ -12,6 +12,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.4.6"
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/vercel": "^10.0.8",
+    "@vercel/analytics": "^2.0.1",
+    "astro": "^6.4.6",
+    "lucide": "^1.21.0",
+    "nodemailer": "^9.0.1"
   }
 }

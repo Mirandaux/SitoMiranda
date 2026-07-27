@@ -17,7 +17,7 @@ import Layout from "../layouts/Layout.astro";
           <h1 class="reveal d1">Otto offerte. Un solo sistema di decisione.</h1>
           <p class="reveal d2">Non è un listino di servizi a caso. Ogni offerta è un punto dello stesso sistema: capire i processi, scegliere bene, far adottare, tenere alta la qualità. Si entra da dove serve.</p>
           <div class="cta-row reveal d3">
-            <a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+            <a class="btn btn-primary btn-lg magnetic" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
           </div>
         </div>
         <div class="reveal d2">
@@ -45,14 +45,14 @@ import Layout from "../layouts/Layout.astro";
         <span class="tnum">01</span><h3>Entry</h3>
         <span class="tdesc">Da qui parte quasi tutto. Decisione e allineamento, prima di spendere.</span>
       </div>
-      <div class="offers" style="grid-template-columns:1fr 1fr;">
+      <div class="offers">
         <!-- Software Fit Sprint -->
         <div class="offer feat reveal d1">
           <span class="flag">Core</span>
           <div class="tier">Decision sprint</div>
           <h3>Software Fit Sprint</h3>
           <p>Scegli, valida o scarta una decisione software partendo dai processi reali, non dalle demo del fornitore.</p>
-          <div class="price"><b>€2.500</b><span>fisso · 2 settimane</span></div>
+          <div class="price"><b>€1.500</b><span>fisso · 2 settimane</span></div>
           <button class="toggle" aria-expanded="false">Cosa include e cosa no <i data-lucide="chevron-down"></i></button>
           <div class="detail"><div class="detail-inner">
             <div><h5>Include</h5><ul>
@@ -84,6 +84,26 @@ import Layout from "../layouts/Layout.astro";
             </ul></div>
           </div></div>
           <a class="arrow" href="/website-evolution" data-nav>Invia il link + obiettivo <i data-lucide="arrow-right"></i></a>
+        </div>
+        <!-- Software su misura -->
+        <div class="offer reveal d3">
+          <div class="tier">Progettazione</div>
+          <h3>Progettazione software su misura</h3>
+          <p>Trasforma processi complessi in software progettato sui flussi reali, con requisiti chiari e criteri di adozione, prima di scrivere codice.</p>
+          <div class="price"><b>Su preventivo</b><span>dopo call di triage</span></div>
+          <button class="toggle" aria-expanded="false">Cosa include e cosa no <i data-lucide="chevron-down"></i></button>
+          <div class="detail"><div class="detail-inner">
+            <div><h5>Include</h5><ul>
+              <li>mappa processi as-is e to-be</li><li>user flows e architettura funzionale</li>
+              <li>requisiti funzionali prioritizzati</li><li>wireframe o prototipo concettuale</li>
+              <li>criteri di accettazione per il dev</li><li>handoff e roadmap a fasi</li>
+            </ul></div>
+            <div class="exc"><h5>Non include</h5><ul>
+              <li>sviluppo tecnico del software</li><li>gestione del team dev</li>
+              <li>manutenzione del codice</li><li>helpdesk utenti</li>
+            </ul></div>
+          </div></div>
+          <a class="arrow" href="/software-su-misura" data-nav>Scopri il servizio <i data-lucide="arrow-right"></i></a>
         </div>
       </div>
 
@@ -137,9 +157,9 @@ import Layout from "../layouts/Layout.astro";
       <!-- RECURRING -->
       <div class="tier-head reveal">
         <span class="tnum">03</span><h3>Ricorrenti</h3>
-        <span class="tdesc">Continuità sulla qualità, senza assumere e senza retainer infiniti.</span>
+        <span class="tdesc">Continuità sulla qualità parlando sempre con la stessa persona, senza retainer infiniti.</span>
       </div>
-      <div class="offers" style="grid-template-columns:1fr 1fr;">
+      <div class="offers grid-2cols">
         <!-- QA -->
         <div class="offer reveal d1">
           <div class="tier">Ricorrente</div>
@@ -197,7 +217,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="eyebrow center" style="justify-content:center;">Non sai da dove partire?</div>
         <h2 style="margin-top:14px;">Partiamo da una call di triage.</h2>
         <p>Mi dici cosa devi decidere. Io ti indico l'offerta giusta, o ti dico che non sono il fit e chi può aiutarti meglio.</p>
-        <div class="cta-row"><a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a></div>
+        <div class="cta-row"><a class="btn btn-primary btn-lg magnetic" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a></div>
       </div>
     </div>
   </section>

@@ -1,0 +1,311 @@
+---
+---
+
+<section class="section tight lm-matrix">
+  <div class="shell">
+    <div class="holo glow-wine reveal" style="padding:40px 48px;">
+      <div class="lm-inner">
+        <div class="lm-left">
+          <div class="eyebrow">Strumento gratuito</div>
+          <h2 class="lm-title">La matrice per decidere senza farsi fregare dalle demo</h2>
+          <p class="lm-sub">Un esempio pratico per confrontare software, rischi e criteri di adozione prima di comprare qualcosa che il team potrebbe non usare.</p>
+          <ul class="lm-bullets">
+            <li><i data-lucide="check" class="ic"></i> confronti le soluzioni sui processi reali</li>
+            <li><i data-lucide="check" class="ic"></i> evidenzi rischi, limiti e dipendenze</li>
+            <li><i data-lucide="check" class="ic"></i> separi ciò che sembra bello in demo da ciò che può reggere il lavoro quotidiano</li>
+          </ul>
+
+          <!-- Form email -->
+          <form class="lm-form" id="lmForm" novalidate style="margin-top:28px;">
+            <!-- Honeypot anti-spam -->
+            <input type="text" name="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;opacity:0;height:0;width:0;pointer-events:none;" />
+            <div class="lm-field">
+              <input
+                type="email"
+                name="email"
+                id="lmEmail"
+                placeholder="La tua email"
+                autocomplete="email"
+                required
+                aria-label="Indirizzo email per ricevere la matrice"
+              />
+              <button type="submit" class="btn btn-primary magnetic">
+                <i data-lucide="download" class="ic"></i>
+                <span class="lm-btn-text">Scarica la matrice</span>
+                <span class="lm-btn-loading" aria-hidden="true" style="display:none;">Invio...</span>
+              </button>
+            </div>
+            <p class="lm-field-error" id="lmError" role="alert" style="display:none;"></p>
+          </form>
+
+          <!-- Stato successo (nascosto fino all'invio) -->
+          <div class="lm-success" id="lmSuccess" style="display:none;" role="status">
+            <i data-lucide="circle-check" class="ic"></i>
+            <div>
+              <strong>Controlla la tua email.</strong>
+              <span>Ti ho inviato il link per scaricare la matrice.</span>
+            </div>
+          </div>
+
+          <p class="lm-note">È utile se stai scegliendo un gestionale, un CRM, un software interno o se vuoi capire se il problema è davvero il tool.</p>
+        </div>
+        <div class="lm-right" aria-hidden="true">
+          <div class="lm-preview">
+            <div class="lm-row lm-head">
+              <span>Criterio</span><span>Tool A</span><span>Tool B</span><span>Rischio</span>
+            </div>
+            <div class="lm-row">
+              <span>Adozione</span><span class="tag-ok">Alta</span><span class="tag-mid">Media</span><span>Curva B</span>
+            </div>
+            <div class="lm-row">
+              <span>Integrazione</span><span class="tag-ok">Nativa</span><span class="tag-no">Esterna</span><span>Middleware</span>
+            </div>
+            <div class="lm-row">
+              <span>Tempo a regime</span><span class="tag-ok">6 sett.</span><span class="tag-mid">10 sett.</span><span>Formazione</span>
+            </div>
+            <div class="lm-row">
+              <span>Lock-in</span><span class="tag-mid">Medio</span><span class="tag-ok">Basso</span><span>Export dati</span>
+            </div>
+            <div class="lm-verdict">
+              <i data-lucide="check-circle" class="ic"></i> Decisione difendibile sui processi reali
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("lmForm") as HTMLFormElement | null;
+  const successEl = document.getElementById("lmSuccess");
+  const errorEl = document.getElementById("lmError");
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form || !successEl || !errorEl) return;
+
+    const emailInput = form.querySelector<HTMLInputElement>("#lmEmail");
+    const honeypot = form.querySelector<HTMLInputElement>('[name="honeypot"]');
+    const btnText = form.querySelector(".lm-btn-text") as HTMLElement | null;
+    const btnLoading = form.querySelector(".lm-btn-loading") as HTMLElement | null;
+    const submitBtn = form.querySelector("button[type=submit]") as HTMLButtonElement | null;
+
+    const email = emailInput?.value?.trim() ?? "";
+    if (!email) {
+      errorEl.textContent = "Inserisci la tua email.";
+      errorEl.style.display = "block";
+      emailInput?.focus();
+      return;
+    }
+
+    // loading state
+    errorEl.style.display = "none";
+    if (btnText) btnText.style.display = "none";
+    if (btnLoading) btnLoading.style.display = "inline";
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      const res = await fetch("/api/download-matrix", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, honeypot: honeypot?.value ?? "" }),
+      });
+      const data = await res.json();
+
+      if (data.ok) {
+        form.style.display = "none";
+        successEl.style.display = "flex";
+        if (window.lucide) window.lucide.createIcons();
+      } else {
+        throw new Error(data.error || "Errore sconosciuto.");
+      }
+    } catch (err: any) {
+      errorEl.textContent = err?.message ?? "Qualcosa non ha funzionato. Riprova.";
+      errorEl.style.display = "block";
+      if (btnText) btnText.style.display = "inline";
+      if (btnLoading) btnLoading.style.display = "none";
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .lm-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .lm-title {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: #fff;
+    margin-top: 12px;
+  }
+
+  .lm-sub {
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--on-dark-2);
+    margin-top: 14px;
+  }
+
+  .lm-bullets {
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .lm-bullets li {
+    display: flex;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--on-dark-2);
+    align-items: flex-start;
+  }
+
+  .lm-bullets li .ic {
+    width: 16px;
+    height: 16px;
+    color: var(--eyebrow-dark);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Form */
+  .lm-field {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .lm-field input[type="email"] {
+    flex: 1 1 200px;
+    min-width: 0;
+    padding: 0 16px;
+    height: 46px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.07);
+    color: #fff;
+    font-size: 15px;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .lm-field input[type="email"]::placeholder { color: var(--on-dark-3); }
+  .lm-field input[type="email"]:focus { border-color: var(--eyebrow-dark); }
+
+  .lm-field .btn {
+    height: 46px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .lm-field-error {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #e89a9a;
+  }
+
+  /* Success state */
+  .lm-success {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 28px;
+    padding: 16px 18px;
+    background: rgba(46,133,90,0.15);
+    border: 1px solid rgba(46,133,90,0.35);
+    border-radius: 10px;
+    color: #6fcf97;
+  }
+
+  .lm-success .ic {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .lm-success strong {
+    display: block;
+    font-size: 14.5px;
+    color: #6fcf97;
+  }
+
+  .lm-success span {
+    font-size: 13.5px;
+    color: rgba(111,207,151,0.8);
+  }
+
+  .lm-note {
+    font-size: 13px;
+    color: var(--on-dark-3);
+    margin-top: 16px;
+    line-height: 20px;
+    max-width: 44ch;
+  }
+
+  /* mini preview table */
+  .lm-preview {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 14px;
+    padding: 16px;
+    font-size: 12.5px;
+    display: grid;
+    gap: 2px;
+  }
+
+  .lm-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.4fr;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    align-items: center;
+    color: var(--on-dark-2);
+  }
+
+  .lm-row:nth-child(even) { background: rgba(255,255,255,0.03); }
+
+  .lm-head {
+    color: var(--on-dark-3);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 4px;
+    padding-bottom: 10px;
+  }
+
+  .lm-verdict {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: rgba(124,34,63,0.18);
+    border: 1px solid rgba(176,106,126,0.3);
+    border-radius: 8px;
+    color: var(--eyebrow-dark);
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .lm-verdict .ic { width: 15px; height: 15px; flex-shrink: 0; }
+
+  @media (max-width: 860px) {
+    .lm-inner { grid-template-columns: 1fr; gap: 28px; }
+    .lm-right { display: none; }
+    .holo.glow-wine { padding: 28px 24px !important; }
+  }
+</style>

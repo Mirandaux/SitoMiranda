@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
   <div class="shell">
     <div class="grid">
       <div class="lead">
-        <a class="brand" href="/" data-nav><img class="mark" src="/assets/logo-mark-light.png" alt="" /><span class="word">Miranda</span></a>
+        <a class="brand" href="/" data-nav><img class="mark" src="/assets/logo-mark-light.png" alt="" loading="lazy" /><span class="word">Miranda</span></a>
         <p>UX &amp; Product Consultant. Aiuto PMI, scaleup ed enti a prendere buone decisioni su software e processi digitali, prima che diventino costose.</p>
       </div>
       <div class="col">
@@ -22,16 +22,23 @@ const year = new Date().getFullYear();
         <a href="/partner" data-nav>Partner dev</a>
         <a href="/about" data-nav>Chi sono</a>
         <a href="/casi" data-nav>Casi</a>
+        <a href="/appunti" data-nav>Appunti sui processi</a>
       </div>
       <div class="col">
         <h5>Contatti</h5>
         <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a>
         <a href="https://www.linkedin.com/in/miranda-giaccon/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="/contatti" data-nav>Prenota un triage</a>
+        <a href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener">Prenota un triage</a>
       </div>
       <div class="legal">
         <span>© {year} Miranda · UX &amp; Product Consulting · P.IVA 04987210236</span>
-        <span>Privacy · Cookie · Note legali</span>
+        <span>
+          <a href="/privacy" data-nav style="color:inherit;text-decoration:none;border:0;">Privacy</a>
+          <span style="opacity:0.4;margin:0 6px;">·</span>
+          <a href="/cookie" data-nav style="color:inherit;text-decoration:none;border:0;">Cookie</a>
+          <span style="opacity:0.4;margin:0 6px;">·</span>
+          <a href="/note-legali" data-nav style="color:inherit;text-decoration:none;border:0;">Note legali</a>
+        </span>
       </div>
     </div>
   </div>

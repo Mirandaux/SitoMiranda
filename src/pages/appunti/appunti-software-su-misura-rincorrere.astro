@@ -1,0 +1,131 @@
+---
+import AppuntoLayout from "../../layouts/AppuntoLayout.astro";
+---
+
+<AppuntoLayout
+  title="Software su misura: quando ha davvero senso"
+  description="Il software su misura ha senso solo quando il processo è abbastanza chiaro da meritare di diventare codice."
+  subtitle="Quando ha senso progettare uno strumento custom e quando stai solo trasformando il caos in codice"
+  tag="Software su misura"
+  date="2026-06-23"
+  slug="appunti-software-su-misura-rincorrere"
+  offerTitle="Progettazione software su misura"
+  offerDescription="Trasforma processi complessi in software progettato sui flussi reali, con requisiti chiari e criteri di adozione, prima di scrivere codice."
+  offerHref="/software-su-misura"
+  offerCta="Scopri il servizio"
+  ctaH2="Se stai pensando a qualcosa su misura, parliamone prima di iniziare a sviluppare."
+  ctaP="Una call di triage da 30 minuti. Capire cosa deve diventare codice è già metà del lavoro."
+>
+  <p>C'è una frase che arriva spesso dopo settimane, mesi, a volte anni di tentativi:</p>
+
+  <p>"Facciamolo su misura."</p>
+
+  <p>Di solito arriva quando un'azienda ha provato diversi strumenti e nessuno sembra calzare davvero. Uno ha troppe funzioni, ma manca proprio quella vista fondamentale. Un altro è semplice, ma non regge le eccezioni. Un altro ancora funziona bene in demo, poi nella pratica richiede più passaggi di prima.</p>
+
+  <p>A quel punto il software su misura sembra la soluzione più logica.</p>
+
+  <p>E a volte lo è.</p>
+
+  <p>Ma non sempre.</p>
+
+  <p>Perché uno strumento custom può diventare la cosa più intelligente che costruisci. Oppure può trasformarsi in un Excel con più budget, più riunioni e più persone arrabbiate.</p>
+
+  <h2>Il punto non è "standard o su misura"</h2>
+
+  <p>La domanda vera è un'altra:</p>
+
+  <p><strong>il processo è abbastanza chiaro da meritare di diventare software?</strong></p>
+
+  <p>Perché il codice è bravissimo a eseguire. Molto meno a indovinare.</p>
+
+  <p>Se ogni reparto racconta il flusso in modo diverso, se ogni eccezione diventa una nuova richiesta, se nessuno riesce a dire cosa deve restare fuori, il problema non è ancora tecnico. È progettuale.</p>
+
+  <p>Prima di costruire, bisogna capire cosa deve succedere, chi deve farlo, con quali dati, in quale momento e con quali responsabilità. Sembra banale. Non lo è quasi mai.</p>
+
+  <p>Quando il processo è ancora confuso, un passo utile può essere un <a href="/software-fit-sprint" data-nav style="color:var(--eyebrow-dark);text-decoration:underline;text-underline-offset:3px;">Software Fit Sprint</a>: due settimane per mappare i flussi reali, chiarire i criteri e decidere se ha senso costruire, comprare o rimandare.</p>
+
+  <h2>Prima di scrivere codice, bisogna riuscire a vederlo</h2>
+
+  <p>Mi è capitato con un progetto nato in modo molto semplice.</p>
+
+  <p>Entro in ufficio dal dev per allinearci sul lavoro che stavamo seguendo. A fine riunione mi chiede se ho tempo per ascoltare una richiesta arrivata tempo prima da un amico: voleva diventare cliente e farsi sviluppare un software per gestire i viaggi dei suoi autisti.</p>
+
+  <p>Il dev apre un quaderno pieno di appunti. Anni di idee, pensieri, richieste, possibilità. Tutto interessante. Tutto potenzialmente utile. Ma anche tutto ancora troppo aperto.</p>
+
+  <p>Mi dice una cosa molto onesta: "Non riesco a immaginarlo e non me la sento di iniziare a scrivere codice alla cieca."</p>
+
+  <p>E aveva ragione.</p>
+
+  <p>Abbiamo fatto una riunione con il cliente, mi sono fatta spiegare i flussi, poi ho integrato tutto con gli appunti già raccolti. Sono partita dalle 10 schermate previste e ne ho aggiunte altre 5 per chiudere buchi di flusso che non erano ancora stati vagliati.</p>
+
+  <p>Quando lo abbiamo mostrato al cliente, il progetto è diventato finalmente visibile. Non perfetto, perché qualche modifica c'è sempre. Ma abbastanza chiaro da permettere agli sviluppatori di iniziare sapendo cosa serviva, come dovevano interagire i componenti e quali parti del processo non potevano restare nella nebbia.</p>
+
+  <h2>Quando il su misura ha senso</h2>
+
+  <p>Il software custom inizia ad avere senso quando:</p>
+
+  <ul>
+    <li>il processo è specifico, ma abbastanza stabile</li>
+    <li>gli errori o i passaggi manuali hanno un costo reale</li>
+    <li>le eccezioni sono frequenti, non casi rari</li>
+    <li>ruoli e responsabilità sono già abbastanza chiari</li>
+    <li>il team sa spiegare cosa oggi lo rallenta</li>
+    <li>gli strumenti standard costringono a troppi giri inutili</li>
+  </ul>
+
+  <p>In questi casi, progettare qualcosa su misura può ridurre attrito, lavoro nascosto e dipendenze da soluzioni provvisorie che provvisorie non sono più.</p>
+
+  <h2>Quando invece è troppo presto</h2>
+
+  <p>Ci sono anche segnali opposti.</p>
+
+  <p>Se il software deve "mettere d'accordo tutti" prima ancora che qualcuno abbia deciso il processo, attenzione.</p>
+
+  <p>Se ogni richiesta suona come "aggiungiamo anche questa cosa, non si sa mai", attenzione.</p>
+
+  <p>Se nessuno vuole rinunciare a niente, il problema non è costruire. È scegliere.</p>
+
+  <p>Il su misura non serve a portare dentro tutto. Serve a progettare meglio ciò che vale davvero la pena sostenere.</p>
+
+  <h2>Una piccola matrice prima di costruire</h2>
+
+  <p>Prima di dire "facciamolo custom", basterebbe fermarsi su quattro domande:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Domanda</th>
+          <th>Se sì</th>
+          <th>Se no</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Il processo è chiaro?</td>
+          <td>Puoi progettare</td>
+          <td>Prima mappa</td>
+        </tr>
+        <tr>
+          <td>Le eccezioni sono ricorrenti?</td>
+          <td>Valuta custom</td>
+          <td>Non costruire tutto</td>
+        </tr>
+        <tr>
+          <td>Il team lo userà davvero?</td>
+          <td>Vai avanti</td>
+          <td>Rischio workaround</td>
+        </tr>
+        <tr>
+          <td>Sai cosa lasciare fuori?</td>
+          <td>Buon segnale</td>
+          <td>Perimetro fragile</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Le risposte vuote sono la parte più interessante. Sono quelle che dicono dove il progetto rischia di gonfiarsi, complicarsi o diventare un sistema pieno di cose che nessuno userà davvero.</p>
+
+  <p>Il software su misura non comincia quando trovi chi lo sviluppa. Comincia un po' prima, nel momento in cui qualcuno riesce finalmente a guardare il processo e chiedersi: <strong>questa cosa deve diventare davvero software, o stiamo solo cercando un modo più elegante per non rincorrerla più a mano?</strong></p>
+</AppuntoLayout>

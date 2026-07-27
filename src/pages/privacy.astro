@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro";
+const updated = "27 luglio 2025";
+---
+
+<Layout
+  title="Miranda · Privacy Policy"
+  description="Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR)."
+  page=""
+  bg='data-max="100" data-link="140" data-accent="0.07" data-speed="0.10"'
+>
+  <style>
+    .legal-body { max-width: 720px; margin: 0 auto; }
+    .legal-body h2 { font-size: 20px; margin: 40px 0 10px; color: var(--eyebrow-dark); }
+    .legal-body h3 { font-size: 16px; margin: 28px 0 8px; }
+    .legal-body p, .legal-body li { font-size: 15px; line-height: 26px; color: var(--on-dark-2); }
+    .legal-body ul { padding-left: 20px; margin: 10px 0; display: grid; gap: 6px; }
+    .legal-body a { color: var(--eyebrow-dark); }
+    .updated { font-size: 13px; color: var(--on-dark-3); margin-top: 8px; }
+  </style>
+
+  <section class="page-hero" style="padding-bottom:0;">
+    <div class="shell">
+      <div class="eyebrow reveal">Legale</div>
+      <h1 class="reveal d1" style="font-size:clamp(28px,5vw,48px);">Privacy Policy</h1>
+      <p class="updated reveal d2">Ultimo aggiornamento: {updated}</p>
+    </div>
+  </section>
+
+  <section class="section tight" style="padding-top:32px;">
+    <div class="shell">
+      <div class="legal-body reveal">
+
+        <h2>1. Titolare del trattamento</h2>
+        <p>Miranda Giaccon, UX &amp; Product Consultant<br>
+        P.IVA 04987210236<br>
+        Email: <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a></p>
+
+        <h2>2. Dati raccolti e finalità</h2>
+
+        <h3>2.1 Navigazione del sito</h3>
+        <p>Durante la normale navigazione vengono registrati automaticamente dai server alcuni dati tecnici: indirizzo IP, tipo di browser, pagine visitate, orario di accesso. Questi dati sono usati esclusivamente per finalità statistiche aggregate e di sicurezza, senza possibilità di identificare l'utente, e vengono cancellati entro 30 giorni.</p>
+        <p>Il sito utilizza Vercel Analytics per raccogliere statistiche aggregate sulle visualizzazioni di pagina (paese, tipo di dispositivo, browser). Vercel Analytics non usa cookie, non traccia l'utente individualmente e non incrocia i dati con altre fonti. I dati sono trattati in forma anonima e aggregata da Vercel Inc. (USA), coperta da Standard Contractual Clauses.</p>
+
+        <h3>2.2 Modulo di contatto</h3>
+        <p>Compilando il form nella pagina Contatti, vengono raccolti i seguenti dati:</p>
+        <ul>
+          <li>Nome e cognome</li>
+          <li>Ragione sociale o nome dell'azienda</li>
+          <li>Indirizzo email</li>
+          <li>URL del sito o prodotto (facoltativo)</li>
+          <li>Descrizione della decisione da affrontare e dell'attrito attuale</li>
+          <li>Tempistiche desiderate</li>
+        </ul>
+        <p>La finalità del trattamento è rispondere alla richiesta di contatto e valutare la possibilità di una collaborazione professionale. La base giuridica è l'esecuzione di misure precontrattuali su richiesta dell'interessato (art. 6, par. 1, lett. b GDPR).</p>
+
+        <h3>2.3 Download della matrice decisionale</h3>
+        <p>Richiedendo la matrice decisionale gratuita tramite l'apposito form, viene raccolto l'indirizzo email. La finalità del trattamento è inviare il materiale richiesto e, previo consenso implicito all'iscrizione, mantenere il contatto per comunicazioni pertinenti all'attività professionale. La base giuridica è il legittimo interesse e il consenso dell'interessato (art. 6, par. 1, lett. a e f GDPR). L'indirizzo viene trasmesso a Brevo SAS per l'invio dell'email e la gestione della lista contatti. È possibile cancellarsi in qualsiasi momento scrivendo a <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a>.</p>
+
+        <h3>2.4 Comunicazioni via email</h3>
+        <p>L'indirizzo email fornito tramite il form di contatto viene usato esclusivamente per rispondere alla specifica richiesta. Non viene inserito in liste di distribuzione, newsletter o campagne marketing senza esplicito consenso.</p>
+
+        <h2>3. Conservazione dei dati</h2>
+        <p>I dati raccolti tramite il form di contatto vengono conservati per il tempo strettamente necessario a gestire la richiesta e, in caso di avvio di una collaborazione, per il tempo previsto dagli obblighi legali e fiscali applicabili (fino a 10 anni per la documentazione contabile). In assenza di collaborazione, i dati vengono cancellati entro 12 mesi dalla ricezione.</p>
+
+        <h2>4. Destinatari dei dati</h2>
+        <p>I dati non vengono venduti, ceduti o comunicati a terzi per finalità commerciali. Possono essere trattati da fornitori tecnici che agiscono in qualità di responsabili del trattamento, tra cui:</p>
+        <ul>
+          <li>Vercel Inc. (hosting del sito e analytics aggregata, USA) — trattamento coperto da Standard Contractual Clauses</li>
+          <li>IONOS SE (provider email SMTP) — con sede in Germania, soggetto al GDPR</li>
+          <li>Brevo SAS (invio email transazionali e gestione lista contatti, Francia) — soggetto al GDPR; <a href="https://www.brevo.com/it/legal/privacypolicy/" target="_blank" rel="noopener">Privacy Policy Brevo</a></li>
+          <li>Calendly LLC (prenotazione call, USA) — quando l'utente prenota una call tramite il link Calendly, i dati inseriti (nome, email, fuso orario) sono trattati da Calendly secondo la propria <a href="https://calendly.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>; il trattamento avviene al di fuori di questo sito</li>
+        </ul>
+
+        <h2>5. Trasferimento internazionale</h2>
+        <p>Alcuni fornitori tecnici operano al di fuori dello Spazio Economico Europeo. In tali casi il trasferimento è garantito da adeguate salvaguardie ai sensi del Capo V del GDPR (Clausole Contrattuali Standard o decisioni di adeguatezza della Commissione Europea).</p>
+
+        <h2>6. Diritti dell'interessato</h2>
+        <p>Ai sensi degli artt. 15-22 del GDPR, hai il diritto di:</p>
+        <ul>
+          <li>accedere ai tuoi dati personali</li>
+          <li>chiederne la rettifica o la cancellazione</li>
+          <li>richiedere la limitazione del trattamento</li>
+          <li>opporti al trattamento</li>
+          <li>richiedere la portabilità dei dati</li>
+          <li>proporre reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>)</li>
+        </ul>
+        <p>Per esercitare questi diritti scrivi a <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a>. Le richieste vengono evase entro 30 giorni.</p>
+
+        <h2>7. Cookie</h2>
+        <p>Per informazioni dettagliate sull'uso dei cookie su questo sito consulta la <a href="/cookie" data-nav>Cookie Policy</a>.</p>
+
+        <h2>8. Modifiche alla presente informativa</h2>
+        <p>Questa informativa può essere aggiornata per adeguarsi a modifiche normative o tecniche. La data di ultimo aggiornamento è riportata in cima alla pagina. Le modifiche sostanziali vengono comunicate tramite un avviso visibile sul sito.</p>
+
+      </div>
+    </div>
+  </section>
+</Layout>

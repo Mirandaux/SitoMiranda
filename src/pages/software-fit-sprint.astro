@@ -1,10 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import LeadMagnetMatrix from "../components/LeadMagnetMatrix.astro";
 ---
 
 <Layout
   title="Miranda · Software Fit Sprint"
-  description="In due settimane: mappa dei processi, criteri UX, shortlist, matrice decisionale con rischi e roadmap di adozione. €2.500 fisso."
+  description="In due settimane: mappa dei processi, criteri UX, shortlist, matrice decisionale con rischi e roadmap di adozione. €1.500 fisso."
   page="servizi"
   bg='data-max="120" data-link="150" data-accent="0.10" data-speed="0.13"'
 >
@@ -15,13 +16,13 @@ import Layout from "../layouts/Layout.astro";
         <div>
           <div class="row reveal" style="gap:10px;margin-bottom:18px;">
             <span class="pill wine"><span class="dot"></span>Software Fit Sprint</span>
-            <span class="pill">€2.500 fisso</span>
+            <span class="pill">€1.500 fisso</span>
             <span class="pill">2 settimane</span>
           </div>
           <h1 class="reveal d1">Scegli il software giusto partendo dai processi, non dalle demo.</h1>
           <p class="lede reveal d2">In due settimane trasformo dubbi, vincoli e stakeholder in una decisione difendibile: criteri, matrice e roadmap di adozione, prima di bruciare budget su un tool sbagliato.</p>
           <div class="cta-row reveal d3">
-            <a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+            <a class="btn btn-primary btn-lg magnetic" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
             <a class="btn btn-secondary btn-lg magnetic" href="#matrice">Vedi un esempio di matrice</a>
           </div>
         </div>
@@ -165,17 +166,20 @@ import Layout from "../layouts/Layout.astro";
       <div class="offers" style="grid-template-columns:1fr 1fr;">
         <div class="holo reveal d1" style="padding:36px;">
           <div class="eyebrow">Tempi e prezzo</div>
-          <div class="price" style="margin-top:16px;align-items:baseline;display:flex;gap:10px;"><b style="font-family:var(--font-heading);font-size:44px;font-weight:800;color:#fff;">€2.500</b><span style="color:var(--on-dark-3)">fisso</span></div>
+          <div class="price" style="margin-top:16px;align-items:baseline;display:flex;gap:10px;"><b style="font-family:var(--font-heading);font-size:44px;font-weight:800;color:#fff;">€1.500</b><span style="color:var(--on-dark-3)">fisso</span></div>
           <p style="margin-top:8px;">Due settimane time-boxed. Prezzo fisso, nessun "da". Sai in anticipo cosa ricevi e quando.</p>
         </div>
         <div class="holo glow-wine reveal d2" style="padding:36px;">
           <div class="eyebrow">Riduzione del rischio</div>
-          <h3 style="margin-top:14px;font-size:22px;">€2.500 ora, contro un tool sbagliato pagato per 24 mesi.</h3>
+          <h3 style="margin-top:14px;font-size:22px;">€1.500 una tantum, contro un tool sbagliato pagato per 24 mesi.</h3>
           <p style="margin-top:10px;">Una decisione difendibile costa una frazione di un acquisto sbagliato e della sua mancata adozione. Se non c'è abbastanza materiale per decidere, te lo dico nella call di triage.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- LEAD MAGNET matrice -->
+  <LeadMagnetMatrix />
 
   <!-- CTA -->
   <section class="section">
@@ -184,7 +188,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="eyebrow center" style="justify-content:center;">Prossimo passo</div>
         <h2 style="margin-top:14px;">Raccontami cosa devi decidere.</h2>
         <p>Una call di triage da 30 minuti. Se sei fit, ti propongo il perimetro dello Sprint. Altrimenti ti dico perché.</p>
-        <div class="cta-row"><a class="btn btn-primary btn-lg magnetic" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a></div>
+        <div class="cta-row"><a class="btn btn-primary btn-lg magnetic" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a></div>
       </div>
     </div>
   </section>

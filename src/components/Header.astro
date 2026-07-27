@@ -1,18 +1,21 @@
 ---
 const NAV = [
   { id: "about", label: "Chi sono", href: "/about" },
+  { id: "metodo", label: "Metodo", href: "/metodo" },
   {
     id: "servizi",
     label: "Servizi",
     href: "/servizi",
     children: [
-      { label: "Software Fit Sprint", href: "/software-fit-sprint" },
-      { label: "Website Evolution", href: "/website-evolution" },
-      { label: "QA UX", href: "/qa" },
-      { label: "Partner dev", href: "/partner" },
+      { label: "Fit Sprint", href: "/software-fit-sprint" },
+      { label: "Web Evolution", href: "/website-evolution" },
+      { label: "Software su misura", href: "/software-su-misura" },
+      { label: "QA", href: "/qa" },
+      { label: "UX Partner Dev", href: "/partner" },
     ],
   },
   { id: "casi", label: "Casi", href: "/casi" },
+  { id: "contatti", label: "Contatti", href: "/contatti" },
 ];
 
 const here = Astro.url.pathname.replace(/\/$/, "") || "/";
@@ -24,7 +27,7 @@ const isHere = (href: string) => href === here;
     <a class="brand" href="/" data-nav aria-label="Miranda, home">
       <img class="mark" src="/assets/logo-mark-light.png" alt="" /><span class="word">Miranda</span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Navigazione principale">
       {NAV.map((n) =>
         n.children ? (
           <div class="nav-item has-dd">
@@ -52,27 +55,26 @@ const isHere = (href: string) => href === here;
       )}
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call</a>
+      <a class="btn btn-primary" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call</a>
       <button class="nav-toggle" aria-label="Apri il menu" aria-expanded="false"><i data-lucide="menu" class="ic" style="width:20px;height:20px"></i></button>
     </div>
   </div>
 </header>
 
 <div class="mobile-menu">
-  <a href="/" data-nav>Home</a>
-  {NAV.map((n) =>
-    n.children ? (
-      <div class="m-group">
-        <a href={n.href} data-nav>{n.label}</a>
-        <div class="m-sub">
-          {n.children.map((c) => (
-            <a href={c.href} data-nav>{c.label}</a>
-          ))}
-        </div>
-      </div>
-    ) : (
-      <a href={n.href} data-nav>{n.label}</a>
-    )
-  )}
-  <a class="btn btn-primary" href="/contatti" data-nav><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+  <a href="/about" data-nav>Chi sono</a>
+  <a href="/metodo" data-nav>Metodo</a>
+  <div class="m-group">
+    <a href="/servizi" data-nav>Servizi</a>
+    <div class="m-sub">
+      <a href="/software-fit-sprint" data-nav>Fit Sprint</a>
+      <a href="/website-evolution" data-nav>Web Evolution</a>
+      <a href="/software-su-misura" data-nav>Software su misura</a>
+      <a href="/qa" data-nav>QA</a>
+      <a href="/partner" data-nav>UX Partner Dev</a>
+    </div>
+  </div>
+  <a href="/casi" data-nav>Casi</a>
+  <a href="/contatti" data-nav>Contatti</a>
+  <a class="btn btn-primary" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
 </div>
