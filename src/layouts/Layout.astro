@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CockpitBg from "../components/CockpitBg.astro";
+import Analytics from "@vercel/analytics/astro";
 import "../styles/cockpit.css";
 import "../styles/hero-immersive.css";
 
@@ -151,5 +152,6 @@ const jsonLd = {
     <script src="../scripts/cockpit-bg.js"></script>
     {immersiveHero && <script src="../scripts/hero-immersive.js"></script>}
     <script src="../scripts/chrome.js"></script>
+    <Analytics />
   </body>
 </html>
