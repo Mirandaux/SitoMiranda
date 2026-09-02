@@ -26,6 +26,8 @@ const VALID_DECISIONI = [
 ];
 
 export const POST = async ({ request }) => {
+  const tag = "[sfs]";
+
   let body = {};
   try {
     body = await request.json();
@@ -41,7 +43,10 @@ export const POST = async ({ request }) => {
   } = body || {};
 
   // Honeypot anti-spam
-  if (honeypot) return jsonResponse({ ok: true, skipped: true });
+  if (honeypot) {
+    console.log(`${tag} honeypot triggered, skipped`);
+    return jsonResponse({ ok: true, skipped: true });
+  }
 
   // Validazione
   const cleanNome = sanitize(nome);
@@ -61,19 +66,21 @@ export const POST = async ({ request }) => {
   if (cleanProblema.length < 10)
     return jsonResponse({ ok: false, field: "problema", error: "Descrivi il problema (almeno 10 caratteri)." }, 400);
   if (!privacy_consent)
-    return jsonResponse({ ok: false, field: "privacy_consent", error: "Il consenso alla privacy è obbligatorio." }, 400);
+    return jsonResponse({ ok: false, field: "privacy_consent", error: "Il consenso alla privacy e' obbligatorio." }, 400);
+
+  console.log(`${tag} validation ok — email=${cleanEmail.slice(0,3)}***`);
 
   // Verifica chiave API presente
   try {
     brevoHeaders();
   } catch {
-    console.error("[contact-fit-sprint] BREVO_API_KEY mancante");
+    console.error(`${tag} BREVO_API_KEY mancante`);
     return jsonResponse({ ok: false, error: "Configurazione incompleta." }, 500);
   }
 
   const sfsListId = parseInt(process.env.BREVO_SFS_LIST_ID || "3");
 
-  // Attributi contatto Brevo
+  // Attributi contatto
   const nameParts = cleanNome.split(" ");
   const attributes = {
     NOME: nameParts[0] || cleanNome,
@@ -92,7 +99,6 @@ export const POST = async ({ request }) => {
   if (utm_content)  attributes.UTM_CONTENT  = sanitize(utm_content, 200);
   if (page_url)     attributes.PAGE_URL     = sanitize(page_url, 500);
 
-  // Liste: SFS sempre, marketing solo con consenso
   const listIds = [sfsListId];
   if (marketing_consent) {
     const mktListId = parseInt(process.env.BREVO_MKT_LIST_ID || String(sfsListId));
@@ -100,23 +106,19 @@ export const POST = async ({ request }) => {
   }
 
   try {
-    // 1. Upsert contatto in Brevo
+    // --- CHECKPOINT 1: upsert contatto ---
+    console.log(`${tag} CP1 upsert — listIds=${JSON.stringify(listIds)} attrs=${Object.keys(attributes).join(",")}`);
     const contactResult = await upsertContact({ email: cleanEmail, attributes, listIds });
+    console.log(`${tag} CP1 result — status=${contactResult.status} ok=${contactResult.ok} body=${JSON.stringify(contactResult.body).slice(0, 200)}`);
 
     if (!contactResult.ok) {
-      console.error(
-        "[contact-fit-sprint] Brevo contacts error",
-        contactResult.status,
-        JSON.stringify(contactResult.body)
-      );
-      // Se il contatto non viene salvato, è un errore reale: non restituire successo
-      return jsonResponse(
-        { ok: false, error: "Errore nel salvataggio. Riprova tra poco." },
-        500
-      );
+      console.error(`${tag} CP1 FAILED — contatto non salvato`);
+      return jsonResponse({ ok: false, error: "Errore nel salvataggio. Riprova tra poco." }, 500);
     }
 
-    // 2. Email di notifica a Miranda
+    // --- CHECKPOINT 2: costruzione payload email ---
+    console.log(`${tag} CP2 building notification email`);
+
     const utmLine = utm_source
       ? `<tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
            <strong style="font-size:13px;color:#888;display:block;">UTM</strong>
@@ -128,13 +130,12 @@ export const POST = async ({ request }) => {
          </td></tr>`
       : "";
 
-    const notifyResult = await sendTransactional({
+    const notifyPayload = {
       sender:  { name: "Miranda Giaccon", email: "info@mirandagiaccon.it" },
       to:      [{ email: "info@mirandagiaccon.it" }],
       replyTo: { email: cleanEmail, name: cleanNome },
-      subject: `Nuovo lead SFS · ${cleanNome} · ${cleanAzienda}`,
-      htmlContent: `
-<!DOCTYPE html>
+      subject: `Nuovo lead SFS - ${cleanNome} - ${cleanAzienda}`,
+      htmlContent: `<!DOCTYPE html>
 <html lang="it">
 <body style="margin:0;padding:0;background:#f5f5f5;font-family:Arial,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:40px 20px;">
@@ -142,7 +143,7 @@ export const POST = async ({ request }) => {
       <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;max-width:600px;width:100%;">
         <tr>
           <td style="background:#7c223f;padding:24px 40px;">
-            <p style="margin:0;font-family:Arial,sans-serif;font-size:15px;font-weight:700;color:#ffffff;">Nuovo lead · Software Fit Sprint</p>
+            <p style="margin:0;font-family:Arial,sans-serif;font-size:15px;font-weight:700;color:#ffffff;">Nuovo lead - Software Fit Sprint</p>
           </td>
         </tr>
         <tr>
@@ -186,23 +187,25 @@ export const POST = async ({ request }) => {
   </table>
 </body>
 </html>`,
-    });
+    };
+
+    // --- CHECKPOINT 3: invio email ---
+    console.log(`${tag} CP3 sending notify to info@mirandagiaccon.it — subject="${notifyPayload.subject.slice(0, 60)}"`);
+    const notifyResult = await sendTransactional(notifyPayload);
+    console.log(`${tag} CP3 result — status=${notifyResult.status} ok=${notifyResult.ok} body=${JSON.stringify(notifyResult.body).slice(0, 200)}`);
 
     if (!notifyResult.ok) {
-      // Il contatto e' stato salvato in Brevo. L'email di notifica ha fallito.
-      // Non esponiamo l'errore tecnico al browser, ma lo logghiamo chiaramente.
-      console.error(
-        "[contact-fit-sprint] Notifica email fallita (contatto salvato)",
-        notifyResult.status,
-        JSON.stringify(notifyResult.body)
-      );
-      // Restituiamo comunque ok:true perche' il lead e' in Brevo
-      // ma logghiamo in modo che sia visibile nei function logs di Vercel
+      // Contatto salvato in Brevo, ma notifica fallita.
+      // Miranda non riceve l'email ma il lead e' in Brevo.
+      console.error(`${tag} CP3 notify FAILED — contatto salvato ma email non inviata`);
     }
 
+    // --- CHECKPOINT 4: successo ---
+    console.log(`${tag} CP4 done — contact_ok=true notify_ok=${notifyResult.ok}`);
     return jsonResponse({ ok: true });
+
   } catch (err) {
-    console.error("[contact-fit-sprint] Errore", err?.message);
+    console.error(`${tag} uncaught error — ${err?.message}`, err?.stack?.slice(0, 500));
     return jsonResponse({ ok: false, error: "Errore interno. Riprova tra poco." }, 500);
   }
 };
