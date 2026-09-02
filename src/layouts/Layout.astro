@@ -17,7 +17,7 @@ interface Props {
 
 const { title, description, page, bg, immersiveHero = false, ogImage } = Astro.props;
 
-const siteUrl = "https://mirandagiaccon.it";
+const siteUrl = "https://www.mirandagiaccon.it";
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
 const ogImg = ogImage ?? `${siteUrl}/assets/miranda-chisono.jpeg`;
 
@@ -73,7 +73,7 @@ const jsonLd = {
       "@id": `${siteUrl}/#website`,
       "url": siteUrl,
       "name": "Miranda · UX & Product Consulting",
-      "description": description,
+      "description": "Consulenza UX e di prodotto per PMI, scaleup ed enti: scelta software, progettazione processi digitali, QA UX e adozione.",
       "inLanguage": "it",
       "publisher": { "@id": `${siteUrl}/#miranda` }
     },

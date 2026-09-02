@@ -2,6 +2,26 @@
 import Layout from "../layouts/Layout.astro";
 import LeadMagnetMatrix from "../components/LeadMagnetMatrix.astro";
 import FitSprintForm from "../components/FitSprintForm.astro";
+
+const pageUrl = "https://www.mirandagiaccon.it/software-fit-sprint";
+const studioId = "https://www.mirandagiaccon.it/#studio";
+const sfsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  "name": "Software Fit Sprint",
+  "description": "In due settimane: mappa dei processi, criteri UX, shortlist, matrice decisionale con rischi e roadmap di adozione.",
+  "url": pageUrl,
+  "provider": { "@id": studioId },
+  "areaServed": { "@type": "Country", "name": "Italy" },
+  "inLanguage": "it",
+  "offers": {
+    "@type": "Offer",
+    "price": "1500",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  }
+};
 ---
 
 <Layout
@@ -10,6 +30,7 @@ import FitSprintForm from "../components/FitSprintForm.astro";
   page="servizi"
   bg='data-max="120" data-link="150" data-accent="0.10" data-speed="0.13"'
 >
+  <script type="application/ld+json" set:html={JSON.stringify(sfsJsonLd)} />
   <!-- HERO -->
   <section class="page-hero">
     <div class="shell">

@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 
 export default defineConfig({
-  site: "https://mirandagiaccon.it",
+  site: "https://www.mirandagiaccon.it",
   trailingSlash: "never",
   output: "server",
   adapter: vercel(),
