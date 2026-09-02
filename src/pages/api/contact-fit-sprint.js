@@ -1,5 +1,7 @@
 export const prerender = false;
 
+import { brevoHeaders, upsertContact, sendTransactional } from "../../lib/brevo.js";
+
 function isValidEmail(email = "") {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).trim());
 }
@@ -41,7 +43,7 @@ export const POST = async ({ request }) => {
   // Honeypot anti-spam
   if (honeypot) return jsonResponse({ ok: true, skipped: true });
 
-  // Validation
+  // Validazione
   const cleanNome = sanitize(nome);
   const cleanEmail = sanitize(email).toLowerCase();
   const cleanAzienda = sanitize(azienda);
@@ -61,21 +63,17 @@ export const POST = async ({ request }) => {
   if (!privacy_consent)
     return jsonResponse({ ok: false, field: "privacy_consent", error: "Il consenso alla privacy è obbligatorio." }, 400);
 
-  const apiKey = process.env.BREVO_API_KEY;
-  const sfsListId = parseInt(process.env.BREVO_SFS_LIST_ID || "3");
-
-  if (!apiKey) {
+  // Verifica chiave API presente
+  try {
+    brevoHeaders();
+  } catch {
     console.error("[contact-fit-sprint] BREVO_API_KEY mancante");
     return jsonResponse({ ok: false, error: "Configurazione incompleta." }, 500);
   }
 
-  const headers = {
-    "api-key": apiKey,
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-  };
+  const sfsListId = parseInt(process.env.BREVO_SFS_LIST_ID || "3");
 
-  // Build Brevo attributes
+  // Attributi contatto Brevo
   const nameParts = cleanNome.split(" ");
   const attributes = {
     FIRSTNAME: nameParts[0] || cleanNome,
@@ -94,27 +92,31 @@ export const POST = async ({ request }) => {
   if (utm_content)  attributes.UTM_CONTENT  = sanitize(utm_content, 200);
   if (page_url)     attributes.PAGE_URL     = sanitize(page_url, 500);
 
-  // Marketing list: only if explicit consent, same list for now
+  // Liste: SFS sempre, marketing solo con consenso
   const listIds = [sfsListId];
   if (marketing_consent) {
-    const mktListId = parseInt(process.env.BREVO_MKT_LIST_ID || sfsListId);
-    if (!listIds.includes(mktListId)) listIds.push(mktListId);
+    const mktListId = parseInt(process.env.BREVO_MKT_LIST_ID || String(sfsListId));
+    if (!isNaN(mktListId) && !listIds.includes(mktListId)) listIds.push(mktListId);
   }
 
   try {
-    // 1. Upsert contact in Brevo
-    const contactRes = await fetch("https://api.brevo.com/v3/contacts", {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ email: cleanEmail, attributes, listIds, updateEnabled: true }),
-    });
+    // 1. Upsert contatto in Brevo
+    const contactResult = await upsertContact({ email: cleanEmail, attributes, listIds });
 
-    if (!contactRes.ok && contactRes.status !== 204) {
-      const err = await contactRes.text();
-      console.warn("[contact-fit-sprint] Brevo contacts error", contactRes.status, err);
+    if (!contactResult.ok) {
+      console.error(
+        "[contact-fit-sprint] Brevo contacts error",
+        contactResult.status,
+        JSON.stringify(contactResult.body)
+      );
+      // Se il contatto non viene salvato, è un errore reale: non restituire successo
+      return jsonResponse(
+        { ok: false, error: "Errore nel salvataggio. Riprova tra poco." },
+        500
+      );
     }
 
-    // 2. Notification email to Miranda
+    // 2. Email di notifica a Miranda
     const utmLine = utm_source
       ? `<tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
            <strong style="font-size:13px;color:#888;display:block;">UTM</strong>
@@ -126,15 +128,12 @@ export const POST = async ({ request }) => {
          </td></tr>`
       : "";
 
-    const notifyRes = await fetch("https://api.brevo.com/v3/smtp/email", {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        sender:  { name: "Miranda Giaccon", email: "info@mirandagiaccon.it" },
-        to:      [{ email: "info@mirandagiaccon.it" }],
-        replyTo: { email: cleanEmail, name: cleanNome },
-        subject: `Nuovo lead SFS · ${cleanNome} · ${cleanAzienda}`,
-        htmlContent: `
+    const notifyResult = await sendTransactional({
+      sender:  { name: "Miranda Giaccon", email: "info@mirandagiaccon.it" },
+      to:      [{ email: "info@mirandagiaccon.it" }],
+      replyTo: { email: cleanEmail, name: cleanNome },
+      subject: `Nuovo lead SFS · ${cleanNome} · ${cleanAzienda}`,
+      htmlContent: `
 <!DOCTYPE html>
 <html lang="it">
 <body style="margin:0;padding:0;background:#f5f5f5;font-family:Arial,sans-serif;">
@@ -172,7 +171,7 @@ export const POST = async ({ request }) => {
               ${utmLine}
               <tr><td style="padding:8px 0;">
                 <strong style="font-size:13px;color:#888;display:block;">Consenso marketing</strong>
-                <span style="font-size:15px;color:#111;">${marketing_consent ? "Sì" : "No"}</span>
+                <span style="font-size:15px;color:#111;">${marketing_consent ? "Si" : "No"}</span>
               </td></tr>
             </table>
           </td>
@@ -187,13 +186,18 @@ export const POST = async ({ request }) => {
   </table>
 </body>
 </html>`,
-      }),
     });
 
-    if (!notifyRes.ok) {
-      const err = await notifyRes.text();
-      console.error("[contact-fit-sprint] Brevo notify error", notifyRes.status, err);
-      // Non fallire: il contatto è stato salvato
+    if (!notifyResult.ok) {
+      // Il contatto e' stato salvato in Brevo. L'email di notifica ha fallito.
+      // Non esponiamo l'errore tecnico al browser, ma lo logghiamo chiaramente.
+      console.error(
+        "[contact-fit-sprint] Notifica email fallita (contatto salvato)",
+        notifyResult.status,
+        JSON.stringify(notifyResult.body)
+      );
+      // Restituiamo comunque ok:true perche' il lead e' in Brevo
+      // ma logghiamo in modo che sia visibile nei function logs di Vercel
     }
 
     return jsonResponse({ ok: true });
