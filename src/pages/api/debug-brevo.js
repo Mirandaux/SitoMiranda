@@ -95,6 +95,30 @@ export const GET = async () => {
     results.attributes = { error: e.message };
   }
 
+  // 6. Test invio email transazionale
+  try {
+    const r = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: { ...headers, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sender: { name: "Miranda Giaccon", email: "info@mirandagiaccon.it" },
+        to: [{ email: "info@mirandagiaccon.it" }],
+        replyTo: { email: "test-debug@example.com", name: "Test Debug" },
+        subject: "Debug test · SFS endpoint",
+        htmlContent: "<p>Test diagnostico endpoint SFS. Puoi ignorare questa email.</p>",
+      }),
+    });
+    const body = await r.json().catch(() => ({}));
+    results.test_email = {
+      status: r.status,
+      ok: r.ok,
+      messageId: body.messageId ?? null,
+      error: !r.ok ? (body.message ?? body.code ?? JSON.stringify(body)) : null,
+    };
+  } catch (e) {
+    results.test_email = { error: e.message };
+  }
+
   const keyPrefix = apiKey.slice(0, 6);
   const keySuffix = apiKey.slice(-4);
 
