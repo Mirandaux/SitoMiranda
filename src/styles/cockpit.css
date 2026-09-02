@@ -324,6 +324,7 @@ a:hover { border-bottom-color: currentColor; }
 .foot .col a { display: block; color: var(--on-dark-2); font-size: 14px; line-height: 30px; text-decoration: none; border: 0; }
 .foot .col a:hover { color: #fff; }
 .foot .legal { grid-column: 1 / -1; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--hairline); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--on-dark-3); font-size: 13px; }
+.foot .no-cookie-note { width: 100%; font-size: 12px; color: var(--on-dark-3); opacity: 0.6; }
 @media (max-width: 900px) { .foot .grid { grid-template-columns: 1fr 1fr; gap: 28px; } .foot .lead { grid-column: 1 / -1; } }
 @media (max-width: 520px) { .foot .grid { grid-template-columns: 1fr; } }
 

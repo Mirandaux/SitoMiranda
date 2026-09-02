@@ -1,5 +1,7 @@
 export const prerender = false;
 
+import { brevoHeaders, upsertContact, sendTransactional } from "../../lib/brevo.js";
+
 function isValidEmail(email = "") {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).trim());
 }
@@ -28,48 +30,40 @@ export const POST = async ({ request }) => {
     return jsonResponse({ ok: false, error: "Inserisci un indirizzo email valido." }, 400);
   }
 
-  const apiKey = process.env.BREVO_API_KEY;
-  const listId = parseInt(process.env.BREVO_LIST_ID || "2");
-
-  if (!apiKey) {
+  // Verifica chiave API presente
+  try {
+    brevoHeaders();
+  } catch {
     console.error("[download-matrix] BREVO_API_KEY mancante");
     return jsonResponse({ ok: false, error: "Configurazione incompleta." }, 500);
   }
 
   const cleanEmail = String(email).trim().toLowerCase();
+  const listId = parseInt(process.env.BREVO_LIST_ID || "2");
   const pdfUrl = "https://mirandagiaccon.it/assets/matrice-decisionale-software-miranda.pdf";
-  const headers = {
-    "api-key": apiKey,
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-  };
 
   try {
-    // 1. Aggiungi il contatto alla lista Brevo
-    const contactRes = await fetch("https://api.brevo.com/v3/contacts", {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        email: cleanEmail,
-        listIds: [listId],
-        updateEnabled: true,
-      }),
+    // 1. Upsert contatto in Brevo
+    const contactResult = await upsertContact({
+      email: cleanEmail,
+      listIds: [listId],
     });
 
-    if (!contactRes.ok && contactRes.status !== 204) {
-      const err = await contactRes.text();
-      console.warn("[download-matrix] Brevo contacts error", contactRes.status, err);
+    if (!contactResult.ok) {
+      console.warn(
+        "[download-matrix] Brevo contacts error",
+        contactResult.status,
+        JSON.stringify(contactResult.body)
+      );
+      // Non blocca: proviamo comunque a inviare l'email
     }
 
-    // 2. Invia email di conferma con link PDF
-    const emailRes = await fetch("https://api.brevo.com/v3/smtp/email", {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        sender: { name: "Miranda Giaccon", email: "info@mirandagiaccon.it" },
-        to: [{ email: cleanEmail }],
-        subject: "La tua matrice decisionale",
-        htmlContent: `
+    // 2. Email con link PDF
+    const emailResult = await sendTransactional({
+      sender: { name: "Miranda Giaccon", email: "info@mirandagiaccon.it" },
+      to: [{ email: cleanEmail }],
+      subject: "La tua matrice decisionale",
+      htmlContent: `
 <!DOCTYPE html>
 <html lang="it">
 <body style="margin:0;padding:0;background:#f5f5f5;font-family:Arial,sans-serif;">
@@ -112,13 +106,18 @@ export const POST = async ({ request }) => {
   </table>
 </body>
 </html>`,
-      }),
     });
 
-    if (!emailRes.ok) {
-      const err = await emailRes.text();
-      console.error("[download-matrix] Brevo email error", emailRes.status, err);
-      return jsonResponse({ ok: false, error: "Invio email non riuscito. Riprova tra poco." }, 500);
+    if (!emailResult.ok) {
+      console.error(
+        "[download-matrix] Brevo email error",
+        emailResult.status,
+        JSON.stringify(emailResult.body)
+      );
+      return jsonResponse(
+        { ok: false, error: "Invio email non riuscito. Riprova tra poco." },
+        500
+      );
     }
 
     return jsonResponse({ ok: true });

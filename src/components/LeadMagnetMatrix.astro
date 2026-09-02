@@ -16,9 +16,9 @@
           </ul>
 
           <!-- Form email -->
-          <form class="lm-form" id="lmForm" novalidate style="margin-top:28px;">
+          <form class="lm-form" novalidate style="margin-top:28px;">
             <!-- Honeypot anti-spam -->
-            <input type="text" name="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;opacity:0;height:0;width:0;pointer-events:none;" />
+            <input type="hidden" name="honeypot" value="" />
             <div class="lm-field">
               <input
                 type="email"
@@ -35,11 +35,11 @@
                 <span class="lm-btn-loading" aria-hidden="true" style="display:none;">Invio...</span>
               </button>
             </div>
-            <p class="lm-field-error" id="lmError" role="alert" style="display:none;"></p>
+            <p class="lm-field-error" role="alert" style="display:none;"></p>
           </form>
 
           <!-- Stato successo (nascosto fino all'invio) -->
-          <div class="lm-success" id="lmSuccess" style="display:none;" role="status">
+          <div class="lm-success" style="display:none;" role="status">
             <i data-lucide="circle-check" class="ic"></i>
             <div>
               <strong>Controlla la tua email.</strong>
@@ -77,57 +77,67 @@
 </section>
 
 <script>
-  const form = document.getElementById("lmForm") as HTMLFormElement | null;
-  const successEl = document.getElementById("lmSuccess");
-  const errorEl = document.getElementById("lmError");
+  function initLmForms() {
+    document.querySelectorAll<HTMLFormElement>(".lm-form").forEach((form) => {
+      if (form.dataset.lmInit) return;
+      form.dataset.lmInit = "1";
 
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!form || !successEl || !errorEl) return;
+      const section = form.closest(".lm-matrix");
+      const successEl = section?.querySelector<HTMLElement>(".lm-success");
+      const errorEl = section?.querySelector<HTMLElement>(".lm-field-error");
 
-    const emailInput = form.querySelector<HTMLInputElement>("#lmEmail");
-    const honeypot = form.querySelector<HTMLInputElement>('[name="honeypot"]');
-    const btnText = form.querySelector(".lm-btn-text") as HTMLElement | null;
-    const btnLoading = form.querySelector(".lm-btn-loading") as HTMLElement | null;
-    const submitBtn = form.querySelector("button[type=submit]") as HTMLButtonElement | null;
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!successEl || !errorEl) return;
 
-    const email = emailInput?.value?.trim() ?? "";
-    if (!email) {
-      errorEl.textContent = "Inserisci la tua email.";
-      errorEl.style.display = "block";
-      emailInput?.focus();
-      return;
-    }
+        const emailInput = form.querySelector<HTMLInputElement>('[type="email"]');
+        const honeypot = form.querySelector<HTMLInputElement>('[name="honeypot"]');
+        const btnText = form.querySelector<HTMLElement>(".lm-btn-text");
+        const btnLoading = form.querySelector<HTMLElement>(".lm-btn-loading");
+        const submitBtn = form.querySelector<HTMLButtonElement>("button[type=submit]");
 
-    // loading state
-    errorEl.style.display = "none";
-    if (btnText) btnText.style.display = "none";
-    if (btnLoading) btnLoading.style.display = "inline";
-    if (submitBtn) submitBtn.disabled = true;
+        const email = emailInput?.value?.trim() ?? "";
+        if (!email) {
+          errorEl.textContent = "Inserisci la tua email.";
+          errorEl.style.display = "block";
+          emailInput?.focus();
+          return;
+        }
 
-    try {
-      const res = await fetch("/api/download-matrix", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, honeypot: honeypot?.value ?? "" }),
+        // loading state
+        errorEl.style.display = "none";
+        if (btnText) btnText.style.display = "none";
+        if (btnLoading) btnLoading.style.display = "inline";
+        if (submitBtn) submitBtn.disabled = true;
+
+        try {
+          const res = await fetch("/api/download-matrix", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, honeypot: honeypot?.value ?? "" }),
+          });
+          const data = await res.json();
+
+          if (data.ok) {
+            form.style.display = "none";
+            successEl.style.display = "flex";
+            if (window.lucide) window.lucide.createIcons();
+          } else {
+            throw new Error(data.error || "Errore sconosciuto.");
+          }
+        } catch (err: any) {
+          errorEl.textContent = err?.message ?? "Qualcosa non ha funzionato. Riprova.";
+          errorEl.style.display = "block";
+          if (btnText) btnText.style.display = "inline";
+          if (btnLoading) btnLoading.style.display = "none";
+          if (submitBtn) submitBtn.disabled = false;
+        }
       });
-      const data = await res.json();
+    });
+  }
 
-      if (data.ok) {
-        form.style.display = "none";
-        successEl.style.display = "flex";
-        if (window.lucide) window.lucide.createIcons();
-      } else {
-        throw new Error(data.error || "Errore sconosciuto.");
-      }
-    } catch (err: any) {
-      errorEl.textContent = err?.message ?? "Qualcosa non ha funzionato. Riprova.";
-      errorEl.style.display = "block";
-      if (btnText) btnText.style.display = "inline";
-      if (btnLoading) btnLoading.style.display = "none";
-      if (submitBtn) submitBtn.disabled = false;
-    }
-  });
+  document.addEventListener("astro:page-load", initLmForms);
+  initLmForms();
 </script>
 
 <style>

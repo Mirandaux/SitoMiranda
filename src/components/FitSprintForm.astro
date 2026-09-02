@@ -1,0 +1,504 @@
+---
+---
+
+<section class="section tight sfs-form-section" id="richiedi-confronto">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div class="eyebrow">Prossimo passo</div>
+      <h2 class="h2-cinema">Parliamo della decisione che devi prendere</h2>
+      <p>Raccontami in poche righe quale software stai scegliendo, sostituendo o progettando. Ti risponderò personalmente per capire se il Software Fit Sprint è adatto al tuo caso.</p>
+    </div>
+
+    <div class="holo glow-wine reveal d1 sfs-form-card">
+      <!-- Form -->
+      <form class="sfs-form" novalidate aria-label="Richiedi un confronto">
+        <!-- Honeypot anti-spam -->
+        <input type="hidden" name="sfs_trap" value="" />
+
+        <div class="sfs-fields">
+          <!-- Nome -->
+          <div class="sfs-field">
+            <label for="sfsNome">Nome e cognome <span aria-hidden="true">*</span></label>
+            <input type="text" id="sfsNome" name="nome" autocomplete="name" required
+              placeholder="Miranda Giaccon" aria-required="true" />
+            <p class="sfs-field-err" role="alert" aria-live="polite"></p>
+          </div>
+
+          <!-- Email -->
+          <div class="sfs-field">
+            <label for="sfsEmail">Email di lavoro <span aria-hidden="true">*</span></label>
+            <input type="email" id="sfsEmail" name="email" autocomplete="email" required
+              placeholder="miranda@azienda.it" aria-required="true" />
+            <p class="sfs-field-err" role="alert" aria-live="polite"></p>
+          </div>
+
+          <!-- Azienda -->
+          <div class="sfs-field">
+            <label for="sfsAzienda">Azienda <span aria-hidden="true">*</span></label>
+            <input type="text" id="sfsAzienda" name="azienda" autocomplete="organization" required
+              placeholder="Nome dell'azienda" aria-required="true" />
+            <p class="sfs-field-err" role="alert" aria-live="polite"></p>
+          </div>
+
+          <!-- Decisione -->
+          <div class="sfs-field">
+            <label for="sfsDecisione">Che decisione stai affrontando? <span aria-hidden="true">*</span></label>
+            <div class="sfs-select-wrap">
+              <select id="sfsDecisione" name="decisione" required aria-required="true">
+                <option value="" disabled selected>Seleziona un'opzione</option>
+                <option value="Scegliere un nuovo software">Scegliere un nuovo software</option>
+                <option value="Sostituire quello attuale">Sostituire quello attuale</option>
+                <option value="Migliorare l'adozione del team">Migliorare l'adozione del team</option>
+                <option value="Valutare uno sviluppo su misura">Valutare uno sviluppo su misura</option>
+                <option value="Altro">Altro</option>
+              </select>
+              <i data-lucide="chevron-down" class="ic sfs-select-ic" aria-hidden="true"></i>
+            </div>
+            <p class="sfs-field-err" role="alert" aria-live="polite"></p>
+          </div>
+
+          <!-- Problema -->
+          <div class="sfs-field sfs-field-full">
+            <label for="sfsProblema">Breve descrizione del problema <span aria-hidden="true">*</span></label>
+            <textarea id="sfsProblema" name="problema" required rows="4" aria-required="true"
+              placeholder="Cosa non funziona oggi? Quale processo è coinvolto? Quali tool avete già valutato?"></textarea>
+            <p class="sfs-field-err" role="alert" aria-live="polite"></p>
+          </div>
+
+          <!-- Privacy -->
+          <div class="sfs-field sfs-field-full sfs-check-wrap">
+            <label class="sfs-check-label">
+              <input type="checkbox" id="sfsPrivacy" name="privacy_consent" required aria-required="true" />
+              <span>Ho letto l'<a href="/privacy" target="_blank" rel="noopener">informativa privacy</a> e acconsento al trattamento dei dati per ricevere una risposta alla mia richiesta. <span aria-hidden="true">*</span></span>
+            </label>
+            <p class="sfs-field-err" role="alert" aria-live="polite"></p>
+          </div>
+
+          <!-- Marketing (facoltativo) -->
+          <div class="sfs-field sfs-field-full sfs-check-wrap">
+            <label class="sfs-check-label">
+              <input type="checkbox" id="sfsMarketing" name="marketing_consent" />
+              <span>Acconsento a ricevere occasionali comunicazioni sulle attività di Miranda Giaccon (facoltativo, non preselezionato).</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Global error -->
+        <p class="sfs-global-err" role="alert" aria-live="assertive" style="display:none;"></p>
+
+        <div class="sfs-submit-row">
+          <button type="submit" class="btn btn-primary btn-lg magnetic sfs-submit-btn">
+            <i data-lucide="send" class="ic"></i>
+            <span class="sfs-btn-text">Richiedi un confronto</span>
+            <span class="sfs-btn-loading" aria-hidden="true" style="display:none;">Invio in corso…</span>
+          </button>
+          <p class="sfs-submit-note">Rispondo personalmente, di solito entro 48 ore.</p>
+        </div>
+      </form>
+
+      <!-- Success state -->
+      <div class="sfs-success" style="display:none;" role="status" aria-live="polite" tabindex="-1">
+        <div class="sfs-success-icon">
+          <i data-lucide="circle-check" class="ic"></i>
+        </div>
+        <div>
+          <h3>Richiesta ricevuta</h3>
+          <p>Grazie, esaminerò personalmente il contesto e ti risponderò per capire se il Software Fit Sprint è adatto alla situazione.</p>
+          <a class="sfs-calendly-link" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener">
+            <i data-lucide="calendar-check" class="ic"></i>
+            Preferisci anticipare? Prenota una call di triage
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initSfsForms() {
+    document.querySelectorAll<HTMLFormElement>(".sfs-form").forEach((form) => {
+      if (form.dataset.sfsInit) return;
+      form.dataset.sfsInit = "1";
+
+      const section  = form.closest(".sfs-form-section");
+      const successEl = section?.querySelector<HTMLElement>(".sfs-success");
+      const globalErr = form.querySelector<HTMLElement>(".sfs-global-err");
+
+      // Collect UTMs from URL on init
+      const utms = collectUtms();
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!successEl || !globalErr) return;
+
+        clearAllErrors(form);
+
+        // Read fields
+        const nome      = val(form, "#sfsNome");
+        const email     = val(form, "#sfsEmail");
+        const azienda   = val(form, "#sfsAzienda");
+        const decisione = val(form, "#sfsDecisione");
+        const problema  = val(form, "#sfsProblema");
+        const privacy   = (form.querySelector<HTMLInputElement>("#sfsPrivacy"))?.checked ?? false;
+        const marketing = (form.querySelector<HTMLInputElement>("#sfsMarketing"))?.checked ?? false;
+        const honeypot  = val(form, '[name="sfs_trap"]');
+
+        // Client-side validation
+        let hasError = false;
+        if (nome.length < 2)        { setError(form, "#sfsNome", "Inserisci il tuo nome e cognome."); hasError = true; }
+        if (!isEmail(email))        { setError(form, "#sfsEmail", "Inserisci un indirizzo email valido."); hasError = true; }
+        if (!azienda)               { setError(form, "#sfsAzienda", "Inserisci il nome dell'azienda."); hasError = true; }
+        if (!decisione)             { setError(form, "#sfsDecisione", "Seleziona il tipo di decisione."); hasError = true; }
+        if (problema.length < 10)   { setError(form, "#sfsProblema", "Descrivi il problema (almeno 10 caratteri)."); hasError = true; }
+        if (!privacy)               { setError(form, "#sfsPrivacy", "Il consenso alla privacy è obbligatorio."); hasError = true; }
+
+        if (hasError) {
+          focusFirstError(form);
+          return;
+        }
+
+        // Loading state
+        setLoading(form, true);
+        globalErr.style.display = "none";
+
+        try {
+          const res = await fetch("/api/contact-fit-sprint", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              nome, email, azienda, decisione, problema,
+              privacy_consent: privacy,
+              marketing_consent: marketing,
+              honeypot,
+              ...utms,
+              page_url: location.href,
+            }),
+          });
+
+          const data = await res.json();
+
+          if (data.ok) {
+            // Server confirmed: fire OpenAI pixel if available
+            if (typeof window !== "undefined" && typeof (window as any).oaiq === "function") {
+              try { (window as any).oaiq("measure", "lead_created", { type: "customer_action" }); } catch {}
+            }
+            form.style.display = "none";
+            successEl.style.display = "flex";
+            successEl.focus();
+            if ((window as any).lucide) (window as any).lucide.createIcons();
+          } else if (data.field) {
+            setError(form, `[name="${data.field}"]`, data.error);
+            focusFirstError(form);
+            setLoading(form, false);
+          } else {
+            throw new Error(data.error || "Errore sconosciuto.");
+          }
+        } catch (err: any) {
+          globalErr.textContent = err?.message ?? "Qualcosa non ha funzionato. Riprova tra poco.";
+          globalErr.style.display = "block";
+          setLoading(form, false);
+        }
+      });
+    });
+  }
+
+  function val(form: HTMLFormElement, selector: string): string {
+    return (form.querySelector<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(selector))?.value?.trim() ?? "";
+  }
+
+  function isEmail(s: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+  }
+
+  function setError(form: HTMLFormElement, selector: string, msg: string) {
+    const field = form.querySelector(selector);
+    if (!field) return;
+    field.setAttribute("aria-invalid", "true");
+    const wrap = field.closest(".sfs-field");
+    const errEl = wrap?.querySelector<HTMLElement>(".sfs-field-err");
+    if (errEl) { errEl.textContent = msg; errEl.style.display = "block"; }
+  }
+
+  function clearAllErrors(form: HTMLFormElement) {
+    form.querySelectorAll("[aria-invalid]").forEach(el => el.removeAttribute("aria-invalid"));
+    form.querySelectorAll<HTMLElement>(".sfs-field-err").forEach(el => { el.textContent = ""; el.style.display = "none"; });
+  }
+
+  function focusFirstError(form: HTMLFormElement) {
+    const first = form.querySelector<HTMLElement>("[aria-invalid]");
+    first?.focus();
+  }
+
+  function setLoading(form: HTMLFormElement, loading: boolean) {
+    const btn     = form.querySelector<HTMLButtonElement>(".sfs-submit-btn");
+    const btnText = form.querySelector<HTMLElement>(".sfs-btn-text");
+    const btnLoad = form.querySelector<HTMLElement>(".sfs-btn-loading");
+    if (btn)     btn.disabled = loading;
+    if (btnText) btnText.style.display = loading ? "none" : "inline";
+    if (btnLoad) btnLoad.style.display = loading ? "inline" : "none";
+  }
+
+  function collectUtms(): Record<string, string> {
+    const params = new URLSearchParams(location.search);
+    const keys = ["utm_source","utm_medium","utm_campaign","utm_id","utm_term","utm_content"];
+    const result: Record<string, string> = {};
+    for (const k of keys) {
+      const v = params.get(k);
+      if (v) result[k] = v;
+    }
+    // Also check sessionStorage for UTMs set on landing
+    for (const k of keys) {
+      if (!result[k]) {
+        const stored = sessionStorage.getItem(k);
+        if (stored) result[k] = stored;
+      }
+    }
+    return result;
+  }
+
+  // Persist UTMs in sessionStorage on first landing
+  function persistUtms() {
+    const params = new URLSearchParams(location.search);
+    const keys = ["utm_source","utm_medium","utm_campaign","utm_id","utm_term","utm_content"];
+    for (const k of keys) {
+      const v = params.get(k);
+      if (v && !sessionStorage.getItem(k)) {
+        try { sessionStorage.setItem(k, v); } catch {}
+      }
+    }
+  }
+
+  persistUtms();
+  document.addEventListener("astro:page-load", () => { persistUtms(); initSfsForms(); });
+  initSfsForms();
+</script>
+
+<style>
+  .sfs-form-card {
+    padding: 40px 48px;
+    margin-top: 40px;
+  }
+
+  .sfs-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 28px;
+    margin-bottom: 24px;
+  }
+
+  .sfs-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sfs-field-full {
+    grid-column: 1 / -1;
+  }
+
+  .sfs-field label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--on-dark-2);
+    letter-spacing: 0.01em;
+  }
+
+  .sfs-field label span[aria-hidden] {
+    color: var(--eyebrow-dark);
+    margin-left: 2px;
+  }
+
+  .sfs-field input[type="text"],
+  .sfs-field input[type="email"],
+  .sfs-field textarea {
+    padding: 0 14px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 14.5px;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .sfs-field textarea {
+    height: auto;
+    padding: 12px 14px;
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .sfs-field input::placeholder,
+  .sfs-field textarea::placeholder { color: var(--on-dark-3); }
+
+  .sfs-field input:focus,
+  .sfs-field textarea:focus,
+  .sfs-select-wrap select:focus {
+    border-color: var(--eyebrow-dark);
+    box-shadow: 0 0 0 3px rgba(124,34,63,0.25);
+  }
+
+  .sfs-field input[aria-invalid="true"],
+  .sfs-field textarea[aria-invalid="true"],
+  .sfs-field select[aria-invalid="true"] {
+    border-color: #e89a9a;
+  }
+
+  /* Select */
+  .sfs-select-wrap {
+    position: relative;
+  }
+
+  .sfs-select-wrap select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 44px;
+    padding: 0 40px 0 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 14.5px;
+    font-family: var(--font-body);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+  }
+
+  .sfs-select-wrap select option {
+    background: #1a0d14;
+    color: #fff;
+  }
+
+  .sfs-select-ic {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--on-dark-3);
+    pointer-events: none;
+  }
+
+  /* Checkboxes */
+  .sfs-check-wrap {
+    gap: 8px;
+  }
+
+  .sfs-check-label {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    cursor: pointer;
+    font-size: 13.5px !important;
+    font-weight: 400 !important;
+    color: var(--on-dark-2);
+    line-height: 1.5;
+  }
+
+  .sfs-check-label input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    accent-color: var(--eyebrow-dark);
+    cursor: pointer;
+  }
+
+  .sfs-check-label a {
+    color: var(--eyebrow-dark);
+    text-underline-offset: 2px;
+  }
+
+  /* Field error */
+  .sfs-field-err {
+    font-size: 12.5px;
+    color: #e89a9a;
+    margin: 0;
+    display: none;
+  }
+
+  /* Global error */
+  .sfs-global-err {
+    font-size: 13.5px;
+    color: #e89a9a;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: rgba(232,154,154,0.08);
+    border: 1px solid rgba(232,154,154,0.25);
+    border-radius: 8px;
+  }
+
+  /* Submit row */
+  .sfs-submit-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .sfs-submit-note {
+    font-size: 13px;
+    color: var(--on-dark-3);
+    margin: 0;
+  }
+
+  /* Success */
+  .sfs-success {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 8px 0;
+  }
+
+  .sfs-success-icon .ic {
+    width: 36px;
+    height: 36px;
+    color: #6fcf97;
+    flex-shrink: 0;
+  }
+
+  .sfs-success h3 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 10px;
+  }
+
+  .sfs-success p {
+    font-size: 15px;
+    color: var(--on-dark-2);
+    line-height: 1.6;
+    margin: 0 0 20px;
+  }
+
+  .sfs-calendly-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--eyebrow-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .sfs-calendly-link .ic {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 860px) {
+    .sfs-form-card { padding: 28px 20px; }
+    .sfs-fields { grid-template-columns: 1fr; }
+    .sfs-submit-row { flex-direction: column; align-items: flex-start; }
+  }
+</style>
