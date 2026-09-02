@@ -48,7 +48,12 @@ const jsonLd = {
       "url": siteUrl,
       "description": "Consulenza UX e di prodotto per PMI, scaleup ed enti: scelta software, progettazione processi digitali, QA UX e adozione.",
       "founder": { "@id": `${siteUrl}/#miranda` },
-      "areaServed": "IT",
+      "areaServed": { "@type": "Country", "name": "Italy" },
+      "priceRange": "€1.500 per Software Fit Sprint; altri servizi su preventivo",
+      "image": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/assets/portrait-miranda.webp`
+      },
       "serviceType": [
         "Software Fit Sprint",
         "Website Evolution Check",
@@ -99,6 +104,8 @@ const jsonLd = {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Miranda Giaccon" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
@@ -110,6 +117,7 @@ const jsonLd = {
     <meta property="og:image" content={ogImg} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Miranda Giaccon · UX & Product Consultant" />
     <meta property="og:locale" content="it_IT" />
 
     <!-- Twitter Card -->
@@ -117,6 +125,7 @@ const jsonLd = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImg} />
+    <meta name="twitter:image:alt" content="Miranda Giaccon · UX & Product Consultant" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/logo-mark.png" type="image/png" />

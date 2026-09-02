@@ -5,6 +5,12 @@ Allow: /
 Sitemap: https://www.mirandagiaccon.it/sitemap-index.xml
 
 # AI crawlers — consentiti: possono indicizzare il sito
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: OAI-AdsBot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 

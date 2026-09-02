@@ -5,22 +5,69 @@ import FitSprintForm from "../components/FitSprintForm.astro";
 
 const pageUrl = "https://www.mirandagiaccon.it/software-fit-sprint";
 const studioId = "https://www.mirandagiaccon.it/#studio";
+
+const faqs = [
+  {
+    q: "Che cos'è il Software Fit Sprint?",
+    a: "Un percorso di due settimane per scegliere o validare un software che impatta più team. Invece di partire dalla demo, si parte dai processi reali: come si lavora oggi, dove si rompe il flusso, quali criteri contano davvero per chi dovrà usarlo ogni giorno."
+  },
+  {
+    q: "Quanto dura e quanto costa?",
+    a: "Due settimane, time-boxed. Prezzo fisso: €1.500, tutto incluso. Nessun \"da\", nessun extra. Sai in anticipo cosa ricevi e quando."
+  },
+  {
+    q: "Cosa riceve concretamente l'azienda?",
+    a: "Mappa dei processi as-is e to-be, criteri di scelta pesati con gli stakeholder, shortlist di 2-3 soluzioni o validazione di una scelta esistente, matrice decisionale con pro, contro, costi, limiti e un rischio per ogni riga, roadmap di adozione a 30, 90 e 180 giorni."
+  },
+  {
+    q: "La valutazione è indipendente dai fornitori?",
+    a: "Sì. Non ho accordi commerciali con vendor né commissioni su referral. La raccomandazione si basa sui processi reali dell'azienda e sui criteri definiti insieme agli stakeholder, non sulle demo o sui materiali di marketing dei tool."
+  },
+  {
+    q: "Comprende sviluppo e configurazione?",
+    a: "No. Il Software Fit Sprint produce una decisione e una roadmap, non esegue sviluppo né configurazione tecnica. Quando scelgo o valido un tool, la responsabilità dell'implementazione rimane al team interno o a un partner tecnico."
+  },
+  {
+    q: "Per quali aziende è indicato?",
+    a: "Per PMI, scaleup ed enti che devono scegliere un software che impatta più team, dove gli stakeholder faticano ad allinearsi sui criteri e il budget va difeso bene. Non è adatto se il fornitore è già scelto e manca solo l'esecuzione, o se si cerca sviluppo e configurazione tecnica."
+  }
+];
+
 const sfsJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": `${pageUrl}#service`,
   "name": "Software Fit Sprint",
+  "serviceType": "Consulenza per la selezione di software aziendale",
   "description": "In due settimane: mappa dei processi, criteri UX, shortlist, matrice decisionale con rischi e roadmap di adozione.",
   "url": pageUrl,
+  "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
   "provider": { "@id": studioId },
   "areaServed": { "@type": "Country", "name": "Italy" },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "PMI, scaleup, enti con processi digitali da ottimizzare"
+  },
   "inLanguage": "it",
   "offers": {
     "@type": "Offer",
     "price": "1500",
     "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock"
+    "url": pageUrl,
+    "seller": { "@id": studioId },
+    "availability": "https://schema.org/InStock",
+    "areaServed": { "@type": "Country", "name": "Italy" }
   }
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a }
+  }))
 };
 ---
 
@@ -31,6 +78,7 @@ const sfsJsonLd = {
   bg='data-max="120" data-link="150" data-accent="0.10" data-speed="0.13"'
 >
   <script type="application/ld+json" set:html={JSON.stringify(sfsJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   <!-- HERO -->
   <section class="page-hero">
     <div class="shell">
@@ -199,6 +247,59 @@ const sfsJsonLd = {
       </div>
     </div>
   </section>
+
+  <!-- FAQ -->
+  <section class="section tight" id="faq">
+    <div class="shell">
+      <div class="section-head reveal"><div class="eyebrow">Domande frequenti</div><h2 class="h2-cinema">Quello che di solito si chiede prima di iniziare.</h2></div>
+      <div class="faq-list reveal d1" style="margin-top:32px;">
+        {faqs.map(({ q, a }) => (
+          <details class="faq-item">
+            <summary class="faq-q">{q}</summary>
+            <p class="faq-a">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .faq-list { display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,0.08); }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .faq-q {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q::after {
+      content: "+";
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--eyebrow-dark);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .faq-item[open] .faq-q::after { transform: rotate(45deg); }
+    .faq-a {
+      margin: 0 0 20px;
+      font-size: 15px;
+      line-height: 25px;
+      color: var(--on-dark-2);
+      max-width: 72ch;
+    }
+    @media (max-width: 600px) {
+      .faq-q { font-size: 15px; }
+    }
+  </style>
 
   <!-- LEAD MAGNET matrice -->
   <LeadMagnetMatrix />

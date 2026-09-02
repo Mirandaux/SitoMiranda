@@ -98,7 +98,7 @@ export const POST = async ({ request }) => {
         </tr>
         <tr>
           <td style="padding:20px 40px;background:#f9f9f9;border-top:1px solid #eee;">
-            <p style="margin:0;font-size:12px;color:#999;line-height:1.5;">Hai ricevuto questa email perché hai richiesto la matrice decisionale su <a href="https://mirandagiaccon.it" style="color:#999;">mirandagiaccon.it</a>.</p>
+            <p style="margin:0;font-size:12px;color:#999;line-height:1.5;">Hai ricevuto questa email perché hai richiesto la matrice decisionale su <a href="https://www.mirandagiaccon.it" style="color:#999;">mirandagiaccon.it</a>.</p>
           </td>
         </tr>
       </table>
