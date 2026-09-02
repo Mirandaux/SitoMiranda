@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import LeadMagnetMatrix from "../components/LeadMagnetMatrix.astro";
+import FitSprintForm from "../components/FitSprintForm.astro";
 ---
 
 <Layout
@@ -22,7 +23,7 @@ import LeadMagnetMatrix from "../components/LeadMagnetMatrix.astro";
           <h1 class="reveal d1">Scegli il software giusto partendo dai processi, non dalle demo.</h1>
           <p class="lede reveal d2">In due settimane trasformo dubbi, vincoli e stakeholder in una decisione difendibile: criteri, matrice e roadmap di adozione, prima di bruciare budget su un tool sbagliato.</p>
           <div class="cta-row reveal d3">
-            <a class="btn btn-primary btn-lg magnetic" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+            <a class="btn btn-primary btn-lg magnetic" href="#richiedi-confronto"><i data-lucide="send" class="ic"></i> Richiedi un confronto</a>
             <a class="btn btn-secondary btn-lg magnetic" href="#matrice">Vedi un esempio di matrice</a>
           </div>
         </div>
@@ -181,14 +182,15 @@ import LeadMagnetMatrix from "../components/LeadMagnetMatrix.astro";
   <!-- LEAD MAGNET matrice -->
   <LeadMagnetMatrix />
 
-  <!-- CTA -->
-  <section class="section">
+  <!-- FORM LEAD SFS -->
+  <FitSprintForm />
+
+  <!-- CTA secondaria (Calendly) -->
+  <section class="section tight">
     <div class="shell">
-      <div class="cta-band reveal">
-        <div class="eyebrow center" style="justify-content:center;">Prossimo passo</div>
-        <h2 style="margin-top:14px;">Raccontami cosa devi decidere.</h2>
-        <p>Una call di triage da 30 minuti. Se sei fit, ti propongo il perimetro dello Sprint. Altrimenti ti dico perché.</p>
-        <div class="cta-row"><a class="btn btn-primary btn-lg magnetic" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a></div>
+      <div class="cta-band reveal" style="padding-top:32px;padding-bottom:32px;">
+        <p style="color:var(--on-dark-3);font-size:15px;margin:0 0 14px;">Preferisci parlare direttamente?</p>
+        <div class="cta-row"><a class="btn btn-secondary btn-lg magnetic" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage su Calendly</a></div>
       </div>
     </div>
   </section>
