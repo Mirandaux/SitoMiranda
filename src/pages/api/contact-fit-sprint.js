@@ -76,9 +76,9 @@ export const POST = async ({ request }) => {
   // Attributi contatto Brevo
   const nameParts = cleanNome.split(" ");
   const attributes = {
-    FIRSTNAME: nameParts[0] || cleanNome,
-    LASTNAME: nameParts.slice(1).join(" ") || "",
-    COMPANY: cleanAzienda,
+    NOME: nameParts[0] || cleanNome,
+    COGNOME: nameParts.slice(1).join(" ") || "",
+    AZIENDA: cleanAzienda,
     SFS_DECISIONE: cleanDecisione,
     SFS_PROBLEMA: cleanProblema,
     SFS_LEAD_SOURCE: "sfs_form",
