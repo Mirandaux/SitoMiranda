@@ -255,7 +255,10 @@ const faqJsonLd = {
       <div class="faq-list reveal d1" style="margin-top:32px;">
         {faqs.map(({ q, a }) => (
           <details class="faq-item">
-            <summary class="faq-q">{q}</summary>
+            <summary class="faq-q">
+              <span>{q}</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
             <p class="faq-a">{a}</p>
           </details>
         ))}
@@ -280,15 +283,15 @@ const faqJsonLd = {
       user-select: none;
     }
     .faq-q::-webkit-details-marker { display: none; }
-    .faq-q::after {
-      content: "+";
+    .faq-icon {
       font-size: 22px;
       font-weight: 300;
       color: var(--eyebrow-dark);
       flex-shrink: 0;
       transition: transform 0.2s;
+      line-height: 1;
     }
-    .faq-item[open] .faq-q::after { transform: rotate(45deg); }
+    .faq-item[open] .faq-icon { transform: rotate(45deg); }
     .faq-a {
       margin: 0 0 20px;
       font-size: 15px;
