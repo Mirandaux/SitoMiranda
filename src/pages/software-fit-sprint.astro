@@ -144,7 +144,7 @@ const faqJsonLd = {
         </div>
         <div class="caso-card caso-card-after">
           <div class="caso-label">Dopo</div>
-          <p>Decisione presa e documentata con criteri difendibili in riunione. Il team ha aperto un solo portale ogni mattina invece di tre. Le attività dimenticate tra reparti sono diminuite. Le chiamate interne per coordinamento si sono ridotte. La scelta finale non era la opzione "piu bella in demo", ma quella con il miglior rapporto adozione-integrazione per il loro flusso reale.</p>
+          <p>Decisione presa e documentata con criteri difendibili in riunione. Il team ha aperto un solo portale ogni mattina invece di tre. Le attività dimenticate tra reparti sono diminuite. Le chiamate interne per coordinamento si sono ridotte. La scelta finale non era l'opzione "piu bella in demo", ma quella con il miglior rapporto adozione-integrazione per il loro flusso reale.</p>
         </div>
       </div>
     </div>
@@ -159,7 +159,7 @@ const faqJsonLd = {
           <h2 class="h2-cinema" style="margin-top:14px;">Quando la scelta non arriva, il costo non si ferma.</h2>
         </div>
         <div class="reveal d1">
-          <p style="font-size:17px;line-height:27px;margin-bottom:24px;">Il segnale che qualcosa non funziona di solito non è "non riusciamo a scegliere". E' piu sottile. Si riconosce cosi:</p>
+          <p style="font-size:17px;line-height:27px;margin-bottom:24px;">Il segnale che qualcosa non funziona di solito non è "non riusciamo a scegliere". E' piu sottile. Si riconosce così:</p>
           <ul class="sintomi-list">
             <li><i data-lucide="alert-triangle" class="ic" aria-hidden="true"></i> Ogni reparto porta argomenti diversi alle riunioni di valutazione e si riparte da zero.</li>
             <li><i data-lucide="alert-triangle" class="ic" aria-hidden="true"></i> Avete visto tre demo convincenti e non riuscite a capire quale tool fa davvero al caso vostro.</li>
@@ -426,7 +426,7 @@ const faqJsonLd = {
     import { track } from "@vercel/analytics";
 
     function initSfsTracking() {
-      // CTA clicks in hero
+      // ── CTA click events (hero + secondary) ──────────────────────────────
       document.querySelectorAll("[data-track]").forEach((el) => {
         el.addEventListener("click", () => {
           const event = (el as HTMLElement).dataset.track;
@@ -434,22 +434,53 @@ const faqJsonLd = {
         }, { once: true });
       });
 
-      // Form interaction: track when user starts filling the form
-      const firstField = document.querySelector<HTMLElement>(".sfs-form input, .sfs-form textarea, .sfs-form select");
+      // Calendly link clicks (any link pointing to calendly.com on the page)
+      document.querySelectorAll<HTMLAnchorElement>('a[href*="calendly.com"]').forEach((el) => {
+        el.addEventListener("click", () => {
+          track("sfs_calendly_click");
+        }, { once: true });
+      });
+
+      // ── Scroll-reach events (IntersectionObserver) ───────────────────────
+      const reaches: [string, string][] = [
+        ["sfs_reach_caso_reale", "#caso-reale"],
+        ["sfs_reach_form", "#richiedi-confronto"],
+      ];
+      if ("IntersectionObserver" in window) {
+        reaches.forEach(([event, selector]) => {
+          const el = document.querySelector(selector);
+          if (!el) return;
+          const obs = new IntersectionObserver(
+            (entries) => {
+              if (entries[0]?.isIntersecting) {
+                track(event);
+                obs.disconnect();
+              }
+            },
+            { threshold: 0.2 }
+          );
+          obs.observe(el);
+        });
+      }
+
+      // ── Form interaction events ───────────────────────────────────────────
+      const firstField = document.querySelector<HTMLElement>(
+        ".sfs-form input:not([type=hidden]):not([type=checkbox]), .sfs-form textarea, .sfs-form select"
+      );
       if (firstField) {
         firstField.addEventListener("focus", () => {
           track("sfs_form_start");
         }, { once: true });
       }
 
-      // Form submit and success tracking
       const form = document.querySelector<HTMLFormElement>(".sfs-form");
       if (form) {
+        // Submit attempt (fires before validation, counts intent)
         form.addEventListener("submit", () => {
           track("sfs_form_submit");
         });
 
-        // Observe success state appearing
+        // Success response from server
         const successEl = document.querySelector<HTMLElement>(".sfs-success");
         if (successEl) {
           const observer = new MutationObserver(() => {
@@ -459,6 +490,17 @@ const faqJsonLd = {
             }
           });
           observer.observe(successEl, { attributes: true, attributeFilter: ["style"] });
+        }
+
+        // Server-side or network error shown to user
+        const globalErr = form.querySelector<HTMLElement>(".sfs-global-err");
+        if (globalErr) {
+          const errObserver = new MutationObserver(() => {
+            if (globalErr.style.display !== "none" && globalErr.textContent?.trim()) {
+              track("sfs_form_error");
+            }
+          });
+          errObserver.observe(globalErr, { attributes: true, attributeFilter: ["style"] });
         }
       }
     }
