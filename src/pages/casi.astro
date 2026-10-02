@@ -50,9 +50,7 @@ import Layout from "../layouts/Layout.astro";
       <div class="ba-grid reveal d2" style="margin-top:48px;">
         <div class="ba-col ba-before">
           <div class="ba-label">BEFORE · Product catalogue</div>
-          <div class="img-ph" data-img="piracci-before-home-desktop.webp">
-            <span>Screenshot homepage vecchio sito · desktop · crop above the fold</span>
-          </div>
+          <img src="/assets/piracci-before-home-desktop.webp" alt="Homepage Edilarte Piracci — vecchio sito: layout a catalogo, immagini sovrapposte, poca gerarchia" class="caso-img" loading="lazy" />
           <p class="ba-caption">Molte categorie, poca gerarchia, immagini utilizzate soprattutto come catalogo e un'esperienza digitale poco rappresentativa del posizionamento reale dell'azienda.</p>
         </div>
         <div class="ba-col ba-after">
@@ -494,6 +492,14 @@ import Layout from "../layouts/Layout.astro";
     }
     .caso-link .ic { width: 14px; height: 14px; }
     .caso-link:hover { color: #fff; }
+
+    /* ── Immagine reale ──────────────────────*/
+    .caso-img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      border: 1px solid var(--hairline);
+    }
 
     /* ── Image placeholder ────────────────── */
     .img-ph {
