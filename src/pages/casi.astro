@@ -4,72 +4,432 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout
   title="Miranda · Casi"
-  description="Struttura dei casi: contesto, problema, decisione, output, impatto. I numeri arrivano quando il cliente li approva."
+  description="Una selezione di progetti: software complessi, workflow operativi, dashboard e prodotti digitali. Decisioni progettuali, problemi reali, ragionamento."
   page="casi"
   bg='data-max="110" data-link="150" data-accent="0.08" data-speed="0.12"'
 >
-  <style>
-    .case { border: 1px solid var(--hairline); background: var(--surface); border-radius: var(--radius-lg); padding: 30px 32px; }
-    .case + .case { margin-top: 18px; }
-    .case .ctx { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 18px; }
-    .case h3 { font-size: 23px; margin-bottom: 18px; }
-    .case-grid { display: grid; grid-template-columns: 130px 1fr; gap: 14px 22px; align-items: baseline; }
-    .case-grid .k { font-family: var(--font-heading); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--eyebrow-dark); }
-    .case-grid .v { color: var(--on-dark-2); font-size: 15px; line-height: 23px; }
-    .ph { display: inline-flex; align-items: center; gap: 7px; background: rgba(74,119,168,0.16); border: 1px dashed rgba(74,119,168,0.5); color: #9cc0e8; border-radius: 8px; padding: 3px 10px; font-size: 12.5px; font-family: var(--font-mono); }
-    @media (max-width: 600px) { .case-grid { grid-template-columns: 1fr; gap: 4px 0; } .case-grid .k { margin-top: 12px; } }
-  </style>
 
+  <!-- ─────────────────────────────────────────────────────── HERO -->
   <section class="page-hero">
     <div class="shell">
-      <div class="eyebrow reveal">Casi</div>
-      <h1 class="reveal d1">I progetti di cui vado più fiera non sono i più belli da vedere.</h1>
-      <p class="reveal d2">Ho avuto la fortuna di costruire due progetti abbastanza importanti che però non posso pubblicizzare online. Dall'altra parte il mio lavoro è difficile da cogliere mostrando solo il design finale, quindi in questa pagina preferisco raccontare su quali decisioni abbiamo lavorato e come abbiamo risolto i problemi e le noie che i dipendenti avevano all'interno dell'azienda.</p>
+      <div class="eyebrow reveal">Selected work</div>
+      <h1 class="reveal d1">Non progetto solo schermate. Progetto il sistema che deve farle funzionare.</h1>
+      <p class="reveal d2">Una selezione di progetti diversi tra loro: software complessi, workflow operativi, dashboard e prodotti digitali. In alcuni casi il risultato è molto visibile. In altri, il lavoro migliore è ciò che l'utente non deve più fare.</p>
+      <div class="casi-anchors reveal d3">
+        <a class="casi-anchor" href="#edilarte">UI &amp; Visual Direction</a>
+        <span class="casi-anchor-sep" aria-hidden="true">·</span>
+        <a class="casi-anchor" href="#farmacie">Complex Product</a>
+        <span class="casi-anchor-sep" aria-hidden="true">·</span>
+        <a class="casi-anchor" href="#sordo">Workflow &amp; Data</a>
+      </div>
     </div>
   </section>
 
-  <section class="section tight">
+  <!-- ──────────────────────────────────────── CASO 01 · EDILARTE -->
+  <section class="section tight caso-section" id="edilarte">
     <div class="shell">
 
-      <div class="case reveal d1">
-        <div class="ctx"><span class="pill wine"><span class="dot"></span>Ente · servizi al cittadino</span><span class="pill">Software su misura</span></div>
-        <h3>Portale anagrafe, sistema turnazioni e app mobile: tre strumenti separati che non si parlavano.</h3>
-        <div class="case-grid">
-          <div class="k">Contesto</div><div class="v">Sistema di lavoro che prevedeva vari passaggi tra Excel e PDF, un'app che indicava le distanze in linea d'aria, un sito del 2008 senza carattere e difficile da navigare.</div>
-          <div class="k">Problema</div><div class="v">Turnazioni gestite manualmente con errori e rettifiche continue, app mobile insufficiente rispetto ai flussi reali, portale da riallineare alle esigenze operative.</div>
-          <div class="k">Decisione</div><div class="v">Sito perlustrato, app eliminata e sostituita con una web app (meno costosa da implementare e mantenere), portale integrato con algoritmo di calcolo e sincronizzazione in tempo reale.</div>
-          <div class="k">Output</div><div class="v">Sito riorganizzato, web app leggera per la gestione operativa, portale integrato con algoritmo di calcolo, sincronizzazione in tempo reale, estrazione del flusso dati.</div>
-          <div class="k">Impatto</div><div class="v">Badge sull'accessibilità ricevuto da un ente terzo esperto nel tema · riduzione del 99% del tempo di lavorazione e degli errori umani</div>
+      <div class="caso-eyebrow-row reveal">
+        <span class="pill wine"><span class="dot"></span>UI &amp; Visual Direction</span>
+        <span class="caso-num">01</span>
+      </div>
+
+      <div class="lead-2col reveal d1" style="margin-top:22px;align-items:start;gap:48px;">
+        <div>
+          <h2 class="h2-cinema" style="max-width:16ch;">Da catalogo digitale a esperienza di marca.</h2>
+        </div>
+        <div>
+          <p style="font-size:17px;line-height:27px;margin-top:0;">Edilarte Piracci è un'azienda familiare con cinquant'anni di esperienza nell'arredo e nei materiali per la casa. Il sito esistente raccontava soprattutto categorie di prodotto; il nuovo progetto doveva trasferire online la qualità percepita dello showroom, della consulenza e della selezione dei marchi.</p>
+          <a class="caso-link" href="https://edilartepiracci.vercel.app" target="_blank" rel="noopener">
+            <i data-lucide="external-link" class="ic" aria-hidden="true"></i> Vedi il nuovo sito
+          </a>
         </div>
       </div>
 
-      <div class="case reveal d1">
-        <div class="ctx"><span class="pill wine"><span class="dot"></span>PMI · manifattura</span><span class="pill">Software Fit Sprint</span></div>
-        <h3>Scelta del gestionale aziendale, con quattro reparti e tre fornitori in valutazione da mesi.</h3>
-        <div class="case-grid">
-          <div class="k">Contesto</div><div class="v">Due CRM in uso (uno custom senza manutenzione, uno di un competitor in dismissione), quattro reparti con esigenze diverse, nessuna decisione in vista.</div>
-          <div class="k">Problema</div><div class="v">Tre fornitori in valutazione, demo viste da tutti, scelta ferma. Rischio concreto di comprare il tool più "bello" invece del più adatto ai processi reali.</div>
-          <div class="k">Decisione</div><div class="v">Mappa dei processi reali, criteri pesati con i reparti, chiamate con i tecnici (non solo i commerciali), matrice decisionale con un rischio per riga. Validata una delle tre opzioni, scartate le altre due con motivazione scritta.</div>
-          <div class="k">Output</div><div class="v">Decisione difendibile, roadmap a 30 / 90 / 180 giorni, handoff al partner dev per l'implementazione.</div>
-          <div class="k">Impatto</div><div class="v">Riduzione delle attività dimenticate · diminuzione delle chiamate tra colleghi per delucidazioni · apertura mattutina di un solo portale con tutto all'interno</div>
+      <!-- Before / After -->
+      <div class="ba-grid reveal d2" style="margin-top:48px;">
+        <div class="ba-col ba-before">
+          <div class="ba-label">BEFORE · Product catalogue</div>
+          <div class="img-ph" data-img="piracci-before-home-desktop.webp">
+            <span>Screenshot homepage vecchio sito · desktop · crop above the fold</span>
+          </div>
+          <p class="ba-caption">Molte categorie, poca gerarchia, immagini utilizzate soprattutto come catalogo e un'esperienza digitale poco rappresentativa del posizionamento reale dell'azienda.</p>
+        </div>
+        <div class="ba-col ba-after">
+          <div class="ba-label">AFTER · Editorial experience</div>
+          <div class="img-ph img-ph-after" data-img="piracci-after-home-desktop.webp">
+            <span>Screenshot homepage nuovo sito · desktop · crop above the fold</span>
+          </div>
+          <p class="ba-caption">Una direzione più editoriale, costruita su fotografia, tipografia, ritmo, spazio e gerarchia per avvicinare il sito all'esperienza dello showroom.</p>
         </div>
       </div>
 
-      <div class="case reveal d1">
-        <div class="ctx"><span class="pill wine"><span class="dot"></span>Consulente libera professionista</span><span class="pill">Website Evolution Check</span></div>
-        <h3>Parla molto, converte poco.</h3>
-        <div class="case-grid">
-          <div class="k">Contesto</div><div class="v">Sito online da molti anni, non convertiva lead nonostante traffico presente. L'offerta era chiara per chi già conosceva la consulente, poco leggibile per chi arrivava da fuori.</div>
-          <div class="k">Problema</div><div class="v">Tentazione di un redesign totale. Budget importante a rischio per risolvere il problema sbagliato.</div>
-          <div class="k">Decisione</div><div class="v">Audit UX e gap analysis, roadmap a 3-6 mesi. Fare: riallineare CTA e flusso operativo. Non fare: redesign totale. Rimandare: restyling visivo. In parallelo, nuova landing ad hoc allineata con una specialista ADV.</div>
-          <div class="k">Output</div><div class="v">Interventi mirati, allineamento con ADV Specialist, checklist delle modifiche, nuova landing con flusso ottimizzato.</div>
-          <div class="k">Impatto</div><div class="v">Circa 3.000 euro di budget evitato sul redesign · dato in arrivo sulle conversioni (le adv hanno bisogno di tempo per funzionare)</div>
+      <!-- Sequenza dettagli visivi -->
+      <div class="img-strip reveal d3" style="margin-top:40px;">
+        <div class="img-ph img-ph-wide" data-img="piracci-after-hero-detail.webp">
+          <span>Hero del nuovo sito: tipografia + fotografia d'ambiente</span>
+        </div>
+        <div class="img-ph" data-img="piracci-after-progetti.webp">
+          <span>Sezione "Progetti realizzati" o portfolio</span>
+        </div>
+        <div class="img-ph" data-img="piracci-after-anima.webp">
+          <span>Sezione "La nostra anima" o identità aziendale</span>
+        </div>
+        <div class="img-ph" data-img="piracci-after-prodotto.webp">
+          <span>Pagina o dettaglio prodotto / brand</span>
+        </div>
+      </div>
+
+      <!-- Design decisions -->
+      <div class="decisions reveal d2" style="margin-top:52px;">
+        <div class="decision-label">Design decisions</div>
+        <div class="decisions-grid">
+          <div class="decision-item">
+            <div class="decision-n">01</div>
+            <div>
+              <h4 class="decision-title">Ridurre il rumore</h4>
+              <p class="decision-body">Dal catalogo di categorie a pochi ingressi ad alta intenzione. Meno scelte, più chiarezza sul posizionamento.</p>
+            </div>
+          </div>
+          <div class="decision-item">
+            <div class="decision-n">02</div>
+            <div>
+              <h4 class="decision-title">Dare più spazio alle immagini</h4>
+              <p class="decision-body">Il materiale visuale diventa parte della gerarchia, non semplice decorazione. Fotografia trattata come elemento editoriale.</p>
+            </div>
+          </div>
+          <div class="decision-item">
+            <div class="decision-n">03</div>
+            <div>
+              <h4 class="decision-title">Costruire riconoscibilità</h4>
+              <p class="decision-body">Tipografia, composizione e ritmo vengono usati come elementi di identità invece di affidarsi a un template neutro.</p>
+            </div>
+          </div>
         </div>
       </div>
 
     </div>
   </section>
 
+  <!-- ───────────────────────────────────── CASO 02 · FARMACIE -->
+  <section class="section tight caso-section caso-alt" id="farmacie">
+    <div class="shell">
+
+      <div class="caso-eyebrow-row reveal">
+        <span class="pill wine"><span class="dot"></span>Complex Product Design</span>
+        <span class="caso-num">02</span>
+      </div>
+
+      <div class="lead-2col reveal d1" style="margin-top:22px;align-items:start;gap:48px;">
+        <div>
+          <h2 class="h2-cinema" style="max-width:18ch;">Un unico sistema per coordinare persone, informazioni e operazioni.</h2>
+        </div>
+        <div>
+          <p style="font-size:17px;line-height:27px;margin-top:0;">Sistema gestionale su misura per una rete di farmacie. Più ruoli, più turni, più flussi informativi che dovevano convergere in un'unica interfaccia operativa senza richiedere formazione estesa.</p>
+        </div>
+      </div>
+
+      <!-- Contesto: ruoli e flusso -->
+      <div class="holo reveal d1" style="margin-top:40px;padding:32px 36px;">
+        <div class="eyebrow" style="margin-bottom:20px;">Chi usa il sistema · cosa fa · quali dati produce</div>
+        <div class="ruoli-grid">
+          <div class="ruolo">
+            <div class="ruolo-label">Farmacista al banco</div>
+            <div class="ruolo-flow">
+              <span class="flow-tag">riceve richiesta</span>
+              <span class="fa">→</span>
+              <span class="flow-tag">consulta disponibilità</span>
+              <span class="fa">→</span>
+              <span class="flow-tag">registra vendita o ordine</span>
+            </div>
+          </div>
+          <div class="ruolo">
+            <div class="ruolo-label">Responsabile turni</div>
+            <div class="ruolo-flow">
+              <span class="flow-tag">pianifica copertura</span>
+              <span class="fa">→</span>
+              <span class="flow-tag">assegna turni</span>
+              <span class="fa">→</span>
+              <span class="flow-tag">gestisce variazioni</span>
+            </div>
+          </div>
+          <div class="ruolo">
+            <div class="ruolo-label">Titolare / direzione</div>
+            <div class="ruolo-flow">
+              <span class="flow-tag">legge report</span>
+              <span class="fa">→</span>
+              <span class="flow-tag">valuta performance</span>
+              <span class="fa">→</span>
+              <span class="flow-tag">prende decisioni operative</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- La complessità -->
+      <div class="complessita reveal d2" style="margin-top:40px;">
+        <div class="eyebrow" style="margin-bottom:16px;">La complessità</div>
+        <div class="complessita-chain">
+          <div class="cc-node">Persona</div>
+          <div class="cc-arr">→</div>
+          <div class="cc-node">Attività</div>
+          <div class="cc-arr">→</div>
+          <div class="cc-node">Dato</div>
+          <div class="cc-arr">→</div>
+          <div class="cc-node">Decisione</div>
+          <div class="cc-arr">→</div>
+          <div class="cc-node cc-node-out">Output</div>
+        </div>
+        <p style="margin-top:20px;font-size:15px;line-height:24px;color:var(--on-dark-3);max-width:64ch;">Ogni ruolo genera dati che altri ruoli devono leggere in tempo reale. Il sistema doveva rendere questa catena invisibile all'utente: le informazioni giuste, al momento giusto, senza navigazione esplicita.</p>
+      </div>
+
+      <!-- Problema -->
+      <div class="problemi-list reveal d2" style="margin-top:40px;">
+        <div class="eyebrow" style="margin-bottom:16px;">Problemi chiave</div>
+        <div class="scope-grid">
+          <div class="scope" style="border-color:rgba(232,154,154,0.2);background:rgba(232,154,154,0.04);">
+            <h4 style="color:#e89a9a;font-size:15px;font-weight:700;margin-bottom:10px;">01 · Informazioni distribuite</h4>
+            <p style="font-size:14.5px;line-height:23px;color:var(--on-dark-2);margin:0;">Turni, magazzino e registro vendite vivevano in strumenti separati. Sincronizzarli richiedeva operazioni manuali con errori frequenti.</p>
+          </div>
+          <div class="scope" style="border-color:rgba(232,154,154,0.2);background:rgba(232,154,154,0.04);">
+            <h4 style="color:#e89a9a;font-size:15px;font-weight:700;margin-bottom:10px;">02 · Formazione come collo di bottiglia</h4>
+            <p style="font-size:14.5px;line-height:23px;color:var(--on-dark-2);margin:0;">Ogni nuovo operatore richiedeva giorni di affiancamento per imparare i flussi. L'interfaccia non guidava, documentava.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decisione progettuale -->
+      <div class="holo glow-wine reveal d2" style="margin-top:32px;padding:32px 36px;">
+        <div class="eyebrow" style="margin-bottom:12px;">Decisione progettuale</div>
+        <p style="font-size:19px;font-weight:700;color:#fff;line-height:1.4;margin:0 0 16px;font-family:var(--font-heading);">Prima di progettare le schermate, abbiamo progettato il flusso.</p>
+        <p style="font-size:15px;line-height:24px;color:var(--on-dark-2);margin:0;">Il modello dati e la sequenza delle operazioni sono stati definiti con gli utenti prima di disegnare qualsiasi interfaccia. Le schermate sono diventate il riflesso di flussi già validati, non il punto di partenza del progetto.</p>
+      </div>
+
+      <!-- Flow comparison -->
+      <div class="flow-comparison reveal d3" style="margin-top:48px;">
+        <div class="eyebrow" style="margin-bottom:24px;">Flow comparison</div>
+        <div class="flow-compare-grid">
+          <div class="flow-col flow-col-before">
+            <div class="flow-col-label">Before flow</div>
+            <div class="flow-steps-vert">
+              <div class="fv-step fv-pain">Richiesta al banco</div>
+              <div class="fv-arr">↓</div>
+              <div class="fv-step fv-pain">Controllo verbale disponibilità</div>
+              <div class="fv-arr">↓</div>
+              <div class="fv-step fv-pain">Accesso a sistema separato per ordini</div>
+              <div class="fv-arr">↓</div>
+              <div class="fv-step fv-pain">Aggiornamento manuale registro</div>
+              <div class="fv-arr">↓</div>
+              <div class="fv-step fv-pain">Report compilato a fine turno</div>
+            </div>
+          </div>
+          <div class="flow-compare-divider" aria-hidden="true">→</div>
+          <div class="flow-col flow-col-after">
+            <div class="flow-col-label">Designed flow</div>
+            <div class="flow-steps-vert">
+              <div class="fv-step fv-ok">Richiesta al banco</div>
+              <div class="fv-arr">↓</div>
+              <div class="fv-step fv-ok">Disponibilità visibile in tempo reale</div>
+              <div class="fv-arr">↓</div>
+              <div class="fv-step fv-ok">Registrazione e ordine in un'unica azione</div>
+              <div class="fv-arr">↓</div>
+              <div class="fv-step fv-ok">Report aggiornato automaticamente</div>
+            </div>
+          </div>
+        </div>
+        <p class="flow-note">I passaggi sono rappresentativi del tipo di intervento. Il flusso preciso è disponibile nella documentazione di progetto.</p>
+      </div>
+
+      <!-- UI finale -->
+      <div class="img-strip-4 reveal d3" style="margin-top:48px;">
+        <div class="eyebrow" style="margin-bottom:20px;">UI finale</div>
+        <div class="img-4grid">
+          <div class="img-ph" data-img="farmacie-overview-dashboard.webp">
+            <span>Overview: schermata principale con navigazione ruoli e stato operativo generale</span>
+          </div>
+          <div class="img-ph" data-img="farmacie-flusso-principale.webp">
+            <span>Workflow principale: schermata in cui il farmacista vede disponibilità, richiesta in corso e azione di registrazione contemporaneamente</span>
+          </div>
+          <div class="img-ph" data-img="farmacie-turni-complessi.webp">
+            <span>Vista turni: schermata con pianificazione settimanale, copertura per ruolo e variazioni in attesa</span>
+          </div>
+          <div class="img-ph" data-img="farmacie-stato-significativo.webp">
+            <span>Stato critico o notifica: come il sistema comunica una condizione che richiede attenzione immediata</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────── CASO 03 · SORDO AUTO -->
+  <section class="section tight caso-section" id="sordo">
+    <div class="shell">
+
+      <div class="caso-eyebrow-row reveal">
+        <span class="pill wine"><span class="dot"></span>Workflow &amp; Data Design</span>
+        <span class="caso-num">03</span>
+      </div>
+
+      <div class="lead-2col reveal d1" style="margin-top:22px;align-items:start;gap:48px;">
+        <div>
+          <h2 class="h2-cinema" style="max-width:20ch;">Quando il gestionale diventa il punto in cui il lavoro realmente accade.</h2>
+        </div>
+        <div>
+          <p style="font-size:17px;line-height:27px;margin-top:0;">CRM, preventivi, vendita, noleggio, disponibilità, automazioni e attività vivevano nello stesso ecosistema Odoo, ma non necessariamente nello stesso flusso. Il progetto non era configurare Odoo. Era trasformare requisiti operativi in comportamento del sistema.</p>
+        </div>
+      </div>
+
+      <!-- Flow principale vendita -->
+      <div class="reveal d1" style="margin-top:44px;">
+        <div class="eyebrow" style="margin-bottom:16px;">Flow · Vendita</div>
+        <div class="flow" style="gap:6px;flex-wrap:wrap;">
+          <span class="node">Lead</span><span class="arr">→</span>
+          <span class="node">Opportunità</span><span class="arr">→</span>
+          <span class="node">Preventivo</span><span class="arr">→</span>
+          <span class="node">Contratto</span><span class="arr">→</span>
+          <span class="node">Firma</span><span class="arr">→</span>
+          <span class="node">Attività</span><span class="arr">→</span>
+          <span class="node" style="border-color:rgba(110,207,151,0.5);color:#6fcf97;">Reporting</span>
+        </div>
+      </div>
+
+      <!-- Flow noleggio -->
+      <div class="reveal d2" style="margin-top:28px;">
+        <div class="eyebrow" style="margin-bottom:16px;">Flow · Noleggio</div>
+        <div class="flow" style="gap:6px;flex-wrap:wrap;">
+          <span class="node">Disponibilità</span><span class="arr">→</span>
+          <span class="node">Selezione</span><span class="arr">→</span>
+          <span class="node">Prenotazione</span><span class="arr">→</span>
+          <span class="node">Acconto</span><span class="arr">→</span>
+          <span class="node">Verifica cliente</span><span class="arr">→</span>
+          <span class="node">Conferma</span><span class="arr">→</span>
+          <span class="node" style="border-color:rgba(110,207,151,0.5);color:#6fcf97;">Saldo</span>
+        </div>
+      </div>
+
+      <!-- Tre casi concreti -->
+      <div class="reveal d2" style="margin-top:52px;">
+        <div class="eyebrow" style="margin-bottom:24px;">Tre casi concreti</div>
+        <div class="steps">
+          <div class="step">
+            <div class="n">0<span class="bg">1</span></div>
+            <div>
+              <h3>CRM: trasformare un'opportunità in un flusso tracciato</h3>
+              <p>Ogni lead doveva generare attività automatiche assegnate al commerciale corretto, con scadenze visibili e stato aggiornabile senza uscire dalla vista cliente. La necessità operativa era non perdere lead per dimenticanza o mancanza di visibilità sullo stato.</p>
+              <div class="io">
+                <span class="lbl">Esigenza</span><span class="pill">nessuna attività persa</span>
+                <span class="lbl">Dato</span><span class="pill">lead + commerciale + scadenza</span>
+                <span class="lbl">Output</span><span class="pill">attività automatica assegnata</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="n">0<span class="bg">2</span></div>
+            <div>
+              <h3>Preventivo: dalla conversazione al documento in un passaggio</h3>
+              <p>Il preventivo doveva riflettere in tempo reale disponibilità, listino aggiornato e margini, ed essere inviabile direttamente dal gestionale con firma digitale integrata. Il problema precedente era la distanza tra la trattativa e il documento formale.</p>
+              <div class="io">
+                <span class="lbl">Informazioni</span><span class="pill">disponibilità + listino + margini</span>
+                <span class="lbl">Logica</span><span class="pill">calcolo automatico + approvazione</span>
+                <span class="lbl">Output</span><span class="pill">preventivo firmabile da CRM</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="n">0<span class="bg">3</span></div>
+            <div>
+              <h3>Noleggio: disponibilità, pagamento e verifica in un flusso unico</h3>
+              <p>La prenotazione di un veicolo richiedeva controllo disponibilità, raccolta acconto, verifica documenti cliente e conferma, spesso in momenti e canali diversi. Il progetto ha unificato questi passaggi in un flusso sequenziale con checkpoint espliciti.</p>
+              <div class="io">
+                <span class="lbl">Disponibilità</span><span class="pill">calendario veicoli in tempo reale</span>
+                <span class="lbl">Pagamento</span><span class="pill">acconto + saldo tracciati</span>
+                <span class="lbl">Verifica</span><span class="pill">documenti cliente + checklist</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UI -->
+      <div class="reveal d3" style="margin-top:52px;">
+        <div class="eyebrow" style="margin-bottom:20px;">UI</div>
+        <div class="img-4grid">
+          <div class="img-ph" data-img="sordo-dashboard-principale.webp">
+            <span>Dashboard principale: KPI commerciali, attività in scadenza, pipeline visibile a colpo d'occhio</span>
+          </div>
+          <div class="img-ph" data-img="sordo-crm-pipeline.webp">
+            <span>Vista CRM: pipeline kanban o lista con stato opportunità, assegnazione commerciale, prossima azione</span>
+          </div>
+          <div class="img-ph" data-img="sordo-preventivo.webp">
+            <span>Preventivo: form di composizione con disponibilità in tempo reale, margini e pulsante di invio/firma</span>
+          </div>
+          <div class="img-ph" data-img="sordo-noleggio-prenotazione.webp">
+            <span>Flusso noleggio: calendario disponibilità veicolo + stato prenotazione (acconto, verifica, conferma)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────── ALTRI CASI (ritmo diverso) -->
+  <section class="section tight altri-casi-section">
+    <div class="shell">
+      <div class="altri-casi-head reveal">
+        <h2 class="h2-cinema">A volte la decisione migliore è non ridisegnare nulla.</h2>
+        <p class="reveal d1">Alcuni dei progetti di cui vado più fiera non sono i più belli da vedere. Perché a volte il valore sta nella decisione, nel workflow o nella complessità che scompare.</p>
+      </div>
+
+      <div class="casi-lista" style="margin-top:48px;">
+
+        <div class="case reveal d1">
+          <div class="ctx"><span class="pill wine"><span class="dot"></span>Ente · servizi al cittadino</span><span class="pill">Software su misura</span></div>
+          <h3>Portale anagrafe, sistema turnazioni e app mobile: tre strumenti separati che non si parlavano.</h3>
+          <div class="case-grid">
+            <div class="k">Contesto</div><div class="v">Sistema di lavoro che prevedeva vari passaggi tra Excel e PDF, un'app che indicava le distanze in linea d'aria, un sito del 2008 senza carattere e difficile da navigare.</div>
+            <div class="k">Problema</div><div class="v">Turnazioni gestite manualmente con errori e rettifiche continue, app mobile insufficiente rispetto ai flussi reali, portale da riallineare alle esigenze operative.</div>
+            <div class="k">Decisione</div><div class="v">Sito perlustrato, app eliminata e sostituita con una web app (meno costosa da implementare e mantenere), portale integrato con algoritmo di calcolo e sincronizzazione in tempo reale.</div>
+            <div class="k">Output</div><div class="v">Sito riorganizzato, web app leggera per la gestione operativa, portale integrato con algoritmo di calcolo, sincronizzazione in tempo reale, estrazione del flusso dati.</div>
+            <div class="k">Impatto</div><div class="v">Badge sull'accessibilità ricevuto da un ente terzo esperto nel tema · riduzione del 99% del tempo di lavorazione e degli errori umani</div>
+          </div>
+        </div>
+
+        <div class="case reveal d1">
+          <div class="ctx"><span class="pill wine"><span class="dot"></span>PMI · manifattura</span><span class="pill">Software Fit Sprint</span></div>
+          <h3>Scelta del gestionale aziendale, con quattro reparti e tre fornitori in valutazione da mesi.</h3>
+          <div class="case-grid">
+            <div class="k">Contesto</div><div class="v">Due CRM in uso (uno custom senza manutenzione, uno di un competitor in dismissione), quattro reparti con esigenze diverse, nessuna decisione in vista.</div>
+            <div class="k">Problema</div><div class="v">Tre fornitori in valutazione, demo viste da tutti, scelta ferma. Rischio concreto di comprare il tool più "bello" invece del più adatto ai processi reali.</div>
+            <div class="k">Decisione</div><div class="v">Mappa dei processi reali, criteri pesati con i reparti, chiamate con i tecnici (non solo i commerciali), matrice decisionale con un rischio per riga. Validata una delle tre opzioni, scartate le altre due con motivazione scritta.</div>
+            <div class="k">Output</div><div class="v">Decisione difendibile, roadmap a 30 / 90 / 180 giorni, handoff al partner dev per l'implementazione.</div>
+            <div class="k">Impatto</div><div class="v">Riduzione delle attività dimenticate · diminuzione delle chiamate tra colleghi per delucidazioni · apertura mattutina di un solo portale con tutto all'interno</div>
+          </div>
+        </div>
+
+        <div class="case case-highlight reveal d1">
+          <div class="ctx"><span class="pill wine"><span class="dot"></span>Consulente libera professionista</span><span class="pill">Website Evolution Check</span></div>
+          <h3>Parla molto, converte poco.</h3>
+          <div class="case-body-layout">
+            <div class="case-grid">
+              <div class="k">Contesto</div><div class="v">Sito online da molti anni, non convertiva lead nonostante traffico presente. L'offerta era chiara per chi già conosceva la consulente, poco leggibile per chi arrivava da fuori.</div>
+              <div class="k">Problema</div><div class="v">Tentazione di un redesign totale. Budget importante a rischio per risolvere il problema sbagliato.</div>
+              <div class="k">Decisione</div><div class="v">Audit UX e gap analysis, roadmap a 3-6 mesi. Fare: riallineare CTA e flusso operativo. Non fare: redesign totale. Rimandare: restyling visivo. In parallelo, nuova landing ad hoc allineata con una specialista ADV.</div>
+              <div class="k">Output</div><div class="v">Interventi mirati, allineamento con ADV Specialist, checklist delle modifiche, nuova landing con flusso ottimizzato.</div>
+              <div class="k">Impatto</div><div class="v">Circa 3.000 euro di budget evitato sul redesign · dato in arrivo sulle conversioni (le adv hanno bisogno di tempo per funzionare)</div>
+            </div>
+            <div class="case-highlight-note">
+              <div class="eyebrow" style="margin-bottom:10px;">Perché questo caso conta</div>
+              <p style="font-size:14.5px;line-height:23px;color:var(--on-dark-2);margin:0;">La tentazione era il redesign completo. L'audit ha mostrato che il problema era strutturale, non visivo. Proporre meno di quello che il cliente si aspettava è stata la decisione più difficile e più corretta.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────────── CTA -->
   <section class="section">
     <div class="shell">
       <div class="cta-band reveal">
@@ -80,4 +440,295 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
   </section>
+
+  <style>
+    /* ── Anchors hero ─────────────────────── */
+    .casi-anchors {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .casi-anchor {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--eyebrow-dark);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(214,177,188,0.3);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .casi-anchor:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+    .casi-anchor-sep { color: var(--on-dark-3); font-size: 13px; }
+
+    /* ── Caso sections ────────────────────── */
+    .caso-section { border-top: 1px solid var(--hairline); }
+    .caso-alt { background: rgba(255,255,255,0.015); }
+
+    .caso-eyebrow-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .caso-num {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--on-dark-3);
+    }
+
+    .caso-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--eyebrow-dark);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(214,177,188,0.3);
+      padding-bottom: 1px;
+      margin-top: 16px;
+      transition: color 0.2s;
+    }
+    .caso-link .ic { width: 14px; height: 14px; }
+    .caso-link:hover { color: #fff; }
+
+    /* ── Image placeholder ────────────────── */
+    .img-ph {
+      border: 1px dashed rgba(74,119,168,0.4);
+      background: rgba(74,119,168,0.05);
+      border-radius: 10px;
+      padding: 0;
+      aspect-ratio: 16/10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .img-ph span {
+      font-size: 12px;
+      color: rgba(74,119,168,0.7);
+      font-family: var(--font-mono);
+      padding: 16px;
+      line-height: 1.6;
+    }
+    .img-ph::before {
+      content: attr(data-img);
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      color: rgba(74,119,168,0.5);
+    }
+    .img-ph { position: relative; }
+    .img-ph-after {
+      border-color: rgba(110,207,151,0.35);
+      background: rgba(110,207,151,0.04);
+    }
+    .img-ph-after span { color: rgba(110,207,151,0.6); }
+    .img-ph-wide {
+      aspect-ratio: 21/9;
+    }
+
+    /* ── Before / After ──────────────────── */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 760px) { .ba-grid { grid-template-columns: 1fr; } }
+
+    .ba-label {
+      font-size: 10.5px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .ba-before .ba-label { color: var(--on-dark-3); }
+    .ba-after .ba-label { color: rgba(110,207,151,0.8); }
+
+    .ba-caption {
+      margin-top: 14px;
+      font-size: 14px;
+      line-height: 22px;
+      color: var(--on-dark-3);
+    }
+
+    /* ── Image strip ──────────────────────── */
+    .img-strip {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .img-strip .img-ph-wide { aspect-ratio: auto; }
+    @media (max-width: 900px) {
+      .img-strip { grid-template-columns: 1fr 1fr; }
+      .img-strip .img-ph-wide { aspect-ratio: 16/10; }
+    }
+    @media (max-width: 560px) { .img-strip { grid-template-columns: 1fr; } }
+
+    /* ── Design decisions ─────────────────── */
+    .decisions { border-top: 1px solid var(--hairline); padding-top: 36px; }
+    .decision-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--on-dark-3);
+      margin-bottom: 24px;
+    }
+    .decisions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 760px) { .decisions-grid { grid-template-columns: 1fr; gap: 20px; } }
+    .decision-item { display: flex; gap: 18px; align-items: flex-start; }
+    .decision-n {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--eyebrow-dark);
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .decision-title { font-size: 15px; font-weight: 700; color: #fff; margin: 0 0 8px; }
+    .decision-body { font-size: 14px; line-height: 22px; color: var(--on-dark-2); margin: 0; }
+
+    /* ── Ruoli (farmacie) ─────────────────── */
+    .ruoli-grid { display: grid; gap: 20px; }
+    .ruolo-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--on-dark-3);
+      margin-bottom: 10px;
+    }
+    .ruolo-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .flow-tag {
+      font-size: 13px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      padding: 4px 10px;
+      color: var(--on-dark-2);
+    }
+    .fa { color: var(--accent-blue, #4a77a8); font-size: 13px; }
+
+    /* ── Complessità chain ────────────────── */
+    .complessita-chain {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .cc-node {
+      font-size: 14px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--hairline);
+      border-radius: 8px;
+      padding: 8px 16px;
+      color: #fff;
+    }
+    .cc-node-out {
+      background: rgba(110,207,151,0.1);
+      border-color: rgba(110,207,151,0.3);
+      color: #6fcf97;
+    }
+    .cc-arr { color: var(--on-dark-3); font-size: 14px; }
+
+    /* ── Flow comparison ──────────────────── */
+    .flow-compare-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 700px) {
+      .flow-compare-grid { grid-template-columns: 1fr; }
+      .flow-compare-divider { display: none; }
+    }
+    .flow-col-label {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .flow-col-before .flow-col-label { color: var(--on-dark-3); }
+    .flow-col-after .flow-col-label { color: rgba(110,207,151,0.8); }
+    .flow-steps-vert { display: grid; gap: 0; }
+    .fv-step {
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--hairline);
+      color: var(--on-dark-2);
+    }
+    .fv-pain { background: rgba(232,154,154,0.05); border-color: rgba(232,154,154,0.18); }
+    .fv-ok { background: rgba(110,207,151,0.05); border-color: rgba(110,207,151,0.18); }
+    .fv-arr { text-align: center; font-size: 12px; color: var(--on-dark-3); padding: 3px 0; }
+    .flow-compare-divider {
+      font-size: 24px;
+      color: var(--eyebrow-dark);
+      padding-top: 40px;
+      align-self: start;
+    }
+    .flow-note {
+      margin-top: 20px;
+      font-size: 12.5px;
+      color: var(--on-dark-3);
+      font-style: italic;
+    }
+
+    /* ── 4-image grid ─────────────────────── */
+    .img-4grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 600px) { .img-4grid { grid-template-columns: 1fr; } }
+
+    /* ── Altri casi ───────────────────────── */
+    .altri-casi-section { background: rgba(255,255,255,0.012); border-top: 1px solid var(--hairline); }
+    .altri-casi-head { max-width: 640px; margin-bottom: 8px; }
+    .altri-casi-head h2 { margin: 0; }
+    .altri-casi-head p { font-size: 17px; line-height: 27px; margin-top: 16px; }
+    .casi-lista { display: grid; gap: 16px; }
+
+    .case {
+      border: 1px solid var(--hairline);
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 30px 32px;
+    }
+    .case .ctx { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 18px; }
+    .case h3 { font-size: 22px; margin-bottom: 18px; }
+    .case-grid { display: grid; grid-template-columns: 130px 1fr; gap: 14px 22px; align-items: baseline; }
+    .case-grid .k { font-family: var(--font-heading); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--eyebrow-dark); }
+    .case-grid .v { color: var(--on-dark-2); font-size: 15px; line-height: 23px; }
+    @media (max-width: 600px) { .case-grid { grid-template-columns: 1fr; gap: 4px 0; } .case-grid .k { margin-top: 12px; } }
+
+    /* Caso highlight (Website Evolution Check) */
+    .case-highlight { border-color: rgba(214,177,188,0.25); background: rgba(124,34,63,0.06); }
+    .case-body-layout { display: grid; grid-template-columns: 1fr 280px; gap: 32px; align-items: start; margin-top: 0; }
+    @media (max-width: 860px) { .case-body-layout { grid-template-columns: 1fr; } }
+    .case-highlight-note {
+      background: rgba(124,34,63,0.12);
+      border: 1px solid rgba(176,106,126,0.25);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 0;
+    }
+  </style>
+
 </Layout>
