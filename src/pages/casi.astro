@@ -62,19 +62,20 @@ import Layout from "../layouts/Layout.astro";
 
       <!-- Sequenza dettagli visivi -->
       <div class="img-strip reveal d3" style="margin-top:40px;">
-        <div class="img-ph img-ph-wide" data-img="piracci-after-hero-detail.webp">
-          <span>Hero del nuovo sito: tipografia + fotografia d'ambiente</span>
-        </div>
-        <div class="img-ph" data-img="piracci-after-progetti.webp">
-          <span>Sezione "Progetti realizzati" o portfolio</span>
-        </div>
-        <div class="img-ph" data-img="piracci-after-anima.webp">
-          <span>Sezione "La nostra anima" o identità aziendale</span>
-        </div>
-        <div class="img-ph" data-img="piracci-after-prodotto.webp">
-          <span>Pagina o dettaglio prodotto / brand</span>
-        </div>
+        <img src="/assets/piracci-after-design-system.webp"
+          alt="Design system Edilarte Piracci: componenti, tipografia Futura e DM Sans, palette blu-ocra-nero, hero sections, card prodotto e card stanze"
+          class="caso-img caso-img-wide" loading="lazy" />
+        <img src="/assets/piracci-after-materiali.webp"
+          alt="Direzione creativa con il fotografo: moodboard di abbinamenti materiali (marmi, ceramiche, rubinetterie) che raccontano la consulenza sartoriale dell'azienda"
+          class="caso-img" loading="lazy" />
+        <img src="/assets/piracci-after-anima.webp"
+          alt="Sezione Chi siamo del nuovo sito: identità familiare, collage fotografico d'ambiente, testo sulla consulenza sartoriale"
+          class="caso-img" loading="lazy" />
+        <img src="/assets/piracci-after-prodotto.webp"
+          alt="Pagina categoria Idromassaggio: gallery prodotto con lightbox, marchi selezionati in evidenza"
+          class="caso-img" loading="lazy" />
       </div>
+      <p class="strip-note reveal d3">Il sito è in fase di completamento: alcuni contenuti fotografici e di prodotto sono ancora in attesa di consegna dal cliente.</p>
 
       <!-- Design decisions -->
       <div class="decisions reveal d2" style="margin-top:52px;">
@@ -497,6 +498,17 @@ import Layout from "../layouts/Layout.astro";
       border-radius: 10px;
       display: block;
       border: 1px solid var(--hairline);
+      object-fit: cover;
+    }
+    .caso-img-wide {
+      height: 100%;
+      min-height: 220px;
+    }
+    .strip-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--on-dark-3);
+      font-style: italic;
     }
 
     /* ── Image placeholder ────────────────── */
