@@ -133,71 +133,91 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </div>
 
-      <!-- Contesto: ruoli e flusso -->
+      <!-- Contesto: ruoli e flussi reali -->
       <div class="holo reveal d1" style="margin-top:40px;padding:32px 36px;">
-        <div class="eyebrow" style="margin-bottom:20px;">Chi usa il sistema · cosa fa · quali dati produce</div>
+        <div class="eyebrow" style="margin-bottom:24px;">Chi usa il sistema · cosa fa · cosa propaga</div>
         <div class="ruoli-grid">
+
           <div class="ruolo">
-            <div class="ruolo-label">Farmacista al banco</div>
-            <div class="ruolo-flow">
-              <span class="flow-tag">riceve richiesta</span>
-              <span class="fa">→</span>
-              <span class="flow-tag">consulta disponibilità</span>
-              <span class="fa">→</span>
-              <span class="flow-tag">registra vendita o ordine</span>
+            <div class="ruolo-label">Farmacista</div>
+            <div class="ruoli-flows-col">
+              <div class="ruolo-flow">
+                <span class="flow-tag">deve controllare una normativa</span>
+                <span class="fa">→</span>
+                <span class="flow-tag">apre il portale</span>
+                <span class="fa">→</span>
+                <span class="flow-tag">digita il nome</span>
+                <span class="fa">→</span>
+                <span class="flow-tag">trova il documento</span>
+                <span class="flow-tag flow-tag-note">non cerca tra le mail</span>
+              </div>
+              <div class="ruolo-flow" style="margin-top:12px;">
+                <span class="flow-tag">deve modificare gli orari</span>
+                <span class="fa">→</span>
+                <span class="flow-tag">apre il portale</span>
+                <span class="fa">→</span>
+                <span class="flow-tag">modifica nel profilo</span>
+                <span class="fa">→</span>
+                <span class="flow-tag flow-tag-propagate">propaga al sito istituzionale · ASL · web app cittadini</span>
+              </div>
             </div>
           </div>
-          <div class="ruolo">
+
+          <div class="ruolo" style="margin-top:20px;">
             <div class="ruolo-label">Responsabile turni</div>
             <div class="ruolo-flow">
-              <span class="flow-tag">pianifica copertura</span>
+              <span class="flow-tag">suddivide le farmacie per zone</span>
               <span class="fa">→</span>
-              <span class="flow-tag">assegna turni</span>
+              <span class="flow-tag">clicca "Genera turni"</span>
               <span class="fa">→</span>
-              <span class="flow-tag">gestisce variazioni</span>
+              <span class="flow-tag">algoritmo calcola 48h su 2 anni</span>
+              <span class="fa">→</span>
+              <span class="flow-tag">variazioni puntuali sulla riga</span>
+              <span class="fa">→</span>
+              <span class="flow-tag flow-tag-propagate">propaga alla web app cittadini</span>
             </div>
           </div>
-          <div class="ruolo">
-            <div class="ruolo-label">Titolare / direzione</div>
+
+          <div class="ruolo" style="margin-top:20px;">
+            <div class="ruolo-label">Cittadino · ore 2:00</div>
             <div class="ruolo-flow">
-              <span class="flow-tag">legge report</span>
+              <span class="flow-tag">cerca farmamiaverona.it</span>
               <span class="fa">→</span>
-              <span class="flow-tag">valuta performance</span>
+              <span class="flow-tag">accetta geolocalizzazione</span>
               <span class="fa">→</span>
-              <span class="flow-tag">prende decisioni operative</span>
+              <span class="flow-tag flow-tag-ok">vede la farmacia aperta più vicina</span>
             </div>
           </div>
+
         </div>
       </div>
 
       <!-- La complessità -->
       <div class="complessita reveal d2" style="margin-top:40px;">
         <div class="eyebrow" style="margin-bottom:16px;">La complessità</div>
+        <p style="font-size:15px;line-height:25px;color:var(--on-dark-2);margin:0 0 20px;max-width:68ch;">Un'unica azione nel portale propaga dati su tre superfici diverse in tempo reale. Il farmacista che modifica i suoi orari non sa che sta aggiornando contemporaneamente il sito istituzionale, la comunicazione verso l'ASL di competenza e la web app che un cittadino userà alle due di notte per trovare la farmacia aperta. Non deve saperlo. Deve solo modificare l'orario.</p>
         <div class="complessita-chain">
-          <div class="cc-node">Persona</div>
+          <div class="cc-node">Portale operatori</div>
           <div class="cc-arr">→</div>
-          <div class="cc-node">Attività</div>
-          <div class="cc-arr">→</div>
-          <div class="cc-node">Dato</div>
-          <div class="cc-arr">→</div>
-          <div class="cc-node">Decisione</div>
-          <div class="cc-arr">→</div>
-          <div class="cc-node cc-node-out">Output</div>
+          <div class="cc-node">Sito istituzionale</div>
+          <div class="cc-arr">+</div>
+          <div class="cc-node">ASL competente</div>
+          <div class="cc-arr">+</div>
+          <div class="cc-node cc-node-out">Web app cittadini</div>
         </div>
-        <p style="margin-top:20px;font-size:15px;line-height:24px;color:var(--on-dark-3);max-width:64ch;">Ogni ruolo genera dati che altri ruoli devono leggere in tempo reale. Il sistema doveva rendere questa catena invisibile all'utente: le informazioni giuste, al momento giusto, senza navigazione esplicita.</p>
       </div>
 
-      <!-- Problema -->
+      <!-- Problemi chiave -->
       <div class="problemi-list reveal d2" style="margin-top:40px;">
         <div class="eyebrow" style="margin-bottom:16px;">Problemi chiave</div>
         <div class="scope-grid">
           <div class="scope" style="border-color:rgba(232,154,154,0.2);background:rgba(232,154,154,0.04);">
-            <h4 style="color:#e89a9a;font-size:15px;font-weight:700;margin-bottom:10px;">01 · Informazioni distribuite</h4>
-            <p style="font-size:14.5px;line-height:23px;color:var(--on-dark-2);margin:0;">Turni, magazzino e registro vendite vivevano in strumenti separati. Sincronizzarli richiedeva operazioni manuali con errori frequenti.</p>
+            <h4 style="color:#e89a9a;font-size:15px;font-weight:700;margin-bottom:10px;">01 · Tre superfici, zero sincronizzazione</h4>
+            <p style="font-size:14.5px;line-height:23px;color:var(--on-dark-2);margin:0;">Orari, turni e normative esistevano in sistemi separati. Ogni aggiornamento richiedeva di intervenire manualmente su ciascuno. Gli errori di disallineamento erano frequenti e visibili ai cittadini.</p>
           </div>
           <div class="scope" style="border-color:rgba(232,154,154,0.2);background:rgba(232,154,154,0.04);">
-            <h4 style="color:#e89a9a;font-size:15px;font-weight:700;margin-bottom:10px;">02 · Formazione come collo di bottiglia</h4>
-            <p style="font-size:14.5px;line-height:23px;color:var(--on-dark-2);margin:0;">Ogni nuovo operatore richiedeva giorni di affiancamento per imparare i flussi. L'interfaccia non guidava, documentava.</p>
+            <h4 style="color:#e89a9a;font-size:15px;font-weight:700;margin-bottom:10px;">02 · Turni calcolati a mano</h4>
+            <p style="font-size:14.5px;line-height:23px;color:var(--on-dark-2);margin:0;">Il responsabile dei turni costruiva manualmente i calendari di reperibilità per decine di farmacie su base biennale. Ogni variazione richiedeva di ricalcolare a mano i turni collegati.</p>
           </div>
         </div>
       </div>
@@ -206,42 +226,41 @@ import Layout from "../layouts/Layout.astro";
       <div class="holo glow-wine reveal d2" style="margin-top:32px;padding:32px 36px;">
         <div class="eyebrow" style="margin-bottom:12px;">Decisione progettuale</div>
         <p style="font-size:19px;font-weight:700;color:#fff;line-height:1.4;margin:0 0 16px;font-family:var(--font-heading);">Prima di progettare le schermate, abbiamo progettato il flusso.</p>
-        <p style="font-size:15px;line-height:24px;color:var(--on-dark-2);margin:0;">Il modello dati e la sequenza delle operazioni sono stati definiti con gli utenti prima di disegnare qualsiasi interfaccia. Le schermate sono diventate il riflesso di flussi già validati, non il punto di partenza del progetto.</p>
+        <p style="font-size:15px;line-height:24px;color:var(--on-dark-2);margin:0;">Il modello dati e la propagazione sono stati definiti prima di disegnare qualsiasi interfaccia. L'obiettivo non era costruire un gestionale, era fare in modo che un'azione in un posto aggiornasse tutto il resto senza che l'operatore dovesse pensarci.</p>
       </div>
 
-      <!-- Flow comparison -->
+      <!-- Flow comparison: turni -->
       <div class="flow-comparison reveal d3" style="margin-top:48px;">
-        <div class="eyebrow" style="margin-bottom:24px;">Flow comparison</div>
+        <div class="eyebrow" style="margin-bottom:24px;">Flow comparison · Gestione turni</div>
         <div class="flow-compare-grid">
           <div class="flow-col flow-col-before">
-            <div class="flow-col-label">Before flow</div>
+            <div class="flow-col-label">Before</div>
             <div class="flow-steps-vert">
-              <div class="fv-step fv-pain">Richiesta al banco</div>
+              <div class="fv-step fv-pain">Raccolta dati da ogni farmacia</div>
               <div class="fv-arr">↓</div>
-              <div class="fv-step fv-pain">Controllo verbale disponibilità</div>
+              <div class="fv-step fv-pain">Calcolo manuale dei turni su foglio</div>
               <div class="fv-arr">↓</div>
-              <div class="fv-step fv-pain">Accesso a sistema separato per ordini</div>
+              <div class="fv-step fv-pain">Aggiornamento del sito istituzionale</div>
               <div class="fv-arr">↓</div>
-              <div class="fv-step fv-pain">Aggiornamento manuale registro</div>
+              <div class="fv-step fv-pain">Comunicazione separata all'ASL</div>
               <div class="fv-arr">↓</div>
-              <div class="fv-step fv-pain">Report compilato a fine turno</div>
+              <div class="fv-step fv-pain">Variazione → ricomincia da capo</div>
             </div>
           </div>
           <div class="flow-compare-divider" aria-hidden="true">→</div>
           <div class="flow-col flow-col-after">
             <div class="flow-col-label">Designed flow</div>
             <div class="flow-steps-vert">
-              <div class="fv-step fv-ok">Richiesta al banco</div>
+              <div class="fv-step fv-ok">Suddivisione farmacie per zone</div>
               <div class="fv-arr">↓</div>
-              <div class="fv-step fv-ok">Disponibilità visibile in tempo reale</div>
+              <div class="fv-step fv-ok">Clic "Genera turni" · algoritmo calcola 2 anni</div>
               <div class="fv-arr">↓</div>
-              <div class="fv-step fv-ok">Registrazione e ordine in un'unica azione</div>
+              <div class="fv-step fv-ok">Variazione: modifica sulla riga</div>
               <div class="fv-arr">↓</div>
-              <div class="fv-step fv-ok">Report aggiornato automaticamente</div>
+              <div class="fv-step fv-ok">Propagazione automatica su tutte le superfici</div>
             </div>
           </div>
         </div>
-        <p class="flow-note">I passaggi sono rappresentativi del tipo di intervento. Il flusso preciso è disponibile nella documentazione di progetto.</p>
       </div>
 
       <!-- UI finale -->
@@ -659,6 +678,25 @@ import Layout from "../layouts/Layout.astro";
       color: var(--on-dark-2);
     }
     .fa { color: var(--accent-blue, #4a77a8); font-size: 13px; }
+    .ruoli-flows-col { display: grid; gap: 0; }
+    .flow-tag-note {
+      background: rgba(255,255,255,0.03);
+      border-style: dashed;
+      color: var(--on-dark-3);
+      font-size: 12px;
+    }
+    .flow-tag-propagate {
+      background: rgba(110,207,151,0.08);
+      border-color: rgba(110,207,151,0.3);
+      color: #6fcf97;
+      font-size: 12px;
+    }
+    .flow-tag-ok {
+      background: rgba(110,207,151,0.1);
+      border-color: rgba(110,207,151,0.35);
+      color: #6fcf97;
+      font-weight: 600;
+    }
 
     /* ── Complessità chain ────────────────── */
     .complessita-chain {
