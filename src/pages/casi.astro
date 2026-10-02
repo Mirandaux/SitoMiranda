@@ -265,20 +265,41 @@ import Layout from "../layouts/Layout.astro";
 
       <!-- UI finale -->
       <div class="img-strip-4 reveal d3" style="margin-top:48px;">
-        <div class="eyebrow" style="margin-bottom:20px;">UI finale</div>
-        <div class="img-4grid">
-          <div class="img-ph" data-img="farmacie-overview-dashboard.webp">
-            <span>Overview: schermata principale con navigazione ruoli e stato operativo generale</span>
+        <div class="eyebrow" style="margin-bottom:20px;">Output del progetto</div>
+        <div class="farmacie-grid">
+
+          <!-- Flusso — wide, primo -->
+          <div class="farmacie-item farmacie-wide">
+            <img src="/assets/farmacie-flusso.webp"
+              alt="User flow della web app FederfarmaVerona: splash page, geolocalizzazione, mappa con farmacia aperta, lista farmacie, dettaglio farmacia con CTA navigazione e chiamata"
+              class="caso-img" loading="lazy" />
+            <p class="img-caption">User flow completo: dalla splash page alla farmacia aperta, con i due percorsi (geolocalizzazione attiva / non attiva) e i database collegati a ogni schermata.</p>
           </div>
-          <div class="img-ph" data-img="farmacie-flusso-principale.webp">
-            <span>Workflow principale: schermata in cui il farmacista vede disponibilità, richiesta in corso e azione di registrazione contemporaneamente</span>
+
+          <!-- Schermate mobile -->
+          <div class="farmacie-item">
+            <img src="/assets/farmacie-app-screens.webp"
+              alt="Schermate iPhone della web app FederfarmaVerona: farmacia piu vicina con mappa, menu, lista farmacie con stato aperta/chiusa, turni mensili con calendario"
+              class="caso-img" loading="lazy" />
+            <p class="img-caption">Web app per i cittadini: farmacia piu vicina geolocalizzata, stato in tempo reale (aperta, in turno, chiusa ora, in ferie), turni mensili con calendario navigabile.</p>
           </div>
-          <div class="img-ph" data-img="farmacie-turni-complessi.webp">
-            <span>Vista turni: schermata con pianificazione settimanale, copertura per ruolo e variazioni in attesa</span>
+
+          <!-- Suddivisione profili utente (portale operatori) -->
+          <div class="farmacie-item">
+            <img src="/assets/farmacie-profili-utente.png"
+              alt="Architettura del portale operatori in Figma: tre profili separati (Profilo Farmacia, Profilo Ordine Farmacisti, Profilo Amministratore) con flussi e schermate per ciascuno"
+              class="caso-img" loading="lazy" />
+            <p class="img-caption">Il portale operatori e strutturato su tre profili con accessi e funzionalita distinte: farmacia, ordine dei farmacisti, amministratore.</p>
           </div>
-          <div class="img-ph" data-img="farmacie-stato-significativo.webp">
-            <span>Stato critico o notifica: come il sistema comunica una condizione che richiede attenzione immediata</span>
+
+          <!-- Sito istituzionale -->
+          <div class="farmacie-item">
+            <img src="/assets/farmacie-sito-istituzionale.webp"
+              alt="Homepage sito istituzionale FederfarmaVerona: navigazione con farmacie di turno e articoli, hero con CTA Trova la farmacia aperta piu vicina e mockup della web app"
+              class="caso-img" loading="lazy" />
+            <p class="img-caption">Il sito istituzionale FederfarmaVerona: una delle superfici che riceve automaticamente gli aggiornamenti quando il portale operatori viene modificato.</p>
           </div>
+
         </div>
       </div>
 
@@ -629,6 +650,36 @@ import Layout from "../layouts/Layout.astro";
       .img-strip { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) { .img-strip { grid-template-columns: 1fr; } }
+
+    /* ── Farmacie grid ────────────────────── */
+    .farmacie-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .farmacie-wide {
+      grid-column: 1 / -1;
+    }
+    .farmacie-item .caso-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 10px;
+    }
+    .farmacie-wide .caso-img {
+      aspect-ratio: 21/9;
+    }
+    .img-caption {
+      font-size: 0.78rem;
+      color: var(--on-dark-3);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    @media (max-width: 700px) {
+      .farmacie-grid { grid-template-columns: 1fr; }
+      .farmacie-wide { grid-column: auto; }
+    }
 
     /* ── Design decisions ─────────────────── */
     .decisions { border-top: 1px solid var(--hairline); padding-top: 36px; }
