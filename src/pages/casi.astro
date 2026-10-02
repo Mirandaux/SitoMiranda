@@ -129,7 +129,7 @@ import Layout from "../layouts/Layout.astro";
           <h2 class="h2-cinema" style="max-width:18ch;">Un unico sistema per coordinare persone, informazioni e operazioni.</h2>
         </div>
         <div>
-          <p style="font-size:17px;line-height:27px;margin-top:0;">Sistema gestionale su misura per una rete di farmacie. Più ruoli, più turni, più flussi informativi che dovevano convergere in un'unica interfaccia operativa senza richiedere formazione estesa.</p>
+          <p style="font-size:17px;line-height:27px;margin-top:0;">Sistema gestionale su misura per una rete di strutture sanitarie distribuite sul territorio. Più ruoli, più turni, più flussi informativi che dovevano convergere in un'unica interfaccia operativa senza richiedere formazione estesa.</p>
         </div>
       </div>
 
@@ -139,7 +139,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="ruoli-grid">
 
           <div class="ruolo">
-            <div class="ruolo-label">Farmacista</div>
+            <div class="ruolo-label">Operatore di sede</div>
             <div class="ruoli-flows-col">
               <div class="ruolo-flow">
                 <span class="flow-tag">deve controllare una normativa</span>
@@ -158,7 +158,7 @@ import Layout from "../layouts/Layout.astro";
                 <span class="fa">→</span>
                 <span class="flow-tag">modifica nel profilo</span>
                 <span class="fa">→</span>
-                <span class="flow-tag flow-tag-propagate">propaga al sito istituzionale · ASL · web app cittadini</span>
+                <span class="flow-tag flow-tag-propagate">propaga al sito istituzionale · ente pubblico · web app cittadini</span>
               </div>
             </div>
           </div>
@@ -166,7 +166,7 @@ import Layout from "../layouts/Layout.astro";
           <div class="ruolo" style="margin-top:20px;">
             <div class="ruolo-label">Responsabile turni</div>
             <div class="ruolo-flow">
-              <span class="flow-tag">suddivide le farmacie per zone</span>
+              <span class="flow-tag">suddivide le sedi per zone</span>
               <span class="fa">→</span>
               <span class="flow-tag">clicca "Genera turni"</span>
               <span class="fa">→</span>
@@ -181,11 +181,11 @@ import Layout from "../layouts/Layout.astro";
           <div class="ruolo" style="margin-top:20px;">
             <div class="ruolo-label">Cittadino · ore 2:00</div>
             <div class="ruolo-flow">
-              <span class="flow-tag">cerca farmamiaverona.it</span>
+              <span class="flow-tag">apre il portale pubblico</span>
               <span class="fa">→</span>
               <span class="flow-tag">accetta geolocalizzazione</span>
               <span class="fa">→</span>
-              <span class="flow-tag flow-tag-ok">vede la farmacia aperta più vicina</span>
+              <span class="flow-tag flow-tag-ok">vede la sede aperta più vicina</span>
             </div>
           </div>
 
@@ -195,13 +195,13 @@ import Layout from "../layouts/Layout.astro";
       <!-- La complessità -->
       <div class="complessita reveal d2" style="margin-top:40px;">
         <div class="eyebrow" style="margin-bottom:16px;">La complessità</div>
-        <p style="font-size:15px;line-height:25px;color:var(--on-dark-2);margin:0 0 20px;max-width:68ch;">Un'unica azione nel portale propaga dati su tre superfici diverse in tempo reale. Il farmacista che modifica i suoi orari non sa che sta aggiornando contemporaneamente il sito istituzionale, la comunicazione verso l'ASL di competenza e la web app che un cittadino userà alle due di notte per trovare la farmacia aperta. Non deve saperlo. Deve solo modificare l'orario.</p>
+        <p style="font-size:15px;line-height:25px;color:var(--on-dark-2);margin:0 0 20px;max-width:68ch;">Un'unica azione nel portale propaga dati su tre superfici diverse in tempo reale. L'operatore che modifica i suoi orari non sa che sta aggiornando contemporaneamente il sito istituzionale, la comunicazione verso l'ente pubblico di competenza e la web app che un cittadino userà alle due di notte per trovare la sede aperta. Non deve saperlo. Deve solo modificare l'orario.</p>
         <div class="complessita-chain">
           <div class="cc-node">Portale operatori</div>
           <div class="cc-arr">→</div>
           <div class="cc-node">Sito istituzionale</div>
           <div class="cc-arr">+</div>
-          <div class="cc-node">ASL competente</div>
+          <div class="cc-node">Ente pubblico</div>
           <div class="cc-arr">+</div>
           <div class="cc-node cc-node-out">Web app cittadini</div>
         </div>
@@ -217,7 +217,7 @@ import Layout from "../layouts/Layout.astro";
           </div>
           <div class="scope" style="border-color:rgba(232,154,154,0.2);background:rgba(232,154,154,0.04);">
             <h4 style="color:#e89a9a;font-size:15px;font-weight:700;margin-bottom:10px;">02 · Turni calcolati a mano</h4>
-            <p style="font-size:14.5px;line-height:23px;color:var(--on-dark-2);margin:0;">Il responsabile dei turni costruiva manualmente i calendari di reperibilità per decine di farmacie su base biennale. Ogni variazione richiedeva di ricalcolare a mano i turni collegati.</p>
+            <p style="font-size:14.5px;line-height:23px;color:var(--on-dark-2);margin:0;">Il responsabile dei turni costruiva manualmente i calendari di reperibilità per decine di sedi su base biennale. Ogni variazione richiedeva di ricalcolare a mano i turni collegati.</p>
           </div>
         </div>
       </div>
@@ -236,7 +236,7 @@ import Layout from "../layouts/Layout.astro";
           <div class="flow-col flow-col-before">
             <div class="flow-col-label">Before</div>
             <div class="flow-steps-vert">
-              <div class="fv-step fv-pain">Raccolta dati da ogni farmacia</div>
+              <div class="fv-step fv-pain">Raccolta dati da ogni sede</div>
               <div class="fv-arr">↓</div>
               <div class="fv-step fv-pain">Calcolo manuale dei turni su foglio</div>
               <div class="fv-arr">↓</div>
@@ -251,7 +251,7 @@ import Layout from "../layouts/Layout.astro";
           <div class="flow-col flow-col-after">
             <div class="flow-col-label">Designed flow</div>
             <div class="flow-steps-vert">
-              <div class="fv-step fv-ok">Suddivisione farmacie per zone</div>
+              <div class="fv-step fv-ok">Suddivisione sedi per zone</div>
               <div class="fv-arr">↓</div>
               <div class="fv-step fv-ok">Clic "Genera turni" · algoritmo calcola 2 anni</div>
               <div class="fv-arr">↓</div>
@@ -271,33 +271,33 @@ import Layout from "../layouts/Layout.astro";
           <!-- Flusso — wide, primo -->
           <div class="farmacie-item farmacie-wide">
             <img src="/assets/farmacie-flusso.webp"
-              alt="User flow della web app FederfarmaVerona: splash page, geolocalizzazione, mappa con farmacia aperta, lista farmacie, dettaglio farmacia con CTA navigazione e chiamata"
+              alt="User flow della web app pubblica: splash page, geolocalizzazione, mappa con sede aperta, lista sedi, dettaglio sede con CTA navigazione e chiamata"
               class="caso-img" loading="lazy" />
-            <p class="img-caption">User flow completo: dalla splash page alla farmacia aperta, con i due percorsi (geolocalizzazione attiva / non attiva) e i database collegati a ogni schermata.</p>
+            <p class="img-caption">User flow completo: dalla splash page alla sede aperta, con i due percorsi (geolocalizzazione attiva / non attiva) e i database collegati a ogni schermata.</p>
           </div>
 
           <!-- Schermate mobile -->
           <div class="farmacie-item">
             <img src="/assets/farmacie-app-screens.webp"
-              alt="Schermate iPhone della web app FederfarmaVerona: farmacia piu vicina con mappa, menu, lista farmacie con stato aperta/chiusa, turni mensili con calendario"
+              alt="Schermate iPhone della web app pubblica: sede piu vicina con mappa, menu, lista sedi con stato aperta/chiusa, turni mensili con calendario"
               class="caso-img" loading="lazy" />
-            <p class="img-caption">Web app per i cittadini: farmacia piu vicina geolocalizzata, stato in tempo reale (aperta, in turno, chiusa ora, in ferie), turni mensili con calendario navigabile.</p>
+            <p class="img-caption">Web app per i cittadini: sede piu vicina geolocalizzata, stato in tempo reale (aperta, in turno, chiusa ora, in ferie), turni mensili con calendario navigabile.</p>
           </div>
 
           <!-- Suddivisione profili utente (portale operatori) -->
           <div class="farmacie-item">
             <img src="/assets/farmacie-profili-utente.png"
-              alt="Architettura del portale operatori in Figma: tre profili separati (Profilo Farmacia, Profilo Ordine Farmacisti, Profilo Amministratore) con flussi e schermate per ciascuno"
+              alt="Architettura del portale operatori in Figma: tre profili separati con flussi e schermate per ciascuno"
               class="caso-img" loading="lazy" />
-            <p class="img-caption">Il portale operatori e strutturato su tre profili con accessi e funzionalita distinte: farmacia, ordine dei farmacisti, amministratore.</p>
+            <p class="img-caption">Il portale operatori strutturato su tre profili con accessi e funzionalita distinte.</p>
           </div>
 
           <!-- Sito istituzionale -->
           <div class="farmacie-item">
             <img src="/assets/farmacie-sito-istituzionale.webp"
-              alt="Homepage sito istituzionale FederfarmaVerona: navigazione con farmacie di turno e articoli, hero con CTA Trova la farmacia aperta piu vicina e mockup della web app"
+              alt="Homepage sito istituzionale: hero con CTA Trova la sede aperta piu vicina e mockup della web app"
               class="caso-img" loading="lazy" />
-            <p class="img-caption">Il sito istituzionale FederfarmaVerona: una delle superfici che riceve automaticamente gli aggiornamenti quando il portale operatori viene modificato.</p>
+            <p class="img-caption">Il sito istituzionale: una delle superfici che riceve automaticamente gli aggiornamenti quando il portale operatori viene modificato.</p>
           </div>
 
         </div>
@@ -395,23 +395,29 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </div>
 
-      <!-- UI -->
+      <!-- Flusso -->
       <div class="reveal d3" style="margin-top:52px;">
-        <div class="eyebrow" style="margin-bottom:20px;">UI</div>
-        <div class="img-4grid">
-          <div class="img-ph" data-img="sordo-dashboard-principale.webp">
-            <span>Dashboard principale: KPI commerciali, attività in scadenza, pipeline visibile a colpo d'occhio</span>
-          </div>
-          <div class="img-ph" data-img="sordo-crm-pipeline.webp">
-            <span>Vista CRM: pipeline kanban o lista con stato opportunità, assegnazione commerciale, prossima azione</span>
-          </div>
-          <div class="img-ph" data-img="sordo-preventivo.webp">
-            <span>Preventivo: form di composizione con disponibilità in tempo reale, margini e pulsante di invio/firma</span>
-          </div>
-          <div class="img-ph" data-img="sordo-noleggio-prenotazione.webp">
-            <span>Flusso noleggio: calendario disponibilità veicolo + stato prenotazione (acconto, verifica, conferma)</span>
-          </div>
+        <div class="eyebrow" style="margin-bottom:20px;">Costruzione del flusso</div>
+        <div class="sordo-flusso-wrap" id="sordo-zoom-wrap">
+          <img
+            src="/assets/sordo-odoo-flusso.webp"
+            alt="Diagramma di flusso del sistema Odoo per Sordo Auto: flusso vendita e flusso noleggio con tutti i passaggi, stati, attori e automazioni mappati nel to-be ideale"
+            class="caso-img sordo-flusso-img"
+            id="sordo-flusso-img"
+            loading="lazy"
+          />
+          <button class="zoom-btn" id="sordo-zoom-btn" aria-label="Espandi immagine">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span>Espandi</span>
+          </button>
         </div>
+        <p class="img-caption" style="margin-top:10px;">Mappatura del to-be ideale: flusso vendita (CRM, preventivo, ordine, magazzino, consegna) e flusso noleggio (prenotazione, verifica, targhette, riconsegna) con attori, stati e automazioni.</p>
+      </div>
+
+      <!-- Lightbox -->
+      <div class="sordo-lightbox" id="sordo-lightbox" role="dialog" aria-modal="true" aria-label="Flusso Odoo - Sordo Auto">
+        <button class="lb-close" id="sordo-lb-close" aria-label="Chiudi">✕</button>
+        <img src="/assets/sordo-odoo-flusso.webp" alt="" class="lb-img" />
       </div>
 
     </div>
@@ -817,13 +823,74 @@ import Layout from "../layouts/Layout.astro";
       font-style: italic;
     }
 
-    /* ── 4-image grid ─────────────────────── */
-    .img-4grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+    /* ── Sordo flusso zoom ────────────────── */
+    .sordo-flusso-wrap {
+      position: relative;
+      display: inline-block;
+      width: 100%;
     }
-    @media (max-width: 600px) { .img-4grid { grid-template-columns: 1fr; } }
+    .sordo-flusso-img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: zoom-in;
+      display: block;
+    }
+    .zoom-btn {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(10,10,14,0.82);
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      color: var(--on-dark-2);
+      font-size: 13px;
+      padding: 6px 12px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: color 0.15s;
+    }
+    .zoom-btn:hover { color: #fff; }
+    .sordo-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: auto;
+      cursor: zoom-out;
+    }
+    .sordo-lightbox.open { display: flex; }
+    .lb-img {
+      max-width: 100%;
+      max-height: 92vh;
+      border-radius: 8px;
+      object-fit: contain;
+      cursor: default;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+    }
+    .lb-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      background: rgba(10,10,14,0.8);
+      border: 1px solid var(--hairline);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 18px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10000;
+    }
 
     /* ── Altri casi ───────────────────────── */
     .altri-casi-section { background: rgba(255,255,255,0.012); border-top: 1px solid var(--hairline); }
@@ -857,5 +924,20 @@ import Layout from "../layouts/Layout.astro";
       margin-top: 0;
     }
   </style>
+
+  <script>
+    // Sordo flusso lightbox
+    const lb = document.getElementById('sordo-lightbox');
+    const img = document.getElementById('sordo-flusso-img');
+    const btn = document.getElementById('sordo-zoom-btn');
+    const closeBtn = document.getElementById('sordo-lb-close');
+    function openLb() { lb?.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeLb() { lb?.classList.remove('open'); document.body.style.overflow = ''; }
+    img?.addEventListener('click', openLb);
+    btn?.addEventListener('click', openLb);
+    closeBtn?.addEventListener('click', closeLb);
+    lb?.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
+  </script>
 
 </Layout>
