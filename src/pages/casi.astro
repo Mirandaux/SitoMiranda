@@ -554,8 +554,16 @@ import Layout from "../layouts/Layout.astro";
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
+      align-items: start;
     }
     @media (max-width: 760px) { .ba-grid { grid-template-columns: 1fr; } }
+
+    /* immagini BA: stessa altezza fissa, crop centrato */
+    .ba-col .caso-img {
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      object-position: top center;
+    }
 
     .ba-label {
       font-size: 10.5px;
@@ -578,14 +586,21 @@ import Layout from "../layouts/Layout.astro";
     /* ── Image strip ──────────────────────── */
     .img-strip {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
       gap: 14px;
-      align-items: stretch;
+      align-items: start;
     }
-    .img-strip .img-ph-wide { aspect-ratio: auto; }
+    /* tutti gli slot strip: stessa altezza, crop dall'alto */
+    .img-strip .caso-img {
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .img-strip .caso-img-wide {
+      aspect-ratio: 4/3; /* uguale agli altri per allineamento riga */
+    }
     @media (max-width: 900px) {
       .img-strip { grid-template-columns: 1fr 1fr; }
-      .img-strip .img-ph-wide { aspect-ratio: 16/10; }
     }
     @media (max-width: 560px) { .img-strip { grid-template-columns: 1fr; } }
 
