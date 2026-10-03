@@ -18,8 +18,24 @@ interface Props {
 const { title, description, page, bg, immersiveHero = false, ogImage } = Astro.props;
 
 const siteUrl = "https://www.mirandagiaccon.it";
-const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonical = new URL(pathname, siteUrl).href;
 const ogImg = ogImage ?? `${siteUrl}/assets/miranda-chisono.jpeg`;
+
+// Auto-detect language
+const isEN = pathname.startsWith("/en");
+const lang = isEN ? "en" : "it";
+
+// hreflang alternate mapping
+const HREFLANG_MAP: Record<string, string> = {
+  "/": "/en", "/en": "/",
+  "/casi": "/en/work", "/en/work": "/casi",
+  "/about": "/en/about", "/en/about": "/about",
+  "/servizi": "/en/services", "/en/services": "/servizi",
+  "/contatti": "/en/contact", "/en/contact": "/contatti",
+};
+const altPath = HREFLANG_MAP[pathname] ?? null;
+const altLang = isEN ? "it" : "en";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -79,7 +95,7 @@ const jsonLd = {
       "url": siteUrl,
       "name": "Miranda · UX & Product Consulting",
       "description": "Consulenza UX e di prodotto per PMI, scaleup ed enti: scelta software, progettazione processi digitali, QA UX e adozione.",
-      "inLanguage": "it",
+      "inLanguage": lang,
       "publisher": { "@id": `${siteUrl}/#miranda` }
     },
     {
@@ -90,14 +106,14 @@ const jsonLd = {
       "description": description,
       "isPartOf": { "@id": `${siteUrl}/#website` },
       "about": { "@id": `${siteUrl}/#miranda` },
-      "inLanguage": "it"
+      "inLanguage": lang
     }
   ]
 };
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -107,6 +123,13 @@ const jsonLd = {
     <meta name="author" content="Miranda Giaccon" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href={canonical} />
+    {altPath && (
+      <>
+        <link rel="alternate" hreflang={lang} href={new URL(pathname, siteUrl).href} />
+        <link rel="alternate" hreflang={altLang} href={new URL(altPath, siteUrl).href} />
+        <link rel="alternate" hreflang="x-default" href={siteUrl} />
+      </>
+    )}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -118,7 +141,7 @@ const jsonLd = {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Miranda Giaccon · UX & Product Consultant" />
-    <meta property="og:locale" content="it_IT" />
+    <meta property="og:locale" content={isEN ? "en_US" : "it_IT"} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -137,7 +160,7 @@ const jsonLd = {
   <body data-page={page}>
 
     <!-- Skip to content (accessibilità) -->
-    <a class="skip-link" href="#main-content">Salta al contenuto</a>
+    <a class="skip-link" href="#main-content">{isEN ? "Skip to content" : "Salta al contenuto"}</a>
 
     {immersiveHero && <div class="amb" id="amb"><div class="spot"></div><div class="spot b"></div></div>}
     <CockpitBg bg={bg} />

@@ -1,0 +1,74 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Miranda · Contact · UX & Product Consultant"
+  description="If you're working on a complex digital product, workflow or internal system, tell me what isn't working. 30-minute triage call."
+  page="contact-en"
+  bg='data-max="110" data-link="150" data-accent="0.09" data-speed="0.12"'
+>
+  <style>
+    @media (max-width: 860px) {
+      .contact-cols { grid-template-columns: 1fr !important; }
+    }
+  </style>
+
+  <section class="page-hero" style="padding-bottom:24px;">
+    <div class="shell">
+      <div class="eyebrow reveal">Contact</div>
+      <h1 class="reveal d1">Tell me what isn't working.</h1>
+      <p class="reveal d2">
+        If you're working on a complex digital product, workflow or internal system, describe the situation in a few lines. If it's a good fit I'll outline a starting point. If it isn't, I'll tell you why and point you somewhere more useful.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tight" style="padding-top:32px;">
+    <div class="shell">
+      <div
+        style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:24px;align-items:start;"
+        class="contact-cols"
+      >
+        <!-- CALL CARD -->
+        <div class="holo reveal" style="padding:32px;" id="formCard">
+          <div class="eyebrow" style="margin-bottom:20px;">Book a call</div>
+          <p style="font-size:16px;line-height:26px;color:var(--on-dark-2);margin:0 0 24px;">
+            The most direct way is a 30-minute triage call on Calendly. You tell me the context, I tell you whether and how I can help. No commitment required.
+          </p>
+          <a
+            class="btn btn-primary btn-lg magnetic"
+            href="https://calendly.com/mirandauxdesigner/30min"
+            target="_blank"
+            rel="noopener"
+            style="width:100%;justify-content:center;"
+          >
+            <i data-lucide="calendar-check" class="ic"></i> Book a 30-minute call
+          </a>
+          <p style="font-size:13px;color:var(--on-dark-3);margin:20px 0 0;text-align:center;">Or write directly: <a href="mailto:info@mirandagiaccon.it" style="color:var(--eyebrow-dark);">info@mirandagiaccon.it</a></p>
+        </div>
+
+        <!-- SIDE INFO -->
+        <div style="display:grid;gap:16px;">
+          <div class="holo reveal d1" style="padding:24px 28px;">
+            <div class="eyebrow" style="margin-bottom:12px;">Good fit for</div>
+            <ul style="list-style:none;margin:0;padding:0;display:grid;gap:10px;">
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--on-dark-2);"><i data-lucide="check" style="width:16px;color:var(--eyebrow-dark);flex-shrink:0;margin-top:2px"></i> SaaS companies and product teams</li>
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--on-dark-2);"><i data-lucide="check" style="width:16px;color:var(--eyebrow-dark);flex-shrink:0;margin-top:2px"></i> Complex B2B software projects</li>
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--on-dark-2);"><i data-lucide="check" style="width:16px;color:var(--eyebrow-dark);flex-shrink:0;margin-top:2px"></i> Operational workflow design</li>
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--on-dark-2);"><i data-lucide="check" style="width:16px;color:var(--eyebrow-dark);flex-shrink:0;margin-top:2px"></i> Software selection decisions</li>
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--on-dark-2);"><i data-lucide="check" style="width:16px;color:var(--eyebrow-dark);flex-shrink:0;margin-top:2px"></i> Dev teams that need UX/QA support</li>
+            </ul>
+          </div>
+          <div class="holo reveal d2" style="padding:24px 28px;">
+            <div class="eyebrow" style="margin-bottom:12px;">Connect</div>
+            <div style="display:grid;gap:10px;">
+              <a href="https://www.linkedin.com/in/miranda-giaccon/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--on-dark-2);text-decoration:none;"><i data-lucide="linkedin" style="width:16px;color:var(--eyebrow-dark)"></i> LinkedIn</a>
+              <a href="mailto:info@mirandagiaccon.it" style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--on-dark-2);text-decoration:none;"><i data-lucide="mail" style="width:16px;color:var(--eyebrow-dark)"></i> info@mirandagiaccon.it</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
