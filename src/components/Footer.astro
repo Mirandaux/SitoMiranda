@@ -1,35 +1,64 @@
 ---
 const year = new Date().getFullYear();
+const isEN = Astro.url.pathname.startsWith("/en");
 ---
 
 <footer class="foot">
   <div class="shell">
     <div class="grid">
       <div class="lead">
-        <a class="brand" href="/" data-nav><img class="mark" src="/assets/logo-mark-light.png" alt="" loading="lazy" /><span class="word">Miranda</span></a>
-        <p>UX &amp; Product Consultant. Aiuto PMI, scaleup ed enti a prendere buone decisioni su software e processi digitali, prima che diventino costose.</p>
+        <a class="brand" href={isEN ? "/en" : "/"} data-nav><img class="mark" src="/assets/logo-mark-light.png" alt="" loading="lazy" /><span class="word">Miranda</span></a>
+        {isEN ? (
+          <p>UX &amp; Product Consultant. I help companies make better decisions about software and digital processes before they become costly.</p>
+        ) : (
+          <p>UX &amp; Product Consultant. Aiuto PMI, scaleup ed enti a prendere buone decisioni su software e processi digitali, prima che diventino costose.</p>
+        )}
       </div>
-      <div class="col">
-        <h5>Offerte</h5>
-        <a href="/software-fit-sprint" data-nav>Software Fit Sprint</a>
-        <a href="/website-evolution" data-nav>Website Evolution Check</a>
-        <a href="/qa" data-nav>UX/UI QA mensile</a>
-        <a href="/servizi" data-nav>Tutte le offerte</a>
-      </div>
-      <div class="col">
-        <h5>Studio</h5>
-        <a href="/metodo" data-nav>Metodo</a>
-        <a href="/partner" data-nav>Partner dev</a>
-        <a href="/about" data-nav>Chi sono</a>
-        <a href="/casi" data-nav>Casi</a>
-        <a href="/appunti" data-nav>Appunti sui processi</a>
-      </div>
-      <div class="col">
-        <h5>Contatti</h5>
-        <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a>
-        <a href="https://www.linkedin.com/in/miranda-giaccon/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener">Prenota un triage</a>
-      </div>
+      {isEN ? (
+        <>
+          <div class="col">
+            <h5>Services</h5>
+            <a href="/en/services" data-nav>All services</a>
+            <a href="/software-fit-sprint" data-nav>Software Fit Sprint</a>
+            <a href="/qa" data-nav>UX/UI QA</a>
+          </div>
+          <div class="col">
+            <h5>Studio</h5>
+            <a href="/en/about" data-nav>About</a>
+            <a href="/en/work" data-nav>Work</a>
+          </div>
+          <div class="col">
+            <h5>Contact</h5>
+            <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a>
+            <a href="https://www.linkedin.com/in/miranda-giaccon/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener">Book a call</a>
+          </div>
+        </>
+      ) : (
+        <>
+          <div class="col">
+            <h5>Offerte</h5>
+            <a href="/software-fit-sprint" data-nav>Software Fit Sprint</a>
+            <a href="/website-evolution" data-nav>Website Evolution Check</a>
+            <a href="/qa" data-nav>UX/UI QA mensile</a>
+            <a href="/servizi" data-nav>Tutte le offerte</a>
+          </div>
+          <div class="col">
+            <h5>Studio</h5>
+            <a href="/metodo" data-nav>Metodo</a>
+            <a href="/partner" data-nav>Partner dev</a>
+            <a href="/about" data-nav>Chi sono</a>
+            <a href="/casi" data-nav>Casi</a>
+            <a href="/appunti" data-nav>Appunti sui processi</a>
+          </div>
+          <div class="col">
+            <h5>Contatti</h5>
+            <a href="mailto:info@mirandagiaccon.it">info@mirandagiaccon.it</a>
+            <a href="https://www.linkedin.com/in/miranda-giaccon/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener">Prenota un triage</a>
+          </div>
+        </>
+      )}
       <div class="legal">
         <span>© {year} Miranda · UX &amp; Product Consulting · P.IVA 04987210236</span>
         <span>
@@ -39,7 +68,11 @@ const year = new Date().getFullYear();
           <span style="opacity:0.4;margin:0 6px;">·</span>
           <a href="/note-legali" data-nav style="color:inherit;text-decoration:none;border:0;">Note legali</a>
         </span>
-        <span class="no-cookie-note">Nessun cookie di tracciamento. Nessun banner. · Sito realizzato con il supporto di strumenti AI, contenuti revisionati da Miranda Giaccon.</span>
+        {isEN ? (
+          <span class="no-cookie-note">No tracking cookies. No banner. · Site built with AI support, content reviewed by Miranda Giaccon.</span>
+        ) : (
+          <span class="no-cookie-note">Nessun cookie di tracciamento. Nessun banner. · Sito realizzato con il supporto di strumenti AI, contenuti revisionati da Miranda Giaccon.</span>
+        )}
       </div>
     </div>
   </div>

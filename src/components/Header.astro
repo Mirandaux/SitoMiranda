@@ -1,5 +1,8 @@
 ---
-const NAV = [
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isEN = pathname.startsWith("/en");
+
+const NAV_IT = [
   { id: "about", label: "Chi sono", href: "/about" },
   { id: "metodo", label: "Metodo", href: "/metodo" },
   {
@@ -18,18 +21,36 @@ const NAV = [
   { id: "contatti", label: "Contatti", href: "/contatti" },
 ];
 
-const here = Astro.url.pathname.replace(/\/$/, "") || "/";
-const isHere = (href: string) => href === here;
+const NAV_EN = [
+  { id: "about", label: "About", href: "/en/about" },
+  { id: "services", label: "Services", href: "/en/services" },
+  { id: "work", label: "Work", href: "/en/work" },
+  { id: "contact", label: "Contact", href: "/en/contact" },
+];
+
+const NAV = isEN ? NAV_EN : NAV_IT;
+
+const LANG_MAP: Record<string, string> = {
+  "/": "/en", "/en": "/",
+  "/casi": "/en/work", "/en/work": "/casi",
+  "/about": "/en/about", "/en/about": "/about",
+  "/servizi": "/en/services", "/en/services": "/servizi",
+  "/contatti": "/en/contact", "/en/contact": "/contatti",
+};
+const langSwitchHref = LANG_MAP[pathname] ?? (isEN ? "/" : "/en");
+
+const isHere = (href: string) => pathname === href;
+const ctaLabel = isEN ? "Book a call" : "Prenota la call";
 ---
 
 <header class="nav">
   <div class="shell">
-    <a class="brand" href="/" data-nav aria-label="Miranda, home">
+    <a class="brand" href={isEN ? "/en" : "/"} data-nav aria-label="Miranda, home">
       <img class="mark" src="/assets/logo-mark-light.png" alt="" /><span class="word">Miranda</span>
     </a>
-    <nav class="nav-links" aria-label="Navigazione principale">
+    <nav class="nav-links" aria-label={isEN ? "Main navigation" : "Navigazione principale"}>
       {NAV.map((n) =>
-        n.children ? (
+        "children" in n && n.children ? (
           <div class="nav-item has-dd">
             <a
               href={n.href}
@@ -55,26 +76,96 @@ const isHere = (href: string) => href === here;
       )}
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call</a>
-      <button class="nav-toggle" aria-label="Apri il menu" aria-expanded="false"><i data-lucide="menu" class="ic" style="width:20px;height:20px"></i></button>
+      <span class="lang-sw" aria-label={isEN ? "Switch language" : "Cambia lingua"}>
+        {isEN ? (
+          <>
+            <a href={langSwitchHref} class="lang-btn">IT</a>
+            <span class="lang-sep">/</span>
+            <span class="lang-btn lang-active" aria-current="true">EN</span>
+          </>
+        ) : (
+          <>
+            <span class="lang-btn lang-active" aria-current="true">IT</span>
+            <span class="lang-sep">/</span>
+            <a href={langSwitchHref} class="lang-btn">EN</a>
+          </>
+        )}
+      </span>
+      <a class="btn btn-primary" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> {ctaLabel}</a>
+      <button class="nav-toggle" aria-label={isEN ? "Open menu" : "Apri il menu"} aria-expanded="false"><i data-lucide="menu" class="ic" style="width:20px;height:20px"></i></button>
     </div>
   </div>
 </header>
 
 <div class="mobile-menu">
-  <a href="/about" data-nav>Chi sono</a>
-  <a href="/metodo" data-nav>Metodo</a>
-  <div class="m-group">
-    <a href="/servizi" data-nav>Servizi</a>
-    <div class="m-sub">
-      <a href="/software-fit-sprint" data-nav>Fit Sprint</a>
-      <a href="/website-evolution" data-nav>Web Evolution</a>
-      <a href="/software-su-misura" data-nav>Software su misura</a>
-      <a href="/qa" data-nav>QA</a>
-      <a href="/partner" data-nav>UX Partner Dev</a>
-    </div>
-  </div>
-  <a href="/casi" data-nav>Casi</a>
-  <a href="/contatti" data-nav>Contatti</a>
-  <a class="btn btn-primary" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> Prenota la call di triage</a>
+  {isEN ? (
+    <>
+      <a href="/en/about" data-nav>About</a>
+      <a href="/en/services" data-nav>Services</a>
+      <a href="/en/work" data-nav>Work</a>
+      <a href="/en/contact" data-nav>Contact</a>
+      <div class="m-lang-row">
+        <a href={langSwitchHref} class="lang-btn">IT</a>
+        <span class="lang-sep">/</span>
+        <span class="lang-btn lang-active">EN</span>
+      </div>
+    </>
+  ) : (
+    <>
+      <a href="/about" data-nav>Chi sono</a>
+      <a href="/metodo" data-nav>Metodo</a>
+      <div class="m-group">
+        <a href="/servizi" data-nav>Servizi</a>
+        <div class="m-sub">
+          <a href="/software-fit-sprint" data-nav>Fit Sprint</a>
+          <a href="/website-evolution" data-nav>Web Evolution</a>
+          <a href="/software-su-misura" data-nav>Software su misura</a>
+          <a href="/qa" data-nav>QA</a>
+          <a href="/partner" data-nav>UX Partner Dev</a>
+        </div>
+      </div>
+      <a href="/casi" data-nav>Casi</a>
+      <a href="/contatti" data-nav>Contatti</a>
+      <div class="m-lang-row">
+        <span class="lang-btn lang-active">IT</span>
+        <span class="lang-sep">/</span>
+        <a href={langSwitchHref} class="lang-btn">EN</a>
+      </div>
+    </>
+  )}
+  <a class="btn btn-primary" href="https://calendly.com/mirandauxdesigner/30min" target="_blank" rel="noopener"><i data-lucide="calendar-check" class="ic"></i> {ctaLabel}</a>
 </div>
+
+<style>
+  .lang-sw {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-right: 4px;
+  }
+  .lang-btn {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--on-dark-3);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.15s;
+    line-height: 1;
+  }
+  .lang-btn:hover { color: var(--on-dark-2); }
+  .lang-active { color: var(--eyebrow-dark); cursor: default; }
+  .lang-sep { color: var(--on-dark-3); font-size: 11px; line-height: 1; }
+  .m-lang-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 0 4px;
+    border-top: 1px solid var(--hairline);
+    margin-top: 4px;
+  }
+  @media (min-width: 769px) {
+    .m-lang-row { display: none; }
+  }
+</style>

@@ -5,32 +5,81 @@ import FitSprintForm from "../components/FitSprintForm.astro";
 
 const pageUrl = "https://www.mirandagiaccon.it/software-fit-sprint";
 const studioId = "https://www.mirandagiaccon.it/#studio";
+
+const faqs = [
+  {
+    q: "Che cos'è il Software Fit Sprint?",
+    a: "Un percorso di due settimane per scegliere o validare un software che impatta più team. Invece di partire dalla demo, si parte dai processi reali: come si lavora oggi, dove si rompe il flusso, quali criteri contano davvero per chi dovrà usarlo ogni giorno."
+  },
+  {
+    q: "Quanto dura e quanto costa?",
+    a: "Due settimane, time-boxed. Prezzo fisso: €1.500, tutto incluso. Nessun \"da\", nessun extra. Sai in anticipo cosa ricevi e quando."
+  },
+  {
+    q: "Cosa riceve concretamente l'azienda?",
+    a: "Mappa dei processi as-is e to-be, criteri di scelta pesati con gli stakeholder, shortlist di 2-3 soluzioni o validazione di una scelta esistente, matrice decisionale con pro, contro, costi, limiti e un rischio per ogni riga, roadmap di adozione a 30, 90 e 180 giorni."
+  },
+  {
+    q: "La valutazione è indipendente dai fornitori?",
+    a: "Sì. Non ho accordi commerciali con vendor né commissioni su referral. La raccomandazione si basa sui processi reali dell'azienda e sui criteri definiti insieme agli stakeholder, non sulle demo o sui materiali di marketing dei tool."
+  },
+  {
+    q: "Comprende sviluppo e configurazione?",
+    a: "No. Il Software Fit Sprint produce una decisione e una roadmap, non esegue sviluppo né configurazione tecnica. Quando scelgo o valido un tool, la responsabilità dell'implementazione rimane al team interno o a un partner tecnico."
+  },
+  {
+    q: "Per quali aziende è indicato?",
+    a: "Per PMI, scaleup ed enti che devono scegliere un software che impatta più team, dove gli stakeholder faticano ad allinearsi sui criteri e il budget va difeso bene. Non è adatto se il fornitore è già scelto e manca solo l'esecuzione, o se si cerca sviluppo e configurazione tecnica."
+  }
+];
+
 const sfsJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": `${pageUrl}#service`,
   "name": "Software Fit Sprint",
+  "serviceType": "Consulenza per la selezione di software aziendale",
   "description": "In due settimane: mappa dei processi, criteri UX, shortlist, matrice decisionale con rischi e roadmap di adozione.",
   "url": pageUrl,
+  "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
   "provider": { "@id": studioId },
   "areaServed": { "@type": "Country", "name": "Italy" },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "PMI, scaleup, enti con processi digitali da ottimizzare"
+  },
   "inLanguage": "it",
   "offers": {
     "@type": "Offer",
     "price": "1500",
     "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock"
+    "url": pageUrl,
+    "seller": { "@id": studioId },
+    "availability": "https://schema.org/InStock",
+    "areaServed": { "@type": "Country", "name": "Italy" }
   }
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a }
+  }))
 };
 ---
 
 <Layout
   title="Miranda · Software Fit Sprint"
-  description="In due settimane: mappa dei processi, criteri UX, shortlist, matrice decisionale con rischi e roadmap di adozione. €1.500 fisso."
+  description="State scegliendo un software e ogni reparto vuole qualcosa di diverso? In due settimane: mappa processi, criteri condivisi, matrice decisionale con rischi. €1.500 fisso."
   page="servizi"
   bg='data-max="120" data-link="150" data-accent="0.10" data-speed="0.13"'
 >
   <script type="application/ld+json" set:html={JSON.stringify(sfsJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
   <!-- HERO -->
   <section class="page-hero">
     <div class="shell">
@@ -41,11 +90,11 @@ const sfsJsonLd = {
             <span class="pill">€1.500 fisso</span>
             <span class="pill">2 settimane</span>
           </div>
-          <h1 class="reveal d1">Scegli il software giusto partendo dai processi, non dalle demo.</h1>
-          <p class="lede reveal d2">In due settimane trasformo dubbi, vincoli e stakeholder in una decisione difendibile: criteri, matrice e roadmap di adozione, prima di bruciare budget su un tool sbagliato.</p>
+          <h1 class="reveal d1">State scegliendo un gestionale, ma ogni reparto vuole qualcosa di diverso?</h1>
+          <p class="lede reveal d2">Aiuto PMI e team a trasformare una scelta bloccata in una decisione difendibile. Due settimane, prezzo fisso: mappa dei processi, criteri condivisi, matrice con rischi e roadmap di adozione.</p>
           <div class="cta-row reveal d3">
-            <a class="btn btn-primary btn-lg magnetic" href="#richiedi-confronto"><i data-lucide="send" class="ic"></i> Richiedi un confronto</a>
-            <a class="btn btn-secondary btn-lg magnetic" href="#matrice">Vedi un esempio di matrice</a>
+            <a class="btn btn-primary btn-lg magnetic" href="#richiedi-confronto" data-track="sfs_cta_hero"><i data-lucide="send" class="ic"></i> Raccontami cosa state cercando di scegliere</a>
+            <a class="btn btn-secondary btn-lg magnetic" href="#caso-reale" data-track="sfs_cta_caso">Vedi un caso reale</a>
           </div>
         </div>
         <div class="reveal d2">
@@ -64,7 +113,7 @@ const sfsJsonLd = {
               </div>
               <div class="rm" style="background:transparent;border:0;padding:0;">
                 <ul style="gap:12px;">
-                  <li><i data-lucide="circle-check"></i> 4 stakeholder allineati sugli stessi criteri</li>
+                  <li><i data-lucide="circle-check"></i> stakeholder allineati sugli stessi criteri</li>
                   <li><i data-lucide="circle-check"></i> 2-3 tool confrontati con rischio per riga</li>
                   <li><i data-lucide="circle-check"></i> roadmap a 30 / 90 / 180 giorni</li>
                 </ul>
@@ -76,12 +125,49 @@ const sfsJsonLd = {
     </div>
   </section>
 
-  <!-- PROBLEMA -->
+  <!-- CASO REALE -->
+  <section class="section tight" id="caso-reale">
+    <div class="shell">
+      <div class="section-head reveal">
+        <div class="eyebrow">Caso reale</div>
+        <h2 class="h2-cinema">PMI manifatturiera. Due CRM in valutazione, quattro reparti con esigenze diverse.</h2>
+        <p>Un caso concreto per capire cosa succede in due settimane di Software Fit Sprint.</p>
+      </div>
+      <div class="caso-grid reveal d1" style="margin-top:36px;">
+        <div class="caso-card">
+          <div class="caso-label">Prima</div>
+          <p>L'azienda stava valutando due CRM dopo aver visto tre demo. Commerciale, produzione, amministrazione e customer care avevano aspettative diverse e nessuno strumento per confrontarle. La scelta si trascinava da mesi, il team era diviso e il rischio era firmare sulla base della demo più convincente.</p>
+        </div>
+        <div class="caso-card caso-card-center">
+          <div class="caso-label">Intervento</div>
+          <p>Mappa dei processi as-is e to-be per ciascun reparto coinvolto. Sessione di prioritizzazione con gli stakeholder per pesare i criteri: adozione operativa, integrazione con il gestionale esistente, costo totale a 24 mesi, lock-in. Analisi delle due opzioni con matrice decisionale completa di rischio per riga. Roadmap di adozione in tre fasi.</p>
+        </div>
+        <div class="caso-card caso-card-after">
+          <div class="caso-label">Dopo</div>
+          <p>Decisione presa e documentata con criteri difendibili in riunione. Il team ha aperto un solo portale ogni mattina invece di tre. Le attività dimenticate tra reparti sono diminuite. Le chiamate interne per coordinamento si sono ridotte. La scelta finale non era l'opzione "piu bella in demo", ma quella con il miglior rapporto adozione-integrazione per il loro flusso reale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSTO DELLA NON-DECISIONE -->
   <section class="section tight">
     <div class="shell">
       <div class="lead-2col">
-        <div class="reveal"><div class="eyebrow">Il problema</div><h2 class="h2-cinema" style="margin-top:14px;">La demo convince. Il martedì alle quattordici, no.</h2></div>
-        <p class="reveal d1" style="font-size:17px;line-height:27px;">Scegliere un gestionale o un tool verticale sulla base di una demo è il modo più rapido per ritrovarsi, sei mesi dopo, con metà del team tornato su Excel. Il problema raramente è il software. È la decisione presa senza mappare come si lavora davvero, senza criteri condivisi e senza un piano di adozione.</p>
+        <div class="reveal">
+          <div class="eyebrow">Il problema che rallenta tutto</div>
+          <h2 class="h2-cinema" style="margin-top:14px;">Quando la scelta non arriva, il costo non si ferma.</h2>
+        </div>
+        <div class="reveal d1">
+          <p style="font-size:17px;line-height:27px;margin-bottom:24px;">Il segnale che qualcosa non funziona di solito non è "non riusciamo a scegliere". E' piu sottile. Si riconosce così:</p>
+          <ul class="sintomi-list">
+            <li><i data-lucide="alert-triangle" class="ic" aria-hidden="true"></i> Ogni reparto porta argomenti diversi alle riunioni di valutazione e si riparte da zero.</li>
+            <li><i data-lucide="alert-triangle" class="ic" aria-hidden="true"></i> Avete visto tre demo convincenti e non riuscite a capire quale tool fa davvero al caso vostro.</li>
+            <li><i data-lucide="alert-triangle" class="ic" aria-hidden="true"></i> Il team operativo dice una cosa, il CTO un'altra, la direzione una terza. Nessuno ha torto, ma nessuno si allinea.</li>
+            <li><i data-lucide="alert-triangle" class="ic" aria-hidden="true"></i> State pagando abbonamenti a tool usati a meta perché l'adozione non è mai decollata.</li>
+            <li><i data-lucide="alert-triangle" class="ic" aria-hidden="true"></i> La decisione è urgente ma ogni settimana che passa senza una scelta costa tempo e coordinamento.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -200,6 +286,125 @@ const sfsJsonLd = {
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section tight" id="faq">
+    <div class="shell">
+      <div class="section-head reveal"><div class="eyebrow">Domande frequenti</div><h2 class="h2-cinema">Quello che di solito si chiede prima di iniziare.</h2></div>
+      <div class="faq-list reveal d1" style="margin-top:32px;">
+        {faqs.map(({ q, a }) => (
+          <details class="faq-item">
+            <summary class="faq-q">
+              <span>{q}</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <p class="faq-a">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Case study */
+    .caso-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .caso-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 28px 24px;
+    }
+    .caso-card-center {
+      border-color: rgba(124,34,63,0.35);
+      background: rgba(124,34,63,0.07);
+    }
+    .caso-card-after {
+      border-color: rgba(110,207,151,0.2);
+      background: rgba(110,207,151,0.04);
+    }
+    .caso-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--eyebrow-dark);
+      margin-bottom: 14px;
+    }
+    .caso-card p {
+      font-size: 15px;
+      line-height: 25px;
+      color: var(--on-dark-2);
+      margin: 0;
+    }
+    @media (max-width: 860px) {
+      .caso-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Sintomi */
+    .sintomi-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 14px;
+    }
+    .sintomi-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 15.5px;
+      line-height: 24px;
+      color: var(--on-dark-2);
+    }
+    .sintomi-list .ic {
+      width: 17px;
+      height: 17px;
+      color: var(--eyebrow-dark);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* FAQ */
+    .faq-list { display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,0.08); }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .faq-q {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-icon {
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--eyebrow-dark);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+      line-height: 1;
+    }
+    .faq-item[open] .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      margin: 0 0 20px;
+      font-size: 15px;
+      line-height: 25px;
+      color: var(--on-dark-2);
+      max-width: 72ch;
+    }
+    @media (max-width: 600px) {
+      .faq-q { font-size: 15px; }
+    }
+  </style>
+
   <!-- LEAD MAGNET matrice -->
   <LeadMagnetMatrix />
 
@@ -215,4 +420,92 @@ const sfsJsonLd = {
       </div>
     </div>
   </section>
+
+  <!-- Funnel analytics tracking -->
+  <script>
+    import { track } from "@vercel/analytics";
+
+    function initSfsTracking() {
+      // ── CTA click events (hero + secondary) ──────────────────────────────
+      document.querySelectorAll("[data-track]").forEach((el) => {
+        el.addEventListener("click", () => {
+          const event = (el as HTMLElement).dataset.track;
+          if (event) track(event);
+        }, { once: true });
+      });
+
+      // Calendly link clicks (any link pointing to calendly.com on the page)
+      document.querySelectorAll<HTMLAnchorElement>('a[href*="calendly.com"]').forEach((el) => {
+        el.addEventListener("click", () => {
+          track("sfs_calendly_click");
+        }, { once: true });
+      });
+
+      // ── Scroll-reach events (IntersectionObserver) ───────────────────────
+      const reaches: [string, string][] = [
+        ["sfs_reach_caso_reale", "#caso-reale"],
+        ["sfs_reach_form", "#richiedi-confronto"],
+      ];
+      if ("IntersectionObserver" in window) {
+        reaches.forEach(([event, selector]) => {
+          const el = document.querySelector(selector);
+          if (!el) return;
+          const obs = new IntersectionObserver(
+            (entries) => {
+              if (entries[0]?.isIntersecting) {
+                track(event);
+                obs.disconnect();
+              }
+            },
+            { threshold: 0.2 }
+          );
+          obs.observe(el);
+        });
+      }
+
+      // ── Form interaction events ───────────────────────────────────────────
+      const firstField = document.querySelector<HTMLElement>(
+        ".sfs-form input:not([type=hidden]):not([type=checkbox]), .sfs-form textarea, .sfs-form select"
+      );
+      if (firstField) {
+        firstField.addEventListener("focus", () => {
+          track("sfs_form_start");
+        }, { once: true });
+      }
+
+      const form = document.querySelector<HTMLFormElement>(".sfs-form");
+      if (form) {
+        // Submit attempt (fires before validation, counts intent)
+        form.addEventListener("submit", () => {
+          track("sfs_form_submit");
+        });
+
+        // Success response from server
+        const successEl = document.querySelector<HTMLElement>(".sfs-success");
+        if (successEl) {
+          const observer = new MutationObserver(() => {
+            if (successEl.style.display !== "none" && successEl.style.display !== "") {
+              track("sfs_form_success");
+              observer.disconnect();
+            }
+          });
+          observer.observe(successEl, { attributes: true, attributeFilter: ["style"] });
+        }
+
+        // Server-side or network error shown to user
+        const globalErr = form.querySelector<HTMLElement>(".sfs-global-err");
+        if (globalErr) {
+          const errObserver = new MutationObserver(() => {
+            if (globalErr.style.display !== "none" && globalErr.textContent?.trim()) {
+              track("sfs_form_error");
+            }
+          });
+          errObserver.observe(globalErr, { attributes: true, attributeFilter: ["style"] });
+        }
+      }
+    }
+
+    document.addEventListener("astro:page-load", initSfsTracking);
+    initSfsTracking();
+  </script>
 </Layout>
