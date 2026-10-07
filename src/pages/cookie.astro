@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-const updated = "20 giugno 2025";
+const updated = "7 ottobre 2025";
 ---
 
 <Layout
@@ -38,7 +38,9 @@ const updated = "20 giugno 2025";
         <p>I cookie sono piccoli file di testo che i siti web salvano nel browser dell'utente durante la navigazione. Vengono utilizzati per far funzionare il sito correttamente, ricordare preferenze e, in alcuni casi, raccogliere informazioni statistiche anonime sulla navigazione.</p>
 
         <h2>2. Cookie utilizzati su questo sito</h2>
-        <p>Questo sito utilizza esclusivamente cookie tecnici strettamente necessari al funzionamento. Non utilizza cookie di profilazione, cookie pubblicitari o strumenti di tracciamento comportamentale.</p>
+
+        <h3>2.1 Cookie tecnici (sempre attivi)</h3>
+        <p>Cookie strettamente necessari al funzionamento del sito. Non richiedono consenso.</p>
 
         <table class="cookie-table">
           <thead>
@@ -57,19 +59,47 @@ const updated = "20 giugno 2025";
               <td>Sessione</td>
             </tr>
             <tr>
-              <td>Cookie di sessione del browser</td>
-              <td>Tecnico</td>
-              <td>Normale funzionamento della navigazione</td>
-              <td>Sessione</td>
+              <td><code>cookie_consent</code></td>
+              <td>Tecnico / Preferenze</td>
+              <td>Memorizza la scelta dell'utente sul consenso ai cookie analitici (localStorage, non cookie HTTP)</td>
+              <td>Permanente (localStorage)</td>
             </tr>
           </tbody>
         </table>
 
-        <p>Poiché il sito non installa cookie che richiedono consenso preventivo, non viene mostrato un banner di consenso ai cookie. La navigazione non comporta la profilazione dell'utente.</p>
+        <h3>2.2 Cookie analitici (previo consenso)</h3>
+        <p>Attivati solo se l'utente accetta tramite il banner presente sul sito. Possono essere rifiutati senza alcuna limitazione alla navigazione.</p>
+
+        <table class="cookie-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Tipo</th>
+              <th>Finalità</th>
+              <th>Durata</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>_ga</code></td>
+              <td>Analitico — Google Analytics 4</td>
+              <td>Distingue gli utenti per le statistiche di navigazione</td>
+              <td>2 anni</td>
+            </tr>
+            <tr>
+              <td><code>_ga_CR1P08P9V3</code></td>
+              <td>Analitico — Google Analytics 4</td>
+              <td>Mantiene lo stato della sessione GA4</td>
+              <td>2 anni</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>I dati raccolti tramite GA4 vengono trasmessi a Google LLC (USA) e trattati secondo la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy di Google</a>. Non vengono usati per finalità pubblicitarie o di profilazione individuale.</p>
 
         <h2>3. Cookie di terze parti</h2>
-        <p>Questo sito non integra widget di social network, pixel di tracciamento pubblicitario, strumenti di analisi comportamentale (es. Google Analytics, Meta Pixel) né sistemi di chat in tempo reale che installino cookie di terze parti.</p>
         <p>Il sito utilizza Vercel Analytics per statistiche aggregate sulle visualizzazioni di pagina. Vercel Analytics è uno strumento privacy-first che non installa cookie, non traccia l'utente individualmente e non richiede consenso preventivo.</p>
+        <p>Il sito non integra widget di social network, pixel pubblicitari né sistemi di chat in tempo reale che installino cookie di terze parti senza consenso.</p>
         <p>I link verso piattaforme esterne (es. LinkedIn, Calendly) portano l'utente fuori dal sito: in quel momento si applicano le cookie policy delle rispettive piattaforme.</p>
 
         <h2>4. Come gestire o disabilitare i cookie</h2>
