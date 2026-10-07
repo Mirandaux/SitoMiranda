@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CockpitBg from "../components/CockpitBg.astro";
 import Analytics from "@vercel/analytics/astro";
+import CookieBanner from "../components/CookieBanner.astro";
 import "../styles/cockpit.css";
 import "../styles/hero-immersive.css";
 
@@ -157,14 +158,15 @@ const jsonLd = {
     <!-- JSON-LD strutturati -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CR1P08P9V3"></script>
+    <!-- Google tag (gtag.js) — consent mode: default denied until user accepts -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { analytics_storage: 'denied', wait_for_update: 500 });
       gtag('js', new Date());
-      gtag('config', 'G-CR1P08P9V3');
+      gtag('config', 'G-CR1P08P9V3', { send_page_view: false });
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CR1P08P9V3"></script>
   </head>
   <body data-page={page}>
 
@@ -180,6 +182,7 @@ const jsonLd = {
       <slot />
     </main>
     <Footer />
+    <CookieBanner isEN={isEN} />
 
     <script>
       import { createIcons, icons } from "lucide";

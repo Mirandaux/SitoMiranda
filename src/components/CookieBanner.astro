@@ -1,0 +1,130 @@
+---
+const { isEN } = Astro.props;
+---
+
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label={isEN ? "Cookie consent" : "Consenso cookie"} style="display:none;">
+  <div class="cb-inner">
+    <div class="cb-text">
+      {isEN ? (
+        <>
+          <strong>This site uses analytics cookies</strong> (Google Analytics 4) to understand how visitors interact with the content. No advertising profiling.
+          <a href="/en/privacy" class="cb-link">Privacy policy</a>
+        </>
+      ) : (
+        <>
+          <strong>Questo sito usa cookie analitici</strong> (Google Analytics 4) per capire come i visitatori interagiscono con i contenuti. Nessuna profilazione pubblicitaria.
+          <a href="/privacy" class="cb-link">Privacy policy</a>
+        </>
+      )}
+    </div>
+    <div class="cb-actions">
+      <button id="cb-reject" class="cb-btn cb-secondary">
+        {isEN ? "Decline" : "Rifiuta"}
+      </button>
+      <button id="cb-accept" class="cb-btn cb-primary">
+        {isEN ? "Accept" : "Accetta"}
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  #cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: min(680px, calc(100vw - 32px));
+    background: var(--surface, #14161c);
+    border: 1px solid var(--hairline, rgba(255,255,255,.08));
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,.6);
+    padding: 20px 24px;
+    animation: cb-in .25s ease;
+  }
+  @keyframes cb-in {
+    from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+  .cb-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .cb-text {
+    flex: 1;
+    min-width: 200px;
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--on-dark-2, rgba(255,255,255,.65));
+  }
+  .cb-text strong {
+    color: var(--on-dark-1, rgba(255,255,255,.9));
+    display: block;
+    margin-bottom: 4px;
+  }
+  .cb-link {
+    color: var(--eyebrow-dark, #b06a7e);
+    margin-left: 6px;
+    font-size: 12px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .cb-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .cb-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity .15s;
+  }
+  .cb-btn:hover { opacity: .85; }
+  .cb-secondary {
+    background: var(--hairline, rgba(255,255,255,.08));
+    color: var(--on-dark-2, rgba(255,255,255,.65));
+  }
+  .cb-primary {
+    background: var(--accent-wine, #7c223f);
+    color: #fff;
+  }
+  @media (max-width: 500px) {
+    .cb-inner { flex-direction: column; align-items: stretch; }
+    .cb-actions { justify-content: flex-end; }
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = "cookie_consent";
+  const banner = document.getElementById("cookie-banner") as HTMLElement;
+
+  function grantConsent() {
+    (window as any).gtag?.("consent", "update", { analytics_storage: "granted" });
+    localStorage.setItem(STORAGE_KEY, "granted");
+    banner.style.display = "none";
+  }
+
+  function denyConsent() {
+    (window as any).gtag?.("consent", "update", { analytics_storage: "denied" });
+    localStorage.setItem(STORAGE_KEY, "denied");
+    banner.style.display = "none";
+  }
+
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored === "granted") {
+    (window as any).gtag?.("consent", "update", { analytics_storage: "granted" });
+  } else if (!stored) {
+    banner.style.display = "block";
+  }
+
+  document.getElementById("cb-accept")?.addEventListener("click", grantConsent);
+  document.getElementById("cb-reject")?.addEventListener("click", denyConsent);
+</script>
