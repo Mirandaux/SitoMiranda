@@ -39,14 +39,14 @@ export const POST = async ({ request }) => {
   }
 
   const cleanEmail = String(email).trim().toLowerCase();
-  const listId = parseInt(process.env.BREVO_LIST_ID || "2");
   const pdfUrl = "https://www.mirandagiaccon.it/assets/matrice-decisionale-software-miranda.pdf";
 
   try {
     // 1. Upsert contatto in Brevo
     const contactResult = await upsertContact({
       email: cleanEmail,
-      listIds: [listId],
+      // Delivery only: do not subscribe the requester to a marketing list.
+      listIds: [],
     });
 
     if (!contactResult.ok) {

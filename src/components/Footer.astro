@@ -68,10 +68,11 @@ const isEN = Astro.url.pathname.startsWith("/en");
           <span style="opacity:0.4;margin:0 6px;">·</span>
           <a href="/note-legali" data-nav style="color:inherit;text-decoration:none;border:0;">Note legali</a>
         </span>
+        <button type="button" data-cookie-settings style="background:none;border:0;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;">{isEN ? "Cookie settings" : "Preferenze cookie"}</button>
         {isEN ? (
-          <span class="no-cookie-note">No tracking cookies. No banner. · Site built with AI support, content reviewed by Miranda Giaccon.</span>
+          <span class="no-cookie-note">Analytics cookies only with consent. · Site built with AI support, content reviewed by Miranda Giaccon.</span>
         ) : (
-          <span class="no-cookie-note">Nessun cookie di tracciamento. Nessun banner. · Sito realizzato con il supporto di strumenti AI, contenuti revisionati da Miranda Giaccon.</span>
+          <span class="no-cookie-note">Cookie analitici solo previo consenso. · Sito realizzato con il supporto di strumenti AI, contenuti revisionati da Miranda Giaccon.</span>
         )}
       </div>
     </div>

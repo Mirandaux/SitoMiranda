@@ -37,7 +37,7 @@ const LANG_MAP: Record<string, string> = {
   "/servizi": "/en/services", "/en/services": "/servizi",
   "/contatti": "/en/contact", "/en/contact": "/contatti",
 };
-const langSwitchHref = LANG_MAP[pathname] ?? (isEN ? "/" : "/en");
+const langSwitchHref = LANG_MAP[pathname] ?? null;
 
 const isHere = (href: string) => pathname === href;
 const ctaLabel = isEN ? "Book a call" : "Prenota la call";
@@ -79,7 +79,7 @@ const ctaLabel = isEN ? "Book a call" : "Prenota la call";
       <span class="lang-sw" aria-label={isEN ? "Switch language" : "Cambia lingua"}>
         {isEN ? (
           <>
-            <a href={langSwitchHref} class="lang-btn">IT</a>
+            {langSwitchHref && <a href={langSwitchHref} class="lang-btn">IT</a>}
             <span class="lang-sep">/</span>
             <span class="lang-btn lang-active" aria-current="true">EN</span>
           </>
@@ -87,7 +87,7 @@ const ctaLabel = isEN ? "Book a call" : "Prenota la call";
           <>
             <span class="lang-btn lang-active" aria-current="true">IT</span>
             <span class="lang-sep">/</span>
-            <a href={langSwitchHref} class="lang-btn">EN</a>
+            {langSwitchHref && <a href={langSwitchHref} class="lang-btn">EN</a>}
           </>
         )}
       </span>
@@ -105,7 +105,7 @@ const ctaLabel = isEN ? "Book a call" : "Prenota la call";
       <a href="/en/work" data-nav>Work</a>
       <a href="/en/contact" data-nav>Contact</a>
       <div class="m-lang-row">
-        <a href={langSwitchHref} class="lang-btn">IT</a>
+        {langSwitchHref && <a href={langSwitchHref} class="lang-btn">IT</a>}
         <span class="lang-sep">/</span>
         <span class="lang-btn lang-active">EN</span>
       </div>
@@ -129,7 +129,7 @@ const ctaLabel = isEN ? "Book a call" : "Prenota la call";
       <div class="m-lang-row">
         <span class="lang-btn lang-active">IT</span>
         <span class="lang-sep">/</span>
-        <a href={langSwitchHref} class="lang-btn">EN</a>
+        {langSwitchHref && <a href={langSwitchHref} class="lang-btn">EN</a>}
       </div>
     </>
   )}
@@ -165,7 +165,7 @@ const ctaLabel = isEN ? "Book a call" : "Prenota la call";
     border-top: 1px solid var(--hairline);
     margin-top: 4px;
   }
-  @media (min-width: 769px) {
+  @media (min-width: 941px) {
     .m-lang-row { display: none; }
   }
 </style>

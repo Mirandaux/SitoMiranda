@@ -35,8 +35,9 @@
     const curtain = document.querySelector(".curtain");
     if (RM || !curtain) return;
     document.addEventListener("click", (e) => {
+      if (e.defaultPrevented || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       const a = e.target.closest("a[data-nav], a[data-transition]");
-      if (!a) return;
+      if (!a || a.hasAttribute("download")) return;
       const href = a.getAttribute("href");
       if (!href || href.startsWith("#") || href.startsWith("mailto:") || a.target === "_blank") return;
       if (href === location.pathname) return;

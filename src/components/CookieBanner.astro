@@ -8,12 +8,12 @@ const { isEN } = Astro.props;
       {isEN ? (
         <>
           <strong>This site uses analytics cookies</strong> (Google Analytics 4) to understand how visitors interact with the content. No advertising profiling.
-          <a href="/en/privacy" class="cb-link">Privacy policy</a>
+          <a href="/privacy" class="cb-link">Privacy policy (Italian)</a>
         </>
       ) : (
         <>
           <strong>Questo sito usa cookie analitici</strong> (Google Analytics 4) per capire come i visitatori interagiscono con i contenuti. Nessuna profilazione pubblicitaria.
-          <a href="/privacy" class="cb-link">Privacy policy</a>
+          <a href="/privacy" class="cb-link">Privacy policy (Italian)</a>
         </>
       )}
     </div>
@@ -105,26 +105,61 @@ const { isEN } = Astro.props;
 <script>
   const STORAGE_KEY = "cookie_consent";
   const banner = document.getElementById("cookie-banner") as HTMLElement;
+  const analyticsWindow = window as any;
+  let configured = false;
+  let returnFocus: HTMLElement | null = null;
 
-  function grantConsent() {
-    (window as any).gtag?.("consent", "update", { analytics_storage: "granted" });
-    localStorage.setItem(STORAGE_KEY, "granted");
+  function readConsent() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch { return null; }
+  }
+
+  function enableAnalytics() {
+    analyticsWindow.dataLayer ||= [];
+    analyticsWindow.gtag ||= function (...args: any[]) { analyticsWindow.dataLayer.push(args); };
+    analyticsWindow['ga-disable-G-CR1P08P9V3'] = false;
+    analyticsWindow.gtag("consent", "update", { analytics_storage: "granted" });
+    if (configured) return;
+    configured = true;
+    analyticsWindow.gtag("js", new Date());
+    analyticsWindow.gtag("config", "G-CR1P08P9V3");
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-CR1P08P9V3";
+    document.head.appendChild(script);
+  }
+
+  function chooseConsent(granted: boolean) {
+    try { localStorage.setItem(STORAGE_KEY, granted ? "granted" : "denied"); } catch {}
+    if (granted) enableAnalytics();
+    else {
+      analyticsWindow['ga-disable-G-CR1P08P9V3'] = true;
+      analyticsWindow.gtag?.("consent", "update", { analytics_storage: "denied" });
+      // Remove GA cookies at the host and parent-domain scopes where they may exist.
+      const parts = location.hostname.split(".");
+      for (const cookie of document.cookie.split(";")) {
+        const name = cookie.split("=")[0].trim();
+        if (name !== "_ga" && !name.startsWith("_ga_")) continue;
+        document.cookie = `${name}=; Max-Age=0; path=/`;
+        for (let i = 0; i < parts.length - 1; i++) {
+          document.cookie = `${name}=; Max-Age=0; path=/; domain=${parts.slice(i).join(".")}`;
+        }
+      }
+    }
     banner.style.display = "none";
+    returnFocus?.focus();
   }
 
-  function denyConsent() {
-    (window as any).gtag?.("consent", "update", { analytics_storage: "denied" });
-    localStorage.setItem(STORAGE_KEY, "denied");
-    banner.style.display = "none";
-  }
+  const stored = readConsent();
+  if (stored === "granted") enableAnalytics();
+  else if (stored !== "denied") banner.style.display = "block";
 
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === "granted") {
-    (window as any).gtag?.("consent", "update", { analytics_storage: "granted" });
-  } else if (!stored) {
-    banner.style.display = "block";
-  }
-
-  document.getElementById("cb-accept")?.addEventListener("click", grantConsent);
-  document.getElementById("cb-reject")?.addEventListener("click", denyConsent);
+  document.getElementById("cb-accept")?.addEventListener("click", () => chooseConsent(true));
+  document.getElementById("cb-reject")?.addEventListener("click", () => chooseConsent(false));
+  document.querySelectorAll<HTMLElement>("[data-cookie-settings]").forEach(button => {
+    button.addEventListener("click", () => {
+      returnFocus = button;
+      banner.style.display = "block";
+      document.getElementById("cb-reject")?.focus();
+    });
+  });
 </script>

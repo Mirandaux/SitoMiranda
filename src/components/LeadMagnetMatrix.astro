@@ -18,7 +18,7 @@
           <!-- Form email -->
           <form class="lm-form" method="post" action="/api/download-matrix" novalidate style="margin-top:28px;">
             <!-- Honeypot anti-spam -->
-            <input type="hidden" name="honeypot" value="" />
+            <div style="position:absolute;left:-10000px;" aria-hidden="true"><label>Lascia vuoto<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off" /></label></div>
             <div class="lm-field">
               <input
                 type="email"
@@ -37,6 +37,8 @@
             </div>
             <p class="lm-field-error" role="alert" style="display:none;"></p>
           </form>
+
+          <p class="lm-note">La tua email sarà usata solo per inviarti la matrice, senza iscrizione a newsletter. <a href="/privacy">Informativa privacy</a>.</p>
 
           <!-- Stato successo (nascosto fino all'invio) -->
           <div class="lm-success" style="display:none;" role="status">

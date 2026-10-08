@@ -13,6 +13,11 @@ function jsonResponse(body, status = 200) {
   });
 }
 
+function escapeHtml(value = "") {
+  return String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+}
+
 function sanitize(str = "", maxLen = 2000) {
   return String(str).trim().slice(0, maxLen);
 }
@@ -65,7 +70,7 @@ export const POST = async ({ request }) => {
     return jsonResponse({ ok: false, field: "decisione", error: "Seleziona il tipo di decisione." }, 400);
   if (cleanProblema.length < 10)
     return jsonResponse({ ok: false, field: "problema", error: "Descrivi il problema (almeno 10 caratteri)." }, 400);
-  if (!privacy_consent)
+  if (privacy_consent !== true)
     return jsonResponse({ ok: false, field: "privacy_consent", error: "Il consenso alla privacy e' obbligatorio." }, 400);
 
   console.log(`${tag} validation ok — email=${cleanEmail.slice(0,3)}***`);
@@ -100,7 +105,7 @@ export const POST = async ({ request }) => {
   if (page_url)     attributes.PAGE_URL     = sanitize(page_url, 500);
 
   const listIds = [sfsListId];
-  if (marketing_consent) {
+  if (marketing_consent === true) {
     const mktListId = parseInt(process.env.BREVO_MKT_LIST_ID || String(sfsListId));
     if (!isNaN(mktListId) && !listIds.includes(mktListId)) listIds.push(mktListId);
   }
@@ -123,9 +128,9 @@ export const POST = async ({ request }) => {
       ? `<tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
            <strong style="font-size:13px;color:#888;display:block;">UTM</strong>
            <span style="font-size:13px;color:#555;">
-             source: ${sanitize(utm_source || "", 100)}
-             &nbsp;·&nbsp;medium: ${sanitize(utm_medium || "", 100)}
-             &nbsp;·&nbsp;campaign: ${sanitize(utm_campaign || "", 100)}
+             source: ${escapeHtml(sanitize(utm_source || "", 100))}
+             &nbsp;·&nbsp;medium: ${escapeHtml(sanitize(utm_medium || "", 100))}
+             &nbsp;·&nbsp;campaign: ${escapeHtml(sanitize(utm_campaign || "", 100))}
            </span>
          </td></tr>`
       : "";
@@ -151,35 +156,35 @@ export const POST = async ({ request }) => {
             <table width="100%" cellpadding="0" cellspacing="0">
               <tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
                 <strong style="font-size:13px;color:#888;display:block;">Nome</strong>
-                <span style="font-size:15px;color:#111;">${cleanNome}</span>
+                <span style="font-size:15px;color:#111;">${escapeHtml(cleanNome)}</span>
               </td></tr>
               <tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
                 <strong style="font-size:13px;color:#888;display:block;">Email</strong>
-                <a href="mailto:${cleanEmail}" style="font-size:15px;color:#7c223f;">${cleanEmail}</a>
+                <a href="mailto:${escapeHtml(cleanEmail)}" style="font-size:15px;color:#7c223f;">${escapeHtml(cleanEmail)}</a>
               </td></tr>
               <tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
                 <strong style="font-size:13px;color:#888;display:block;">Azienda</strong>
-                <span style="font-size:15px;color:#111;">${cleanAzienda}</span>
+                <span style="font-size:15px;color:#111;">${escapeHtml(cleanAzienda)}</span>
               </td></tr>
               <tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
                 <strong style="font-size:13px;color:#888;display:block;">Decisione</strong>
-                <span style="font-size:15px;color:#111;">${cleanDecisione}</span>
+                <span style="font-size:15px;color:#111;">${escapeHtml(cleanDecisione)}</span>
               </td></tr>
               <tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
                 <strong style="font-size:13px;color:#888;display:block;">Problema</strong>
-                <span style="font-size:15px;color:#111;white-space:pre-wrap;">${cleanProblema}</span>
+                <span style="font-size:15px;color:#111;white-space:pre-wrap;">${escapeHtml(cleanProblema)}</span>
               </td></tr>
               ${utmLine}
               <tr><td style="padding:8px 0;">
                 <strong style="font-size:13px;color:#888;display:block;">Consenso marketing</strong>
-                <span style="font-size:15px;color:#111;">${marketing_consent ? "Si" : "No"}</span>
+                <span style="font-size:15px;color:#111;">${marketing_consent === true ? "Si" : "No"}</span>
               </td></tr>
             </table>
           </td>
         </tr>
         <tr>
           <td style="padding:20px 40px;background:#f9f9f9;border-top:1px solid #eee;">
-            <p style="margin:0;font-size:12px;color:#999;">Rispondi a questa email per scrivere direttamente a ${cleanNome}.</p>
+            <p style="margin:0;font-size:12px;color:#999;">Rispondi a questa email per scrivere direttamente a ${escapeHtml(cleanNome)}.</p>
           </td>
         </tr>
       </table>
