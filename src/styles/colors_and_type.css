@@ -3,12 +3,24 @@
    Single source of truth for any prototype, deck or production
    surface built against the Miranda brand.
 
-   Fonts are loaded from Google Fonts (Manrope + Inter) since no
-   self-hosted files were provided. Swap with self-hosted .woff2
-   when available and update the @font-face declarations below.
+   Manrope and Inter are self-hosted under the SIL Open Font License.
+   Fontsource variable packages 5.3.0; licenses retained in public/fonts.
    ============================================================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/fonts/manrope-latin-wght-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin-wght-normal.woff2") format("woff2");
+}
 
 :root {
   /* -----------------------------------------------------------
