@@ -1,0 +1,106 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const decisions = [
+  { n: "01", title: "Una foto diventa una tappa", text: "Otto ambienti distribuiti nelle pagine del sito. Ogni fotografia ha un nome, una breve descrizione delle attività e un invito a scoprire lo spazio successivo." },
+  { n: "02", title: "Due modi di orientarsi", text: "Il percorso fotografico affianca il menu principale. Le famiglie possono seguire la curiosità oppure raggiungere direttamente servizi, iscrizioni e contatti." },
+  { n: "03", title: "Dal sito alla visita", text: "Il giro termina nella pagina Contatti con un invito a conoscere la scuola di persona. La numerazione identifica le tappe, senza registrare gli spazi effettivamente visitati." },
+];
+---
+<Layout title="Miranda · Sacra Famiglia: conoscere la scuola attraverso i suoi spazi" description="Un percorso di scoperta tra otto ambienti educativi. Strategia dei contenuti, UX/UI e sviluppo per la scuola dell’infanzia Sacra Famiglia di Roverchiara." page="casi">
+  <section class="page-hero"><div class="shell">
+    <a class="back" href="/casi">← Tutti i casi</a>
+    <div class="eyebrow">Content strategy · Interaction design</div>
+    <h1>Conoscere la scuola,<br />uno spazio alla volta.</h1>
+    <p class="intro">Otto ambienti educativi diventano un percorso di scoperta tra le pagine del sito, fino all’invito a visitare la scuola di persona.</p>
+    <dl class="facts">
+      <div><dt>La scuola</dt><dd>Sacra Famiglia · Roverchiara<br />Infanzia paritaria, associata FISM</dd></div>
+      <div><dt>Il mio ruolo</dt><dd>Contenuti, UX/UI, sviluppo e pubblicazione<br />Progetto seguito in autonomia</dd></div>
+      <div><dt>Periodo</dt><dd>2025–2026</dd></div>
+    </dl>
+    <a class="btn btn-primary" href="https://infanziaroverchiara.it/" target="_blank" rel="noopener">Visita il sito della scuola ↗</a>
+  </div></section>
+
+  <section class="section tight"><div class="shell story-grid">
+    <div class="eyebrow">Il contesto</div>
+    <div class="prose"><h2>Prima di scegliere, poter immaginare.</h2>
+      <p>Per scegliere una scuola dell’infanzia, le famiglie devono conoscere servizi, orari e modalità di iscrizione. Devono anche riuscire a immaginare la quotidianità del bambino: cosa potrà esplorare, quali materiali avrà a disposizione e come saranno organizzati gli ambienti.</p>
+      <p>Il sito della scuola era stato realizzato gratuitamente da un genitore e risaliva al 2000. Il nuovo progetto nasce dall’esigenza di aggiornare le informazioni e raccontare la scuola di oggi, dando spazio agli ambienti e alle esperienze educative.</p>
+    </div>
+  </div></section>
+
+  <section class="section tight"><div class="shell"><div class="context-panel">
+    <div class="eyebrow">Conoscere dall’interno</div>
+    <h2>Prima del sito, sette anni nella vita della scuola.</h2>
+    <p>Sono presidente della scuola da tre anni, dopo quattro anni come vicepresidente. Questo mi ha permesso di respirare l’aria al suo interno, osservare la quotidianità e imparare molto dalle insegnanti.</p>
+    <p>È lo stesso principio che porto nelle aziende: entrare, vedere i flussi, capire come si lavora e fare domande alle persone che quel lavoro lo fanno ogni giorno. È da questa conoscenza che parto per trovare soluzioni utili.</p>
+  </div></div></section>
+
+  <section class="section tight"><div class="shell story-grid">
+    <div class="eyebrow">La domanda progettuale</div>
+    <div class="prose"><h2>Come trasformare le fotografie in un invito a conoscere la scuola?</h2>
+      <p>Gli ambienti sono ricchi di dettagli: materiali naturali, angoli dedicati alla ricerca, lettura e gioco destrutturato. Ho scelto di distribuire otto spazi nelle pagine del sito, collegandoli attraverso un piccolo giro di scoperta.</p>
+      <p>Ogni fotografia offre qualcosa da osservare e un motivo per proseguire. L’idea riprende un elemento della vita scolastica: scoprire attraverso la curiosità, il gioco e l’esperienza.</p>
+    </div>
+  </div></section>
+
+  <section class="section tight"><div class="shell">
+    <div class="eyebrow">Il percorso</div><h2>Un filo tra gli spazi e le informazioni.</h2>
+    <div class="journey" aria-label="Struttura del percorso di esplorazione">
+      <div><span>Home</span><strong>L’invito a esplorare</strong><p>“Gira il sito e scopri i nostri spazi.”</p></div>
+      <div><span>Le tappe</span><strong>Osservare e capire</strong><p>Foto, descrizione, numero e collegamento alla pagina successiva.</p></div>
+      <div><span>Contatti</span><strong>Incontrarsi di persona</strong><p>La scoperta online si apre alla visita della scuola.</p></div>
+    </div>
+    <div class="decision-grid">{decisions.map(d => <article><span class="number">{d.n}</span><h3>{d.title}</h3><p>{d.text}</p></article>)}</div>
+  </div></section>
+
+  <section class="section tight"><div class="shell story-grid">
+    <div class="eyebrow">Dare significato alle immagini</div>
+    <div class="prose"><h2>Mostrare lo spazio. Raccontare cosa ci si può fare.</h2>
+      <p>Le descrizioni aiutano a leggere le fotografie. Nell’atelier dei materiali naturali, per esempio, pigne, conchiglie, legnetti e tavolo luminoso diventano occasioni per toccare, osservare e combinare liberamente.</p>
+      <blockquote>“Pigne, conchiglie, legnetti e un tavolo luminoso da toccare, osservare e combinare liberamente.”</blockquote>
+      <p>Le fotografie possono essere ingrandite in una lightbox per osservare materiali e allestimenti. Su mobile, immagine e testo si dispongono in verticale mantenendo la struttura delle tappe.</p>
+    </div>
+  </div></section>
+
+  <section class="section tight"><div class="shell story-grid">
+    <div class="eyebrow">Dalla struttura alla pubblicazione</div>
+    <div class="prose"><h2>Un progetto seguito dall’inizio alla messa online.</h2>
+      <p>Ho organizzato i contenuti su metodo educativo, servizi, team, iscrizioni e contatti, curando testi, interfaccia e sviluppo.</p>
+      <p>Verde, toni crema e accenti oro accompagnano le fotografie reali della scuola. La tipografia distingue il racconto dalle informazioni di servizio, con un tono caldo e leggibile.</p>
+      <p>Ho lavorato anche sullo sviluppo responsive, la navigazione da tastiera, la gestione del focus, i testi alternativi delle immagini e gli elementi SEO delle pagine. Il progetto comprende ottimizzazione delle immagini, configurazione del dominio e pubblicazione su Vercel.</p>
+    </div>
+  </div></section>
+
+  <section class="section tight"><div class="shell"><div class="closing">
+    <div class="eyebrow">Il risultato e le prossime verifiche</div>
+    <h2>Il percorso è online.<br />Ora osserviamo come viene usato.</h2>
+    <p>Il sito integra le informazioni pratiche con un percorso fotografico attraverso otto ambienti della scuola. L’obiettivo è favorire la scoperta della proposta educativa e accompagnare le famiglie verso un contatto.</p>
+    <p>Inizieremo a monitorare il comportamento dei visitatori: quali tappe esplorano, se seguono gli inviti a proseguire e come raggiungono le informazioni pratiche e i contatti. Il numero di pagine visitate sarà letto insieme alla capacità di orientarsi, con particolare attenzione all’esperienza mobile.</p>
+    <a class="btn btn-primary" href="https://infanziaroverchiara.it/" target="_blank" rel="noopener">Esplora il sito della scuola ↗</a>
+  </div></div></section>
+</Layout>
+
+<style>
+  .back { display:inline-block; margin-bottom:32px; color:var(--on-dark-2); font-size:14px; }
+  .page-hero h1 { max-width:21ch; } .intro { max-width:760px; }
+  .facts { display:grid; grid-template-columns:1.2fr 1.5fr .6fr; gap:28px; border-top:1px solid var(--hairline); padding-top:28px; margin:36px 0; }
+  dt,.number { color:var(--eyebrow-dark); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+  dd { margin:10px 0 0; color:var(--on-dark-2); font-size:14px; line-height:1.7; }
+  .story-grid { display:grid; grid-template-columns:220px minmax(0,760px); gap:48px; }
+  h2 { font-size:clamp(26px,3.4vw,40px); line-height:1.2; margin:0 0 24px; max-width:26ch; }
+  .prose p,.context-panel p,.closing p { font-size:17px; line-height:1.8; color:var(--on-dark-2); }
+  .story-grid>.eyebrow { padding-top:8px; }
+  .context-panel,.closing { padding:clamp(24px,5vw,56px); border:1px solid var(--hairline); border-radius:20px; background:linear-gradient(130deg,rgba(124,34,63,.14),rgba(255,255,255,.02)); }
+  .context-panel p,.closing p { max-width:800px; }
+  .context-panel .eyebrow,.closing .eyebrow { margin-bottom:22px; }
+  .journey { display:grid; grid-template-columns:repeat(3,1fr); margin:36px 0; border:1px solid var(--hairline); border-radius:16px; overflow:hidden; }
+  .journey>div { padding:28px; background:rgba(255,255,255,.025); }
+  .journey>div+div { border-left:1px solid var(--hairline); }
+  .journey span { display:block; font-size:12px; color:var(--eyebrow-dark); text-transform:uppercase; letter-spacing:.1em; margin-bottom:16px; }
+  .journey strong { font-size:20px; } .journey p,.decision-grid p { font-size:15px; line-height:1.7; color:var(--on-dark-2); }
+  .decision-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+  .decision-grid h3 { font-size:19px; margin:12px 0; }
+  blockquote { margin:28px 0; border-left:3px solid var(--eyebrow-dark); padding:12px 24px; color:var(--on-dark-1); font-size:21px; line-height:1.6; }
+  .closing .btn { margin-top:20px; }
+  @media(max-width:760px) { .facts,.story-grid,.journey,.decision-grid { grid-template-columns:1fr; } .story-grid { gap:20px; } .journey>div+div { border-left:0; border-top:1px solid var(--hairline); } }
+</style>
